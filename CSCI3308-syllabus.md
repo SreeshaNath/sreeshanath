@@ -142,7 +142,7 @@ Lab work should be completed and turned in or approved by the TA during lab time
 All lectures will be recorded.  The videos from the lectures will be available on the course's Canvas website.
 
 ## Exams
-During Weeks 9 and Week 13 there will be exams.  Together the exams make up 20% of your final grade. The exams will be administered and graded by Canvas. 
+During Weeks 8 and Week 13 there will be exams.  Together the exams make up 20% of your final grade. The exams will be administered and graded by Canvas. 
 
 ## Cheating 
 (See the section on Honor Code below.)
