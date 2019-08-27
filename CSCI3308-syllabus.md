@@ -22,11 +22,11 @@ All recitations are mandatory. Attendance will be taken by the TAs in the form o
 Section | Day & Time | Location | TA
 ----------|--------|---------|--------
 101|W 5:00 p.m. - 6:40 p.m.	| ECCE 141 | Carl Mueller
-102|F 8:00 a.m. - 9:40 a.m. |	ECCR 235 | Alecio Madrid
+102|F 8:00 a.m. - 9:40 a.m. |	ECCR 235 | Srinjita Bhaduri
 111|Th 2:00 p.m. - 3:40 p.m.	| ECCR 235 | Shreshtha Pankaj
 112|Th 4:00 p.m. - 5:40 p.m. |	ECCR 235 | Annika Muehlbradt
 113|F 12:00 p.m. - 1:40 p.m. |	ECCE 141 | Yash Sapra
-201|W 6:00 p.m. - 7:40 p.m.	| ECCR 235 | Srinjita Bhaduri
+201|W 6:00 p.m. - 7:40 p.m.	| ECCR 235 | Alecio Madrid
 202|Th 9:00 a.m. - 10:40 a.m.	| ECCR 235 | Josh Ladd
 203|Th 3:30 p.m. - 5:10 p.m.	| ECCE 141 | Srinjita Bhaduri
 204|F 8:00 a.m. - 9:40 a.m. |	ECCE 141 | Josh Ladd
