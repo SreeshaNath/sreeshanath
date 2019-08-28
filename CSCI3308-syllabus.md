@@ -92,6 +92,7 @@ The Canvas course pages are the official site for all notifications, assignments
 
 ## Piazza 
 A Piazza page has been set up for all the students to collaborate on doubts concerning the course work. We encourage students to participate in answering questions before instructors can help out. Please refrain from posting solutions on Piazza. Also, tag the appropriate folder when posting questions so that it can be easily located by your fellow students.
+[You can find the Piazza page here](https://piazza.com/class/jzlrfq0z3ce5ql)
 
 ## Homework Assignments 
 The course includes FOUR homework assignments that comprise 24% (240 points) toward your grade. Each assignment must be completed and submitted via Canvas by its due date to earn full credit.  All assignments will be posted on a Friday and will be due on Friday two weeks after, at 11:59 p.m. *For eg: Assignment posted on August 30 will be due on September 13 at 11:59 p.m.*
