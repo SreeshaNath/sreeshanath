@@ -48,10 +48,6 @@
 				</div>
 				<div class="collapse" id="multiCollapseExample1">
 					<dl>
-						<dt>Department VM</dt>
-						<dd> The department provides a VMWARE VM Image found <a href="https://foundation.cs.colorado.edu/vm/">here</a>.
-						     For some students VMWARE works sluggishly on their machine, while others have issues getting VirtualBox to work properly on their machine.
-							 We have provided instructions here for setting up Ubuntu to VirtualBox, but you can also use the departments VM with VMWARE instead (which ever one works best for your system).</dd>
 						<dt>1. Download & Install VirtualBox</dt>
 						<dd>Go to <a href="https://www.virtualbox.org/wiki/Downloads">VitualBox</a> and
 							download the latest version of VirtualBox that matches your operating system.</dd>
@@ -177,8 +173,8 @@
 									Now restart your virtual machine.
 								</div>
 								<div class="col-8">
-									<img src="img/vm_setup_13.png" height="577px" width="590px"> 
-									<img src="img/vm_setup_14.png" height="477px" width="577px"> 
+									<img src="img/vm_setup_13.png" height="577px" width="590px">
+									<img src="img/vm_setup_14.png" height="477px" width="577px">
 								</div>
 							</div>
 						</dd>
@@ -275,9 +271,9 @@
 						<dd>
 							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">nano test.txt</code></pre>
 							<ol>
-								<li>Switch to insert mode (press "i") to add text</li>
+								<li>nano opens the file in the insert mode by default</li>
 								<li>Add any text you wish (This is a test!!!)</li>
-								<li>To save & quit, press ctrl (to change mode) and type wq(write & quite) and hit enter</li>
+								<li>To save & quit, press ctrl+x, then type 'Y' and finally hit enter</li>
 							</ol>
 						</dd>
 						<dt>9. Add & Commit your changes to the repo</dt>
@@ -363,7 +359,7 @@ insert into store (sname, qty, price) values ('apple', 10, 1),('pear', 5, 2),('b
 						<dt>4. Create practice Node.js website</dt>
 						<dd>
 							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> nano test_server.js</code></pre>
-							Copy into your file the following code.  As a note, you can also use the built-in text editor instead of vim/nano to modify the text files.
+							Copy into your file the following code.  As a note, you can also use the built-in text editor instead of gedit/nano to modify the text files.
 							However, it is still strongly encouraged for you to become familiar with a terminal text editor.  Not all linux systems have a desktop to work within! In case you choose to type the below content into the file, note that in the console.log statement, the symbol within the paranthesis is the ` symbol (the key to the left of 1 on your keyboard) and not the standard single quote (').
 							<pre><code  class="language-bash">const http = require('http');
 
