@@ -5,7 +5,7 @@
     <!-- Bootstrap core CSS & JS -->
 	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
-	
+
 	<script src="../resources/js/jquery-3.3.1.js"></script>
 	<script src="../resources/js/popper.js" ></script>
 	<script src="../resources/js/bootstrap.js"></script>
@@ -38,21 +38,25 @@
 				</div>
 			  </div>
 			</div>
-			
+
 			<div class="card card-body" id="step1">
 				<div class="stepLine">
-					<p class="alignleft h5">1. Setup Linux (Ubuntu) Virtual Machine (Required for Mac/Windows Users)</p> 
-					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)" >Mark Complete</button>  
+					<p class="alignleft h5">1. Setup Linux (Ubuntu) Virtual Machine (Required for Mac/Windows Users)</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)" >Mark Complete</button>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
 					<p class="alignright h5">(<span class="time" id="time1">35</span> Minutes)</p>
 				</div>
 				<div class="collapse" id="multiCollapseExample1">
 					<dl>
+						<dt>Department VM</dt>
+						<dd> The department provides a VMWARE VM Image found <a href="https://foundation.cs.colorado.edu/vm/">here</a>.
+						     For some students VMWARE works sluggishly on their machine, while others have issues getting VirtualBox to work properly on their machine.
+							 We have provided instructions here for setting up Ubuntu to VirtualBox, but you can also use the departments VM with VMWARE instead (which ever one works best for your system).</dd>
 						<dt>1. Download & Install VirtualBox</dt>
-						<dd>Go to <a href="https://www.virtualbox.org/wiki/Downloads">VitualBox</a> and 
+						<dd>Go to <a href="https://www.virtualbox.org/wiki/Downloads">VitualBox</a> and
 							download the latest version of VirtualBox that matches your operating system.</dd>
 						<dt>2. Download Ubunutu ISO</dt>
-						<dd>Go to <a href="https://www.ubuntu.com/download/desktop">Ubuntu</a> and download the 
+						<dd>Go to <a href="https://www.ubuntu.com/download/desktop">Ubuntu</a> and download the
 							latest LTS (Long Term Support) ISO, currently 18.04.</dd>
 						<dt>3. Add a new Linux VM to VirtualBox </dt>
 						<dd>
@@ -64,7 +68,7 @@
 									<b>Version:</b> Ubuntu (64-bit) </b><br>
 								</div>
 								<div class="col-8">
-									<img src="img/vm_setup_1.png" height="332px" width="577px"> 
+									<img src="img/vm_setup_1.png" height="332px" width="577px">
 								</div>
 							</div>
 						</dd>
@@ -86,11 +90,11 @@
 						</dd>
 						<dt>8. Choose file size & location (use default values)</dt>
 						<dd>
-							<img src="img/vm_setup_6.png" height="354px" width="310px"> 
+							<img src="img/vm_setup_6.png" height="354px" width="310px">
 						</dd>
 						<dt>9. Modify VM's settings</dt>
 						<dd>
-							<img src="img/vm_setup_7.png" height="332px" width="577px"> 
+							<img src="img/vm_setup_7.png" height="332px" width="577px">
 						</dd>
 						<dt>10. Load Ubuntu ISO</dt>
 						<dd>
@@ -104,7 +108,7 @@
 									</ol>
 								</div>
 								<div class="col-8">
-									<img src="img/vm_setup_8.png" height="332px" width="577px"> 
+									<img src="img/vm_setup_8.png" height="332px" width="577px">
 								</div>
 							</div>
 						</dd>
@@ -112,12 +116,12 @@
 						<dd>
 							<div class="row">
 								<div class="col-4">
-									Follow the onscreen prompts and use the default settings.  Yes, even the "erase disk" option.  
-									Ubuntu assumes it is being installed on a real machine, but you are not actually modifing your computer's hard drive. 
+									Follow the onscreen prompts and use the default settings.  Yes, even the "erase disk" option.
+									Ubuntu assumes it is being installed on a real machine, but you are not actually modifing your computer's hard drive.
 									This is erasing the <b>virtual</b> hard disk drive we created for our VirtualBox VM.
 								</div>
 								<div class="col-8">
-									<img src="img/vm_setup_9.png" height="332px" width="577px"> 
+									<img src="img/vm_setup_9.png" height="332px" width="577px">
 								</div>
 							</div>
 						</dd>
@@ -127,7 +131,7 @@
 							<br>
 							<div class="row">
 								<div class="col-4">
-									First, we'll need to install some dependencies on our virtual machine.  Copy the following into a terminal 
+									First, we'll need to install some dependencies on our virtual machine.  Copy the following into a terminal
 								</div>
 								<div class="col-8">
 									<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">sudo apt install linux-headers-$(uname -r) build-essential dkms</code></pre>
@@ -139,7 +143,7 @@
 									Select Devices > Insert Guest Additions.
 								</div>
 								<div class="col-8">
-									<img src="img/vm_setup_10.png" height="332px" width="577px"> 
+									<img src="img/vm_setup_10.png" height="332px" width="577px">
 								</div>
 							</div>
 							<br>
@@ -148,7 +152,7 @@
 									Select "Run" and allow Ubuntu to install the Guest Additions software.
 								</div>
 								<div class="col-8">
-									<img src="img/vm_setup_11.png" height="270px" width="577px"> 
+									<img src="img/vm_setup_11.png" height="270px" width="577px">
 								</div>
 							</div>
 							<br>
@@ -157,7 +161,7 @@
 									To finish, right-click the Guest Additions CD and select "Eject". Now restart your virtual machine.
 								</div>
 								<div class="col-8">
-									<img src="img/vm_setup_12.png" height="577px" width="577px"> 
+									<img src="img/vm_setup_12.png" height="577px" width="577px">
 								</div>
 							</div>
 						</dd>
@@ -167,7 +171,7 @@
 			<div class="card card-body" id="step2">
 				<div class="stepLine">
 					<p class="alignleft h5">2. Setup Github Repository</p>
-					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>  					
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
 					<p class="alignright h5">(<span class="time" id="time2">10</span> Minutes)</p>
 				</div>
@@ -179,10 +183,10 @@
 						<dd>
 							<div class="row">
 								<div class="col-4">
-									Click the "+" in the upper right corner on your github page and select "New repository"</li>	
+									Click the "+" in the upper right corner on your github page and select "New repository"</li>
 								</div>
 								<div class="col-8">
-									<img src="img/git_setup_1.png"> 
+									<img src="img/git_setup_1.png">
 								</div>
 							</div>
 							<br>
@@ -196,7 +200,7 @@
 									<b>Initialize with Readme:</b>This is also optional, but go ahead and have github at a README file to your repo <br>
 								</div>
 								<div class="col-8">
-									<img src="img/git_setup_2.png" height="452px" width="559px"> 
+									<img src="img/git_setup_2.png" height="452px" width="559px">
 								</div>
 							</div>
 							<br>
@@ -205,18 +209,18 @@
 									Copy your new repository's https address so you can clone it locally.
 								</div>
 								<div class="col-8">
-									<img src="img/git_setup_3.png"> 
+									<img src="img/git_setup_3.png">
 								</div>
 							</div>
 						</dd>
 					</dl>
 				</div>
 			</div>
-			
+
 			<div class="card card-body" id="step3">
 				<div class="stepLine">
-					<p class="alignleft h5">3. Setup Git (version control software)</p> 
-					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)" >Mark Complete</button>  
+					<p class="alignleft h5">3. Setup Git (version control software)</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)" >Mark Complete</button>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
 					<p class="alignright h5">(<span class="time" id="time3">15</span> Minutes)</p>
 				</div>
@@ -254,9 +258,9 @@
 						<dd>
 							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">nano test.txt</code></pre>
 							<ol>
-								<li>nano opens a file in the insert mode by default</li>
+								<li>Switch to insert mode (press "i") to add text</li>
 								<li>Add any text you wish (This is a test!!!)</li>
-								<li>To save & quit, press ctrl+X to exit, then Y to save your file, and finally hit enter</li>
+								<li>To save & quit, press ctrl (to change mode) and type wq(write & quite) and hit enter</li>
 							</ol>
 						</dd>
 						<dt>9. Add & Commit your changes to the repo</dt>
@@ -268,11 +272,11 @@ git push</code></pre>
 					</dl>
 				</div>
 			</div>
-			
+
 			<div class="card card-body" id="step4">
 				<div class="stepLine">
 					<p class="alignleft h5">4. Install & Test PostgreSQL</p>
-					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)" >Mark Complete</button>  					
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)" >Mark Complete</button>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
 					<p class="alignright h5">(<span class="time" id="time4">15</span> Minutes)</p>
 				</div>
@@ -312,16 +316,16 @@ insert into store (sname, qty, price) values ('apple', 10, 1),('pear', 5, 2),('b
 (out) 1 | apple  |  10 |     1
 (out) 2 | pear   |   5 |     2
 (out) 3 | banana |  10 |   1.5 </code></pre>
-							
+
 						</dd>
 					</dl>
 				</div>
 			</div>
-			
+
 			<div class="card card-body" id="step5">
 				<div class="stepLine">
 					<p class="alignleft h5">5. Install & Test Node.js</p>
-					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)" >Mark Complete</button>  					
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)" >Mark Complete</button>
 					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
 					<p class="alignright h5">(<span class="time" id="time5">10</span> Minutes)</p>
 				</div>
@@ -342,8 +346,8 @@ insert into store (sname, qty, price) values ('apple', 10, 1),('pear', 5, 2),('b
 						<dt>4. Create practice Node.js website</dt>
 						<dd>
 							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> nano test_server.js</code></pre>
-							Copy into your file the following code.  As a note, you can also use the built-in text editor instead of gedit/nano to modify the text files.  
-							However, it is still strongly encouraged for you to become familiar with a terminal text editor.  Not all linux systems have a desktop to work within!
+							Copy into your file the following code.  As a note, you can also use the built-in text editor instead of vim/nano to modify the text files.
+							However, it is still strongly encouraged for you to become familiar with a terminal text editor.  Not all linux systems have a desktop to work within! In case you choose to type the below content into the file, note that in the console.log statement, the symbol within the paranthesis is the ` symbol (the key to the left of 1 on your keyboard) and not the standard single quote (').
 							<pre><code  class="language-bash">const http = require('http');
 
 const hostname = '127.0.0.1';
@@ -363,10 +367,14 @@ server.listen(port, hostname, () => {
 						<dd>
 							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> node test_server.js</code></pre>
 						</dd>
+            <dt>6. To check if your server is running on your system, type the below url in your browser. It should display the response "Hello World"</dt>
+            <dd>
+							<pre><code  class="language-bash"> http://localhost:3000</code></pre>
+						</dd>
 					</dl>
 				</div>
 			</div>
-			
+
 		</main><!-- /.container -->
 		<div id="bottom_nav">
 			<div class="row">
@@ -375,10 +383,10 @@ server.listen(port, hostname, () => {
 				<div class="col-2" >
 				    <div class="row">
 				        <div class="col-2">
-				            
+
 				        </div>
 				        <div class="col-10">
-        					<div class="card">	  
+        					<div class="card">
         					  <div class="card-body">
         					  	<p class="h4 text-center">Helper Icons</p>
         					  	<hr>
