@@ -52,3 +52,15 @@ function isChecked(num){
     document.getElementById("row" + num).style.backgroundColor = "white";
   }
 }
+
+function showHideVisionSample(){
+  console.log(document.getElementById("visionSample").style.display);
+  if(document.getElementById("visionSample").style.display == "none"){
+    document.getElementById("hidetext").innerHTML = "Hide sample visions.";
+    document.getElementById("visionSample").style.display = "block";
+  }
+  else{
+    document.getElementById("visionSample").style.display = "none";
+    document.getElementById("hidetext").innerHTML = "Show sample visions.";
+  }
+}
