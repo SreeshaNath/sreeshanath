@@ -17,7 +17,7 @@ Section | Days & Time | Location
 
 ## Recitations
 
-All recitations are mandatory. Attendance will be taken by the TAs in the form of completion of an exercise during the recitations. You will be provided an additional two days to submit the rest of your recitation. Students with recitations on Wednesday will get upto Friday 11:59 p.m. to submit your work, those of Thursday get upto Saturday 11:59 p.m. and those on Friday get upto Sunday 11:59 p.m. 
+All recitations are mandatory. Attendance will be taken by the TAs in the form of completion of an exercise during the recitations. You will be provided an additional week to submit the rest of your recitation. All recitations submissions are due before the recitation the following week.
 
 Section | Day & Time | Location | TA
 ----------|--------|---------|--------
@@ -131,11 +131,11 @@ Your TA will be reviewing all of your team’s git commits.
 ## Late Submissions 
 You can receive a three‐day extension on **any 2 homeworks or milestone assignments with a 10% grade penalty per day**.  After three days, your assignment is considered past due and will not be accepted. 
 
-Each Lab/Recitation includes a lab assignment.  A predefined portion of the assignment for each lab should be submitted to the TA by the end of the lab.  In some cases, you might need more time to complete the lab assignment.  You can have up to 48 hours after the end of your recitation section to submit your work for that that lab.  
+Each Lab/Recitation includes a lab assignment.  A predefined portion of the assignment for each lab should be submitted to the TA by the end of the lab.  In some cases, you might need more time to complete the lab assignment.  You can have up to 1 week after the end of your recitation section to submit your work for that that lab.
 
 In the event of a documented personal, family, or medical emergency, consult your TA about receiving a penalty free extension. 
 
-If you know you will be missing a weekly lab recitation, you must talk with your TA before going to an alternate recitation period.   If you attend an alternate lab session, then your lab assignment is due on the day you actually attend lab, not on the day of your normally scheduled lab recitation.  
+If you know you will be missing a weekly lab recitation, you must talk with your TA before going to an alternate recitation period. If you attend an alternate lab session, then your lab assignment is due based on the day you actually attend lab, not on the day of your normally scheduled lab recitation.  
 
 Lab work should be completed and turned in or approved by the TA during lab time.   
 
