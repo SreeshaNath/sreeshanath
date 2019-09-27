@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>CSCI 3308 Homework 1</title>
+  <!-- Bootstrap core CSS & JS -->
+  <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+  <script src="../resources/js/jquery-3.3.1.js"></script>
+  <script src="../resources/js/popper.js"></script>
+  <script src="../resources/js/bootstrap.js"></script>
+  <script src="../resources/js/clipboard.js"></script>
+  <script src="../resources/js/prism.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+  <script src="../resources/js/labScripts.js"></script>
+</head>
+
+<body onload="loadPage()">
+  <main role="main" class="container">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-10">
+          <h1 class="display-4">Homework 1: HTML, CSS, Bootstrap</h1>
+          <p class="lead">Due date: 11th October, 11:59 p.m.</b></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-body" id="step1">
+      <div class="stepLine">
+        <p class="alignleft h5">Objectives</p>
+        <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample1" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Expand</button>
+      </div>
+      <div class="collapse" id="multiCollapseExample1" style="padding-top:30px;">
+        <table>
+          <tr>
+            <th>Check</th>
+            <th>Details</th>
+          </tr>
+          <tr id="row1">
+            <td class="check"><input type="checkbox" id="check1" onclick="isChecked(1)" /></td>
+            <td class="details">Create a HTML page with different HTML elements.</td>
+          </tr>
+          <tr id="row2">
+            <td class="check"><input type="checkbox" id="check2" onclick="isChecked(2)" /></td>
+            <td class="details">Understand basic elements in Bootstrap.</td>
+          </tr>
+          <tr id="row3">
+            <td class="check"><input type="checkbox" id="check3" onclick="isChecked(3)" /></td>
+            <td class="details">Use Bootstrap to create a simple and beautiful form.</td>
+          </tr>
+        </table>
+        <br />
+      </div>
+    </div>
+    <div class="card card-body" id="step2">
+      <div class="stepLine">
+        <p class="alignleft h5">Part 1: HTML Web Page</p>
+        <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample2" aria-expanded="false"
+          aria-controls="multiCollapseExample2">Expand</button>
+      </div>
+      <div class="collapse" id="multiCollapseExample2" style="padding-top:30px;">
+        <dl>
+          <dd>
+            <div class="alert alert-primary" role="alert">
+              <u>Motivation:</u> HTML and CSS are popular programming languages for building websites. In this part
+              we’ll introduce you to HTML code and it’s structure and you’ll be tasked to build your own Professional
+              Profile.
+            </div>
+          </dd>
+        </dl>
+        <dd>
+          <div class="alert alert-light" role="alert">
+            Recommended tutorial before you begin: <a href="https://www.w3schools.com/html/" target="_blank">Html
+              tutorial</a>
+          </div>
+        </dd>
+        <ol>
+          <dt>
+            <li>
+              Create a simple <u>HTML document</u> by placing the below content in a file and name it mypage.html:
+            </li>
+          </dt>
+          <dd>
+            <pre>
+              <code  class="language-html">
+<p>&lt;!DOCTYPE html>
+    &lt;html>
+      &lt;head>
+        &lt;title>Page Title&lt;/title>
+      &lt;/head>
+      &lt;body>
+        &lt;h1>My First Heading&lt;/h1>
+        &lt;p>My first paragraph.&lt;/p>
+      &lt;/body>
+    &lt;/html>
+</p></code>
+            </pre>
+          </dd>
+          <dt>
+            <li>
+              Complete the following:
+            </li>
+          </dt>
+          <dd>
+            <ol>
+              <li> Replace the <u>title</u> of the HTML document (mypage.html) to About Me. </li>
+              <li> Replace the <u>header(h1)</u> of the HTML document to your Last Name, First Name. </li>
+              <li> Within the <u>paragraph(p)</u> tags, write three interesting facts about yourself and explain why
+                you are studying Computer Science. </li>
+            </ol>
+          </dd>
+          <dt>
+            <li>
+              Create the following in order:**
+            </li>
+          </dt>
+          <dd>
+            <ol>
+              <li>Create header2 and name it My Professional Profile</li>
+              <li>Underneath header2, create a link that redirects to your Github account </li>
+              <li>Insert an image of yourself, or any picture that can be found online (Keep in mind that any image URLs
+                has to be public else it cannot be seen.) </li>
+              <li>Limit the size of your image using width and height, it should be between 500 and 700 </li>
+              <li>Give the image a value. This is especially useful when the image cannot be displayed </li>
+              <li>Create header3 and name it My Favorite Projects </li>
+              <li>Create a table with 3 rows and 2 columns: Name of the Project, Technologies Used </li>
+              <li>Create header3 and name it Countries Travelled</li>
+              <li>Create an unordered list and list all the countries/places that you’ve travelled to</li>
+              <li>Create header3 and name it My Interests</li>
+              <li>Create an ordered list and list 3 things that you’re most interested in</li>
+              <li>Insert appropriate spacing using &lt;br> between content </li>
+            </ol>
+          </dd>
+        </ol>
+        <dl>
+          <dd>
+            <div class="alert alert-primary" role="alert">
+              ** Feel free to add more stuff that you learn online
+            </div>
+          </dd>
+        </dl>
+        <br />
+        <dl>
+          <dt>
+            <div class="alert alert-success" role="alert">
+              Your final output would look something like this:
+            </div>
+          </dt></br>
+          <dd>
+            <img src="../resources/img/hw1/final_output_html.png" class="img-fluid" alt="Sample photo">
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="card card-body" id="step3">
+      <div class="stepLine">
+        <p class="alignleft h5">Part 2: Bootstrap</p>
+        <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample3" aria-expanded="false"
+          aria-controls="multiCollapseExample3">Expand</button>
+      </div>
+      <div class="collapse" id="multiCollapseExample3" style="padding-top:30px;">
+        <dd>
+          <div class="alert alert-primary" role="alert">
+            <p>The above HTML doesn’t look very nice, does it? So let us try to beautify it slightly by using Bootstrap.
+            </p>
+            <p>The bootstrap tutorial can be found <a href="https://www.w3schools.com/bootstrap4/default.asp"
+                target="_blank">here</a>.</p>
+            <p>You will be required to understand how to incorporate Bootstrap into your HTML files.</p>
+          </div>
+        </dd>
+        <dl>
+          <dt>Step 0 :</dt>
+          <dd>Create a new HTML file called mypage_bootstrap.HTML. Copy the code from part 1 into this file and save it.
+          </dd>
+          <dt>Step 1:</dt>
+          <dd>Learn how to incorporate bootstrap into your HTML. (Hint: You will need to add some code in the
+            &lt;Head>&lt;/Head> of your HTML).<br />Please use CDN’s for including bootstrap in your files. <a
+              href="https://www.w3schools.com/bootstrap4/bootstrap_get_started.asp" target="_blank">This</a>
+            tutorial has a Bootstrap 4 CDN section to help you set that up.</dd>
+          <dt>Step 2:</dt>
+          <dd>Use the <b>container</b> class for the header and use the <b>Bootstrap heading options</b> to get the
+            following look for the heading.
+            <img src="../resources/img/hw1/step2.png" class="img-fluid" alt="step2">
+          </dd>
+          <dt>Step 3:</dt>
+          <dd>Use the <a href="https://www.w3schools.com/bootstrap4/bootstrap_cards.asp" target="_blank">cards</a> class
+            from Bootstrap to format the description as below:<br />
+            <img src="../resources/img/hw1/step3.png" class="img-fluid" alt="step3">
+          </dd>
+          <dt>Step 4:</dt>
+          <dd>Change the GitHub link to a nice looking button using the buttons class in Bootstrap as below.<br />
+            <img src="../resources/img/hw1/step4.png" class="img-fluid" alt="step4">
+          </dd>
+          <dt>Step 5:</dt>
+          <dd>Display the image in a circle.<br />
+            <img src="../resources/img/hw1/step5.png" class="img-fluid" alt="step5">
+          </dd>
+          <dt>Step 6:</dt>
+          <dd>Use <a href="https://getbootstrap.com/docs/4.0/content/tables/" target="_blank">Bootstrap Table</a> to
+            make your favourite projects table more aesthetic. (Refer <a href="https://imgur.com/oB2r2Fm"
+              target="_blank">final image</a> for example)
+          </dd>
+          <dt>Step 7:</dt>
+          <dd>Change the lists of your “Countries travelled” and “Interests” into <a
+              href="https://getbootstrap.com/docs/4.1/components/collapse/" target="_blank">collapsible panels</a> and
+            have them stacked next to each other using Bootstrap grid system. <a
+              href="https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_collapsible&stacked=h"
+              target="_blank">Here’s</a> an example of Bootstrap Collapse that we found online.</dd>
+          <dt>Step 8:</dt>
+          <dd>Create a bootstrap <b><a href="https://getbootstrap.com/docs/4.0/components/modal/"
+                target="_blank">Modal.</a></b> <a
+              href="https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_modal&stacked=h"
+              target="_blank">Here’s</a> an example of Bootstrap Modal that we found online.<br />
+            <img src="../resources/img/hw1/step8.png" class="img-fluid" alt="step8"><br />
+            <p>When clicked on the Modal a pop up alert appears. Give that alert a heading and some text as below.</p>
+            <br />
+            <img src="../resources/img/hw1/step8-1.png" class="img-fluid" alt="step8-1"><br />
+          </dd>
+          <br /><br />
+          <dt>
+            <div class="alert alert-success" role="alert">
+              Refer to the following images resembling your website at this point.
+            </div>
+          </dt>
+          <dd>
+            <div class="alert alert-info" role="alert">
+              Example 1
+            </div>
+          </dd>
+          <dd><img src="../resources/img/hw1/ex1.png" class="img-fluid" alt="example1"><br /></dd>
+          <dd>
+            <div class="alert alert-info" role="alert">
+              Example 2
+            </div>
+          </dd>
+          <dd><img src="../resources/img/hw1/ex2.png" class="img-fluid" alt="example2"><br /></dd>
+          <dd>
+            <div class="alert alert-info" role="alert">
+              Example 3
+            </div>
+          </dd>
+          <dd><img src="../resources/img/hw1/ex3.png" class="img-fluid" alt="example3"><br /></dd>
+        </dl>
+      </div>
+    </div>
+    <div class="card card-body" id="step4">
+      <div class="stepLine">
+        <p class="alignleft h5">Part 3: Bootstrap and HTML</p>
+        <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample4" aria-expanded="false"
+          aria-controls="multiCollapseExample4">Expand</button>
+      </div>
+      <div class="collapse" id="multiCollapseExample4" style="padding-top:30px;">
+        <dd>
+          <div class="alert alert-primary" role="alert">
+            <p>In this portion of the assignment, you will be creating an interactive form for your website.
+            </p>
+            <p>The goal of this form is to allow you as the site admin to upload new files and articles to the website without needing to go into the backend.</p>
+          </div>
+        </dd>
+        <dl>
+          <dt>Step 0 :</dt>
+          <dd>Create an HTML file and name it form.html. This is where you will build the form page.
+          </dd>
+          <dt>Step 1:</dt>
+          <dd>Once you have set up the basics in your html file and included Bootstrap, start by making a new &lt;form> object. Bootstrap has a suite of options for use with <a href="https://getbootstrap.com/docs/4.0/components/forms/">forms</a>.</dd>
+          <dt>Step 2:</dt>
+          <dd>Add two text input form-groups, one for the title and the other for the author of the article being written.
+          </dd>
+          <dt>Step 3:</dt>
+          <dd>Next, you’ll use Bootstrap’s form-row class to align a <a href="https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h">file upload</a> widget and a <a href="https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_form_select&stacked=h">select</a> or a <a href="https://getbootstrap.com/docs/4.0/components/dropdowns/">dropdown</a> for what page the article will appear on.
+          </dd>
+          <dt>Step 4:</dt>
+          <dd>Add an area for the user to input the article text. This should be a large box rather than a thinner one like we used for the title.
+          </dd>
+          <dt>Step 5:</dt>
+          <dd>Horizontally align a set of inline checkboxes with a radio button to allow the user to add meta tags to their article and determine whether it will be publicly visible.
+          </dd>
+          <dt>Step 6:</dt>
+          <dd>Create a login portal to verify the identity of the person trying to upload to the site. This is a combination of a text input, a password input, a checkbox, and a button.
+          </dd>
+          <br/>
+          <dt>
+            <div class="alert alert-success" role="alert">
+              Your form would resemble the following image.
+            </div>
+          </dt>
+          <img src="../resources/img/hw1/new_form.png" class="img-fluid" border="3" alt="new_form">
+          <br/>
+          <br/>
+          <div class="alert alert-primary" role="alert">
+          <p>Remember that passwords don't show characters when typed, but black dots. How might bootstrap determine the difference between normal text and password elements?
+          </p>
+        </div>
+        </dl>
+      </div>
+    </div>
+    <div class="card card-body" id="step5">
+      <div class="stepLine">
+        <p class="alignleft h5">Bonus Question</p>
+        <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample5" aria-expanded="false"
+          aria-controls="multiCollapseExample5">Expand</button>
+      </div>
+      <div class="collapse" id="multiCollapseExample5" style="padding-top:30px;">
+        <dt>
+          <div class="alert alert-primary" role="alert">
+            Host your webpages on GitHub pages and let the whole world see them!
+          </div>
+        </dt>
+        <dt>
+          <div class="alert alert-secondary" role="alert">
+            Follow instructions in <a href="https://pages.github.com/" target="blank">https://pages.github.com/</a> or
+            <a href="https://www.thinkful.com/learn/a-guide-to-using-github-pages"
+              target="blank">https://www.thinkful.com/learn/a-guide-to-using-github-pages</a>
+          </div>
+        </dt>
+        <dt>
+          <div class="alert alert-danger" role="alert">Make sure all 3 web pages are accessible from the internet. Test
+            it out from another device as well. For submission, you’ll need to give us a link to your home page, which
+            will contain hyperlinks to the 3 pages we built for this homework.
+          </div>
+        </dt>
+      </div>
+    </div>
+
+    <div class="card card-body" id="step6">
+      <div class="stepLine">
+        <p class="alignleft h5">Submission Criteria</p>
+        <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample6" aria-expanded="false"
+          aria-controls="multiCollapseExample6">Expand</button>
+      </div>
+      <div class="collapse" id="multiCollapseExample6" style="padding-top:30px;">
+        <dt>If you did not complete the bonus question:</dt>
+        <dd>
+            <p>Zip the following files and submit them through Canvas:</p>
+            <ul>
+            <li>mypage.html</li>
+            <li>mypage_bootstrap.html</li>
+            <li>Form.html</li>
+            <li>img/your_image.jpg</li>
+          </ul>
+          <p>It's fine if your directory structure is different for the image.
+             No need to include the image if it's hosted on the web.</p>
+        </dd>
+        <dt>If you did the <u>bonus question:</u></dt>
+        <dd>
+          <b>Create a text file called homework1.txt</b><br/>
+            Submit <b>1 link</b> (your username.github.io) home page.<br/><br/>
+            Your above home page should have hyperlinks to access your <b>mypage.html, mypage_bootstrap.html, form.html</b> from the internet (we’ll access the website to grade you on the assignment).<br/>
+            Make sure we can access all the above web pages from your home page(username.github.io). </dd>
+        <dd>
+            Also, submit a link to your <b>github.io repository.</b> (To be included in <b>homework1.txt</b>)<br/>
+        </dd>
+        <br/><br/>
+        <dt><div class="alert alert-danger" role="alert">
+            **Write your name and your partner’s (if any) on the first line of each file.**
+          </div></dt>
+      </div>
+    </div>
+
+    <div class="card card-body" id="step7">
+      <div class="stepLine">
+        <p class="alignleft h5">Rubric</p>
+        <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample7" aria-expanded="false"
+          aria-controls="multiCollapseExample7">Expand</button>
+      </div>
+      <div class="collapse" id="multiCollapseExample7" style="padding-top:30px;">
+        <dd>
+            <h5>Part 1: HTML  (20 points)</h5>
+            <table class="table table-sm table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Criteria</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tr>
+                <td>Header tag for Name</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Description</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Image Displayed</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Favorite Projects Table</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>List(any) for Countries Travelled</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>List(any) for Interests</td>
+                <td>3</td>
+              </tr>
+            </table>
+        </dd>
+        <br/>
+        <dd>
+            <h5>Part 2: Bootstrap  (40 points)</h5>
+            <table class="table table-sm table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Criteria</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tr>
+                <td>Include Bootstrap</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Container and bootstrap typography for heading</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Cards class for description.</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Bootstrap buttons class for GitHub link</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Image changed to a circle</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Bootstrap table for favorite projects</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>Collapsible panels for countries travelled and Interests</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>Bootstrap Modal</td>
+                <td>5</td>
+              </tr>
+            </table>
+        </dd>
+        <br/>
+        <dd>
+            <h5>Part 3: Form  (40 points)</h5>
+            <table class="table table-sm table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Criteria</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tr>
+                <td>Include Bootstrap</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Form tag used</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Password (password field); Username Text box</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Visibility (Radio button)</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Pages (dropdown)</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Tags (check boxes)</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>About me + Article Title + Author name</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Submit button</td>
+                <td>5</td>
+              </tr>
+            </table>
+        </dd>
+        <br/>
+        <dd>
+          <h5>Extra Credit  (10 Points)</h5>
+          <table class="table table-sm table-hover" style="">
+            <thead class="thead-dark">
+              <tr>
+                <th>Criteria</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>Github.io</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>Use of additional HTML tags/Bootstrap classes to add content or enhance presentability</td>
+              <td>5</td>
+            </tr>
+          </table>
+        </dd>
+      </div>
+    </div>
+
+
+  </main><!-- /.container -->
+  <div id="bottom_nav">
+    <div class="row">
+      <div class="col-10">
+      </div>
+      <div class="col-2">
+        <div class="row">
+          <div class="col-2">
+
+          </div>
+          <div class="col-10">
+            <div class="card">
+              <div class="card-body">
+                <p class="h4 text-center">Helper Icons</p>
+                <hr>
+                <div class="row">
+                  <div class="col-4">
+                    <img src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px"
+                      height="30px">
+                  </div>
+                  <div class="col-8">Common Errors</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <img src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px"
+                      height="30px">
+                  </div>
+                  <div class="col-8">More Information</div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block alignright expandAll" type="button">Expand All</button>
+            <button class="btn btn-primary btn-block alignright collapseAll" type="button">Collapse All</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>
