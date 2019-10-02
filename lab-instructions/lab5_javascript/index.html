@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Lab 5</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 5 Client Side Javascript</h1>
+					<p class="lead">In this lab, we will build on the website we created last week. We will learn how to work with javascript and add javascript to your website to upgrade its functionality. You will edit the extended template (below) which includes all of the work you did last week.
+					To receive credit for this lab, you MUST complete steps 1 through 4 in recitation and get marked off by your TA. You MUST complete step 5 and 6(either in recitation or on your own) and upload "lab_5_link.txt" to Canvas by the deadline.
+				 <b>You may work with a partner. </b> If you do, make sure to include your partners name at the top of "lab_5_link.txt".
+					<b> Note: This lab is due right before recitation next week. </b></p>
+					<p class="h5"><a href="./Lab_Website_2.zip">Download </a>the extended template and make sure you extract the files before using them.</p>
+					<br>
+				</div>
+				<div class="col-2">
+					<table class="table">
+						<tr>
+							<th class="h5" style="text-align:center">Est. Time  &#x023F1;</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">0</span> minutes</td>
+						</tr>
+					</table>
+				</div>
+			  </div>
+			</div>
+
+			<div class="card card-body" id="step0">
+				<div class="stepLine">
+					<p class="alignleft h5">What your website will look like after today's lab</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample0" aria-expanded="false" aria-controls="multiCollapseExample0">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample0">
+					<p>Below you will find examples of what your website will look like at the end of this lab. </p>
+					<br>
+					<div class="row">
+						<div class="col-6">
+							<img class="img-fluid" src="img/registration_page.gif" alt="Screenshot of the registration page">
+						</div>
+						<div class="col-6">
+							<p class="h4"> Registration Page</p>
+							<p>The registration page will now be updated to hide/show sections of the form, based on the user's radio button selection. </p>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<br>
+					<div class="row">
+						<div class="col-6">
+							<img class="img-fluid" src="img/home_page.gif" alt="Screenshot of the home page">
+						</div>
+						<div class="col-6">
+							<p class="h4"> Home Page</p>
+							<p>The home page now contains a row of html buttons.  Each button, when clicked, will change the webpage's background color.</p>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<br>
+					<div class="row">
+						<div class="col-6">
+							<img class="img-fluid" src="img/stats_page.png" alt="Screenshot of the football season statistics page">
+						</div>
+						<div class="col-6">
+							<p class="h4"> Football Season Statistics Page</p>
+							<p>The javascript for the statistics page won't actually be interactive.  Instead the javascript will start when the page is loaded and determine the winner of each game and calculate the total wins/losses for the Buffs this season.</p>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<br>
+					<div class="row">
+						<div class="col-6">
+							<img class="img-fluid" src="img/player_info_page.gif" alt="Screenshot of the player information page">
+						</div>
+						<div class="col-6">
+							<p class="h4"> Player Information Page</p>
+							<p> The player information page will have two pieces of functionality handled by javascript.  First, javacript will populate the dropdown menu which will allow the user to pick which player's information to view.  Secondly, when a player's name is selected javascript will then show their information and image. </p>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<br>
+					<div class="row" style="padding:15px">
+						<p class="h3">Directory Structure</p>
+						<p>The website directory structure has now been updated to contain a new folder (js) for our javascript files and a new file my_scripts.js.
+						<pre>Directory Structure:
+|--Lab_Website
+	|--views
+		|--login.html
+		|--register.html
+		|--home.html
+		|--team_stats.html
+		|--player_info.html
+	|--resources
+		|--css
+			|--signin.css
+			|--my_style.css
+		|--img
+			|--beproudcapaabanner.jpg
+			|--cu_boulder_logo.jpg
+			|--favicon.ico
+			|--temp_image.svg
+		|--js
+			|--my_scripts.js
+</pre>
+					</div>
+
+				</div>
+			</div>
+
+
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">1. Javascript Tutorial</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time1">15</span> Minutes)</p>
+				</div>
+				<div style="padding-left:20px" class="collapse" id="multiCollapseExample1">
+
+						<ol>
+							<dl>
+								<dt><li>Using Javascript to change HTML content</li></dt>
+								<dd>
+									Client-side javascript can make HTML pages more dynamic and interactive. <b>How does javascript know which HTML element to change?</b> Let's look at an example.
+									<pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+	&lt;button class="btn btn-primary" onclick="document.getElementById('demo').innerHTML = Date();"&gt; Display Date and Time.&lt;/button&gt;
+	&lt;p id="demo"&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+									</code></pre>
+									<button class="btn btn-primary" onclick="document.getElementById('demo').innerHTML = Date();"> Display Date and Time.</button>
+									<p id="demo"></p>
+									<br>
+
+									<dl class="row">
+										<dt class="col-sm-5">onclick="document.getElementById('demo').innerHTML = Date()"</dt>
+										<dd class="col-sm-7">document.getElementById('demo').innerHTML = Date() is the javascript code that will execute "onclick" of the button</dd>
+										<dt class="col-sm-5">document.getElementById('demo')</dt>
+										<dd class="col-sm-7">The "document" object refers to the HTML document which contains all of the content on the page. "getElementById()" is a function that retrieves the HTML element with a specific id, in this case "demo"</dd>
+										<dt class="col-sm-5">innerHTML</dt>
+										<dd class="col-sm-7">"innerHTML" is the element property that contains the HTML markup within the element</dd>
+										<dt class="col-sm-5">Date()</dt>
+										<dd class="col-sm-7">"Date()" is a javascript object that represents the day and time. Javascript stores dates as milliseconds since January 01, 1970, 00:00:00 UTC (Universal Time Coordinated)</dd>
+										<dt class="col-sm-5">id="demo"</dt>
+										<dd class="col-sm-7">This line allows us to tag the paragraph element so that we can reference it inside of our javascript code. Remember that element ids have to be unique.</dd>
+									</dl>
+								</dd>
+								<br>
+								<dt><li>HTML &lt;script&gt; tag </li></dt>
+								<dd>
+									Placing our javascript code inside of our HTML tags can be messy, especially for more complex javascript code. We can place our javascript code inside a separate set of &lt;script&gt; tags like this:
+									<pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;script&gt;
+		function displayDate(id) {
+			document.getElementById(id).innerHTML = Date();
+		}
+	&lt;/script&gt;
+&lt;body&gt;
+
+	&lt;button class="btn btn-primary" onclick="displayDate('demo2');"&gt; Display Date and Time.&lt;/button&gt;
+	&lt;p id="demo2">&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+									</code></pre>
+									<button class="btn btn-primary" onclick="displayDate('demo2');"> Display Date and Time.</button>
+									<p id="demo2"></p>
+									<script>
+										function displayDate(id) {
+											document.getElementById(id).innerHTML = Date();
+										}
+									</script>
+									<br>
+									<dl class="row">
+										<dt class="col-sm-5">onclick="displayDate(demo2)"</dt>
+										<dd class="col-sm-7">Our "onclick" method now calls a function named "displayDate()" and we are passing in the string "demo2"</dd>
+										<dt class="col-sm-5">function displayDate(id)</dt>
+										<dd class="col-sm-7">This line defines our new function that takes one parameter, id</dd>
+										<dt class="col-sm-5">document.getElementById(id).innerHTML = Date();</dt>
+										<dd class="col-sm-7">This line is pretty much the same as before. We have simply moved it into a function.</dd>
+									</dl>
+								</dd>
+								<br>
+								<dt><li>Javascript in a separate file</li></dt>
+								<dd>
+									You can place your javascript code inside the HTML &lt;script&gt; tags or you can place your javascript code inside a separate file. <b>How do we link the javascript and HTML files?</b> We can link our javascript file to our HTML file by placing a reference in our HTML file like so:
+									<pre><code class="language-html">
+&lt;script src="../resources/js/my_scripts.js"&gt;&lt;/script&gt;
+									</code></pre>
+									<br>
+									<b>Note, this has already been done for you for this lab. There is no need to link any files in this lab</b>
+								</dd>
+								<br>
+								<dt><li>Using the Console</li></dt>
+								<dd>
+									In developer mode, you can view your html code and a javascript console which can display error messages and log messages.  To write a value to the console, use the following javascript code:
+									<pre><code class="language-js">console.log("Your message here");//Print a text message to the console
+										console.log(variable_name);//This can also be a simply variable print statement</code></pre>
+								</dd>
+								<br>
+								<dt><li>Using an Alert popup</li></dt>
+								<dd>
+									Sometimes it can be easier/flashier to have a popup display some information.  This is often used as a way to display a warning message to the user.  For example, they might have entered bad information or perhaps an API call failed.  To have an alert message popup, use the following code:
+									<pre><code class="language-js">alert("Warning!!!");//Popup warning message</code></pre>
+								</dd>
+							</dl>
+						</ol>
+
+
+
+
+
+				</div>
+			</div>
+
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">2. Registration Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time2">20</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample2">
+					<dl>
+						<ol>
+							<dt><li>What it will look like</li></dt>
+							<dd>
+								<img class="img-fluid" src="img/registration_page.gif" alt="Screenshot of the registration page">
+							</dd>
+							<br>
+							<dt><li>HTML ID's</li></dt>
+							<dd>
+								<dl class="row">
+									<dt class="col-sm-3">ID Name</dt>
+									<dd class="col-sm-9"><b>Description of ID</b></dd>
+									<hr>
+									<dt class="col-sm-3">student_status</dt>
+									<dd class="col-sm-9">This has been applied to a div encapsulating the entire student status group (Graduate vs Undergraduate & Student Level)</dd>
+									<dt class="col-sm-3">undergrad_select</dt>
+									<dd class="col-sm-9">This has been applied to the select list for Undergraduate Student Level (Freshman, Sophomore, Junior, Senior)</dd>
+									<dt class="col-sm-3">grad_select</dt>
+									<dd class="col-sm-9">This has been applied to the select list for Graduate Student Level (MA, MBA, PhD)</dd>
+								</dl>
+							</dd>
+							<br>
+
+
+							<dt><li>To Do</li></dt>
+							<dd>
+								Write a javascript function that meets the following specifications:
+								<pre>
+
+viewStudentStats(id, toggle)
+	parameters:
+		id - The css id of the html tag being updated.
+		toggle - 0 - hide the html tag
+				 1 - make the html tag visible
+
+	purpose: This method will accept the id of an html tag and a toggle value.
+			 The method will then set the html tag's css visibility and height.
+			 To hide the html tag (toggle - 0), the visibility will be set to hidden and
+			 the height will be set to 0.
+			 To reveal the html tag (toggle - 1), the visibility will be set to visible
+			 and the height will be set to auto.
+								</pre>
+							</dd>
+
+
+
+							<hr>
+							<dt><li>Code Examples</li></dt>
+							<dd>
+								<div style="padding-left:15px">
+									<b><p>onclick=""</p></b>
+									<p>The onclick attribute can list a javascript method (or methods, seperated by semi-colons ;) to call when an html element has been selected.  We often use this with buttons and anchor tags but it can technically be applied to just about any html tag (Check out technical details <a href="https://www.w3schools.com/tags/ev_onclick.asp">here</a> for unsupported tags).</p>
+								<pre><code class="language-html">&lt;button class="btn btn-primary" onclick="increaseValue()">Increase&lt;/button>
+&lt;span id="updateNum">0&lt;/span>
+&lt;script>
+	function increaseValue(){
+		var number = document.getElementById("updateNum").innerHTML;//retrieve the current number
+		number++;//Increase by 1
+		document.getElementById("updateNum").innerHTML = number;//Update to show the new number value
+	}
+&lt;/script>
+</code></pre>
+								<p>Displayed as: <button class="btn btn-primary" onclick="increaseValue()">Increase</button>&nbsp;&nbsp;&nbsp;<span id="updateNum">0</span></p>
+								<script>
+									function increaseValue(){
+										var number = document.getElementById("updateNum").innerHTML;//retrieve the current number
+										number++;//Increase by 1
+										document.getElementById("updateNum").innerHTML = number;//Update to show the new number value
+									}
+								</script>
+
+								<a class="btn btn-warning dropdown-toggle" id="hidetext1" href="#explanation1" onclick="showExplanation(1)">More information</a>
+								<br>
+								<div id = "explanation1" style="display:none;">
+										<dl class="row">
+												<dt class="col-sm-5">onclick="increaseValue()"</dt>
+												<dd class="col-sm-7">increaseValue() is the javascript method that will be called.  This method needs to be included either inside this html file (between a set of script tags as shown above) or referenced in an included external javascript file</dd>
+												<dt class="col-sm-5">id="updateNum"</dt>
+												<dd class="col-sm-7">Often we will need to access a specific tag's information.  To do this we will need that tag to have a unique id. Remember we use id's only once but can use classes multiple times.  <b>So Don't Reuse Id's!</b></dd>
+												<dt class="col-sm-5">function increaseValue()</dt>
+												<dd class="col-sm-7">This is the method declaration for our function increaseValue.  Note that this method has no parameters listed.  We'll have examples below to show how we can work with method parameters</dd>
+												<dt class="col-sm-5">var number</dt>
+												<dd class="col-sm-7">This is a variable declaration.  In javascript we do not list variable data types but simply state when we want a variable to be declared.  The number variable has a local scope and can only be accessed inside increaseValue.  For more on Variable Scope, check out this <a href="https://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/"> article</a></dd>
+												<dt class="col-sm-5">document.getElementById("updateNum").innerHTML</dt>
+												<dd class="col-sm-7">We can retrieve a specific tag's information by using the the getElementByID() method.  We can then read its current html information, update its css, or even update its html information.  For this example, we are using the innerHTML attribute to read in its current value & then update it.</a></dd>
+											</dl>
+								</div>
+
+
+
+									<hr>
+									<b><p>Calling a Function With Parameters</p></b>
+									<p>In the previous example, we called a method with no parameters.  But we don't want to make an individual method for every option on our website!  Instead, we'll want to look at using parameters to help us reuse our code and make our javascript code base more maintainable.</p>
+								<pre><code class="language-html">&lt;button class="btn btn-primary" onclick="updateValueByNum(5)">Increase By 5&lt;/button>
+&lt;button class="btn btn-primary" onclick="updateValueByNum(-5)">Decrease By 5&lt;/button>
+&lt;span id="changeNumber">0&lt;/span>
+&lt;script>
+	function updateValueByNum(changeBy){
+		var number = document.getElementById("changeNumber").innerHTML;//retrieve the current number
+		number= parseInt(number) + changeBy;//Increase/Decrease by passed in parameter.
+		document.getElementById("changeNumber").innerHTML = number;//Update to show the new number value
+	}
+&lt;/script>
+</code></pre>
+									<p>Displayed as: <button class="btn btn-primary" onclick="updateValueByNum(5)">Increase By 5</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" onclick="updateValueByNum(-5)">Decrease By 5</button>&nbsp;&nbsp;&nbsp;<span id="changeNumber">0</span></p>
+									<script>
+										function updateValueByNum(changeBy){
+											var number = document.getElementById("changeNumber").innerHTML;//retrieve the current number
+											number= parseInt(number) + changeBy;//Increase/Decrease by passed in parameter.
+											document.getElementById("changeNumber").innerHTML = number;//Update to show the new number value
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext2" href="#explanation2" onclick="showExplanation(2)">More information</a>
+									<br>
+									<div id = "explanation2" style="display:none;">
+										<dl class="row">
+											<dt class="col-sm-5">onclick="updateValueByNum(5)"</dt>
+											<dd class="col-sm-7">When we call a method that requires a parameter, we must provide the value it needs AND ensure it is the expected data type.  Javascript isn't a compiled language like C# or Java, so you won't know until runtime if your values are correct.  So make sure you use numeric or text parameters correctly.</dd>
+											<dt class="col-sm-5">parseInt(number) + changeBy</dt>
+											<dd class="col-sm-7">Because javascript doesn't have explicit data types, it tries to automatically determine the most appropriate datatype at run time.  Unfortunately it can often be wrong!  In our example here, we have used parseInt() to explicitly tell javascript that our parameter should be treated as an integer.  Why?  Because by default javascript will first treat our innerHTML data as as text information (a String).  This means our "+" operator would first be interpreted as a concatenation not an addition!  So we will use one of the parse methods to tell javascript how to correctly interpret our data. </dd>
+										</dl>
+									</div>
+
+									<hr>
+									<b><p>Conditional Logic</p></b>
+									<p>In javascript, conditional logic uses a syntax similiar to C#, C++, and Java.  In the example below, we've update our updateValueByNum() method to now have an upper & lower bound of 10 & -10.  </p>
+								<pre><code class="language-html">&lt;button class="btn btn-primary" onclick="updateValueByNumBounded(5)">Increase By 5&lt;/button>
+&lt;button class="btn btn-primary" onclick="updateValueByNumBounded(-5)">Decrease By 5&lt;/button>
+&lt;span id="changeNumberBounded">0&lt;/span>
+&lt;script>
+	function updateValueByNumBounded(changeBy){
+		var number = document.getElementById("changeNumberBounded").innerHTML;//retrieve the current number
+		number= parseInt(number) + changeBy;//Increase/Decrease by passed in parameter.
+		if(number > 10)
+		{//Ensure we don't go above 10
+			number = 10;
+		}
+		else if(number < -10)
+		{//Ensure we don't go below -10
+			number = -10;
+		}
+		document.getElementById("changeNumberBounded").innerHTML = number;//Update to show the new number value
+	}
+&lt;/script>
+</code></pre>
+									<p>Displayed as: <button class="btn btn-primary" onclick="updateValueByNumBounded(5)">Increase By 5</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" onclick="updateValueByNumBounded(-5)">Decrease By 5</button>&nbsp;&nbsp;&nbsp;<span id="changeNumberBounded">0</span></p>
+									<script>
+										function updateValueByNumBounded(changeBy){
+											var number = document.getElementById("changeNumberBounded").innerHTML;//retrieve the current number
+											number= parseInt(number) + changeBy;//Increase/Decrease by passed in parameter.
+											if(number > 10)
+											{//Ensure we don't go above 10
+												number = 10;
+											}
+											else if(number < -10)
+											{//Ensure we don't go below -10
+												number = -10;
+											}
+											document.getElementById("changeNumberBounded").innerHTML = number;//Update to show the new number value
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext3" href="#explanation3" onclick="showExplanation(3)">More information</a>
+									<br>
+                 					<div id = "explanation3" style="display:none;">
+
+										<dl class="row">
+											<dt class="col-sm-3">if(number > 10)</dt>
+											<dd class="col-sm-9">Javascript conditional logic syntax requires you to write the conditional statement in between a set of paranethsis.  This is identical to Java/C++/C# syntax.  If you are a Python programmer, please note that the curly braces are required but tabbing/spacing is only encouraged (not a requirement by the interpreter).</dd>
+											<dt class="col-sm-3">else if(number < -10)</dt>
+											<dd class="col-sm-9">Similiar syntax to the "if statement", the "else if" will only be evaluated when the "if statement" results in a false statement.</dd>
+										</dl>
+
+									</div>
+
+									<hr>
+									<b><p>Modifying Style</p></b>
+									<p>Instead of just modfiying the values/content of an html page, we can also modify the pages look and feel via updates to its css!  The example below will increase and decrease the width of a horizontal bar</p>
+								<pre><code class="language-html">&lt;button class="btn btn-primary" onclick="changeWidth('increase')">Increase Width&lt;/button>
+&lt;button class="btn btn-primary" onclick="changeWidth('decrease')">Decrease Width&lt;/button>
+&lt;div id="barWidthExample" style="background-color:green;color:white;text-align:center;width:20%;">Bar!&lt;/div>
+&lt;script>
+	function changeWidth(direction){
+		var width = document.getElementById("barWidthExample").style.width;//retrieve the current width
+		width = parseInt(width.replace('%', ''));//Remove the % percent sign from our width value
+												 //and convert it to an integer
+		if(direction == 'increase')
+		{//Increase our width
+			width = width + 5;
+		}
+		else if(direction == 'decrease')
+		{//Decrease our width
+			width = width - 5;
+		}
+		if(width > 100 || width <= 0)
+		{//If our width becomes too large/small, reset to our default width
+			width = 20;
+		}
+		document.getElementById("barWidthExample").style.width= width.toString() + '%';//update to our new width
+																						   //and make sure it is treated as a percentage
+	}
+&lt;/script>
+</code></pre>
+									<p>Displayed as: <button class="btn btn-primary" onclick="changeWidth('increase')">Increase Width</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" onclick="changeWidth('decrease')">Decrease Width</button>&nbsp;&nbsp;&nbsp;<div id="barWidthExample" style="background-color:green;color:white;text-align:center;width:20%;"> Bar! </div></p>
+									<script>
+										function changeWidth(direction){
+											var width = document.getElementById("barWidthExample").style.width;//retrieve the current width
+											width = parseInt(width.replace('%', ''));//Remove the % percent sign from our width value
+																					 //and convert it to an integer
+											if(direction == 'increase')
+											{//Increase our width
+												width = width + 5;
+											}
+											else if(direction == 'decrease')
+											{//Decrease our width
+												width = width - 5;
+											}
+											if(width > 100 || width <= 0)
+											{//If our width becomes too large/small, reset to our default width
+												width = 20;
+											}
+											document.getElementById("barWidthExample").style.width= width.toString() + '%';//update to our new width
+																															   //and make sure it is treated as a percentage
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext4" href="#explanation4" onclick="showExplanation(4)">More information</a>
+									<br>
+									<div id = "explanation4" style="display:none;">
+
+									<dl class="row">
+										<dt class="col-sm-5">document.getElementById("barWidthExample").style.width</dt>
+										<dd class="col-sm-7">After the ".style" we can list any css attribute to view its current value or update it's current value.  This is basically accessing the css attribute like a variable.  The only caveat for accessing css attributes is that multi-word css attributes use a dash, but the javascript equivalent will instead use camelCase.  Example - (CSS) font-size becomes (JS) fontSize</dd>
+										<dt class="col-sm-5">width.replace('%', '')</dt>
+										<dd class="col-sm-7">Many CSS attributes contain text & numeric information.  To work with the numeric part, we'll need to seperate our numbers and text.  An easy option is to replace the characters we don't want with empty space ''.  Once we have the extra characters removed, we can modify the numeric part of our attribute.  Some other text values you may need to remove include 'px', 'em', '#'.</dd>
+										<dt class="col-sm-5">width.toString() + '%'</dt>
+										<dd class="col-sm-7">Now that we have finished updating our width's value, we need to convert it back to a usable percentage.  We use the .toString() method to treat our variable now as a piece of text and append the "%".  We have now successfully converted our text to a number and then back to text!</dd>
+									</dl>
+								</div>
+							</dd>
+						</ol>
+					</dl>
+				</div>
+			</div>
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">3. Home Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time3">10</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample3">
+					<dl>
+						<ol>
+							<dt><li>What it will look like</li></dt>
+							<dd>
+								<img class="img-fluid" src="img/home_page.gif" alt="Screenshot of the home page">
+							</dd>
+							<br>
+							<dt><li>HTML ID's</li></dt>
+							<dd>
+								No HTML ID's have been added to modify on the home page.  Instead, a series of buttons have been added that call the changeColor() method which modfies the body tag's background color.
+							</dd>
+							<br>
+							<dt><li>To Do</li></dt>
+							<dd>
+								Write a javascript function that meets the following specifications:
+							<pre>
+
+changeColor(color)
+	parameter:
+		color- A css color
+
+	purpose: This method will set the html body's background color to the
+			 provided parameter.
+							</pre>
+							</dd>
+						<hr>
+						</ol>
+					</dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step4">
+				<div class="stepLine">
+					<p class="alignleft h5">4. Football Season Statistics Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time4">30</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample4">
+					<dl>
+						<ol>
+							<dt><li>What it will look like</li></dt>
+							<dd>
+								<img class="img-fluid" width="50%" src="img/stats_page.png" alt="Screenshot of the football season statistics page">
+							</dd>
+							<br>
+							<dt><li>HTML ID's</li></dt>
+							<dd>
+								<dl class="row">
+									<dt class="col-sm-3">ID Name</dt>
+									<dd class="col-sm-9"><b>Description of ID</b></dd>
+									<hr>
+									<dt class="col-sm-3">stats_table</dt>
+									<dd class="col-sm-9">This id marks the table tag that holds the scores for each game this season. </dd>
+									<dt class="col-sm-3">wins</dt>
+									<dd class="col-sm-9">This id marks the table cell that holds the Buffs number of wins this season.</dd>
+									<dt class="col-sm-3">losses</dt>
+									<dd class="col-sm-9">This id marks the table cell that holds the Buffs number of losses this season.</dd>
+								</dl>
+							</dd>
+							<br>
+							<dt><li>To Do</li></dt>
+							<dd>
+								Write a javascript function that meets the following specifications:
+							<pre>
+
+loadStatsPage() method:
+	parameters: none
+
+	purpose: This method will iterate through the stats table and
+			 do the following:
+				1. Read through each row of the table & determine which team won
+				   the game.
+
+				2. Update the winner column to the name of the winning team.
+
+				3. Keep track of the number of wins/losses for the Buffs.
+
+				4. Update the second table to show the total number of wins/losses for the Buffs.
+							</pre>
+							</dd>
+						<hr>
+
+							<dt><li>Code Examples</li></dt>
+							<dd>
+								<div style="padding-left:15px">
+									<b><p>onload attribute</p></b>
+									<p>The onload attribute can be used to call a method as soon as the page has loaded into the browser.  This is a great way to run a method once and have it programmatically load the content of a webpage.  For this lab we have the onload attribute attached to our body tag, but for the example below we will be applying the onload option to an img tag.</p>
+									<pre><code class="language-html">&lt;img id="practiceImg" src="img/dummy.png" onload="randomImage()" alt="Randomly Chosen Image for Onload Example">
+&lt;script>
+	function randomImage(){
+		document.getElementById("practiceImg").onload = null;//The onload is called once an image has been rendered. Without this line of code
+															 //Our webpage will cycle through our images in an endless loop!  For the body tag
+															 //this isn't necessary.
+		var pickImage = Math.floor((Math.random() * 10) / 3);//Pick a random number between 0 and 3
+		if(pickImage == 0)
+		{
+			document.getElementById("practiceImg").src= "img/tree.jpg"; //Source: https://www.gograph.com/vector-clip-art/tree-roots.html
+		}
+		else if(pickImage == 1)
+		{
+			document.getElementById("practiceImg").src= "img/sun.jpg"; //Source: https://www.gograph.com/vector-clip-art/sun.html
+		}
+		else
+		{
+			document.getElementById("practiceImg").src= "img/moon.jpg"; //Source: //Source: https://www.gograph.com/vector-clip-art/moon.html
+		}
+
+	}
+&lt;/script>
+</code></pre>
+									<p>Displayed as: <img id="practiceImg" src="img/dummy.png" onload="randomImage()" alt="Randomly Chosen Image for Onload Example"></p>
+									<script>
+										function randomImage(){
+											document.getElementById("practiceImg").onload = null;//The onload is called once an image has been rendered. Without this line of code
+															 									 //Our webpage will cycle through our images in an endless loop!
+											var pickImage = Math.floor((Math.random() * 10) / 3);//Pick a random number between 0 and 3
+											if(pickImage == 0)
+											{
+												document.getElementById("practiceImg").src= "img/tree.jpg"; //Source: https://www.gograph.com/vector-clip-art/tree-roots.html
+											}
+											else if(pickImage == 1)
+											{
+												document.getElementById("practiceImg").src= "img/sun.jpg"; //Source: https://www.gograph.com/vector-clip-art/sun.html
+											}
+											else
+											{
+												document.getElementById("practiceImg").src= "img/moon.jpg"; //Source: //Source: https://www.gograph.com/vector-clip-art/moon.html
+											}
+											console.log(pickImage);
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext5" href="#explanation5" onclick="showExplanation(5)">More information</a>
+									<br>
+									<div id = "explanation5" style="display:none;">
+
+										<dl class="row">
+											<dt class="col-sm-5">onload=""</dt>
+											<dd class="col-sm-7">Just like the onclick attribute, we can call a specific method (including parameters if needed) when our tag is loaded by the browser. While we have applied it to the img tag in our example, we will instead apply the onload="" attribute to our body for our lab today.</dd>
+											<dt class="col-sm-5">Math.random() </dt>
+											<dd class="col-sm-7">This javascript method will return a decimal value between 0 & 1.  We've add a bit of arithmetic to our method call to change our range to be between 0 & 3</dd>
+											<dt class="col-sm-5">document.getElementById("practiceImg").src</dt>
+											<dd class="col-sm-7">We can modify just about any attribute of an html tag with javascript.  In this example we are modifying the image's src attribute to allow us to programmtically choose which image is displayed.</dd>
+										</dl>
+
+									</div>
+
+									<hr>
+									<b><p>for loops</p></b>
+									<p>The syntax in javascript for loop is the same as Java/C++/C#.  Inside the for loop declaration you'll set a counter, set the condition for when the loop ends, and finally choose how much the counter updates by.</p>
+									<pre><code class="language-html">&lt;button class="btn btn-primary" onclick="practiceLoop()">Run Loop&lt;/button>
+&lt;span id="loopNum">0&lt;/span>
+&lt;script>
+	function practiceLoop(){
+		var text = ''
+		var counter;//Standard practice to declare the counter outside the for loop
+		for(counter = 0; counter < 10; counter++)
+		{
+			text = text + ' ' + counter.toString();
+		}
+		document.getElementById("loopNum").innerHTML = text;
+	}
+&lt;/script>
+</code></pre>
+									<p>Displayed as: <button class="btn btn-primary" onclick="practiceLoop()">RunLoop</button>&nbsp;&nbsp;&nbsp;<span id="loopNum">0</span></p>
+									<script>
+										function practiceLoop(){
+											var text = '';
+											var counter;//Standard practice to declare the counter outside the for loop
+											for(counter = 0; counter < 10; counter++)
+											{
+												text = text + ' ' + counter.toString();
+											}
+											document.getElementById("loopNum").innerHTML = text;
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext6" href="#explanation6" onclick="showExplanation(6)">More information</a>
+									<br>
+									<div id = "explanation6" style="display:none;">
+
+										<dl class="row">
+											<dt class="col-sm-3">counter=0;</dt>
+											<dd class="col-sm-9">The first statement of a javascript for loop is generally used to set the counting variable.  But this can also be used to set a series of variables before the for loop begins.  Example: for(counter=0, text=' '; counter < 10; counter++)  We can use commas to separate our variable update statements.  Also, this statement is technically optional (say if you want to use an existing counter value) for(;counter < 10;counter++) </dd>
+											<dt class="col-sm-3">counter < 10 </dt>
+											<dd class="col-sm-9">Our second statement is a conditional statement.  This must evaluate to either true or false.  Once this evaluates to false, our for loop will end.</dd>
+											<dt class="col-sm-3">counter++</dt>
+											<dd class="col-sm-9">The third and final statement will be our update statement.  This will increment/decrement our counter by a set interval after each loop iteration.  <b style="color:red">This is the only acceptable place to modify the counter!</b>  Please remember to follow good coding practices and only modfiy the counter in the for loop declaration.  If you need to update it elsewhere, then you should be using a while loop.</dd>
+										</dl>
+
+									</div>
+
+									<hr>
+									<b><p>Accessing Tables</p></b>
+									<p>It is possible to step through the individual cells of a table using some handy Javascript code!  Here we'll learn how to step through the table's row & columns.  </p>
+									<pre><code class="language-html">&lt;button class="btn btn-primary" onclick="practiceTable()">Update Table&lt;/button>
+&lt;table class="table table-striped" id="p_table">
+	&lt;tr>
+		&lt;td>0&lt;/td>&lt;td>1&lt;/td>&lt;td>2&lt;/td>
+	&lt;/tr>
+	&lt;tr>
+		&lt;td>3&lt;/td>&lt;td>4&lt;/td>&lt;td>5&lt;/td>
+	&lt;/tr>
+	&lt;tr>
+		&lt;td>6&lt;/td>&lt;td>7&lt;/td>&lt;td>8&lt;/td>
+	&lt;/tr>
+&lt;/table>
+&lt;script>
+	function practiceTable(){
+		var table = document.getElementById("p_table");//Retrieve our table element
+		var row_counter;//Keeps track of our row index
+		var col_counter;//Keeps track of our column index
+		var cell_value;
+		for(row_counter = 0; row_counter < table.rows.length; row_counter++)
+		{//Outer for loop iterates over each row
+			for(col_counter = 0; col_counter < table.rows[row_counter].cells.length; col_counter++)
+			{
+				cell_value = table.rows[row_counter].cells[col_counter].innerHTML;//Read in a cells current value
+				cell_value = parseInt(cell_value) + 2;//Increase the cell's value by 2
+				table.rows[row_counter].cells[col_counter].innerHTML = cell_value;//Update the actual html of the cell
+			}
+		}
+	}
+&lt;/script>
+</code></pre>
+									<p>Displayed as: <button class="btn btn-primary" onclick="practiceTable()">Update Table</button>&nbsp;&nbsp;&nbsp;
+											<table class="table table-striped" id="p_table">
+												<tr>
+													<td>0</td><td>1</td><td>2</td>
+												</tr>
+												<tr>
+													<td>3</td><td>4</td><td>5</td>
+												</tr>
+												<tr>
+													<td>6</td><td>7</td><td>8</td>
+												</tr>
+											</table>
+
+									</p>
+									<script>
+										function practiceTable(){
+											var table = document.getElementById("p_table");//Retrieve our table element
+											var row_counter;//Keeps track of our row index
+											var col_counter;//Keeps track of our column index
+											var cell_value;
+											for(row_counter = 0; row_counter < table.rows.length; row_counter++)
+											{//Outer for loop iterates over each row
+												for(col_counter = 0; col_counter < table.rows[row_counter].cells.length; col_counter++)
+												{
+													cell_value = table.rows[row_counter].cells[col_counter].innerHTML;//Read in a cells current value
+													cell_value = parseInt(cell_value) + 2;//Increase the cell's value by 2
+													table.rows[row_counter].cells[col_counter].innerHTML = cell_value;//Update the actual html of the cell
+												}
+											}
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext7" href="#explanation7" onclick="showExplanation(7)">More information</a>
+									<br>
+									<div id = "explanation7" style="display:none;">
+
+										<dl class="row">
+											<dt class="col-sm-5">document.getElementById("p_table");</dt>
+											<dd class="col-sm-7">To work with our table, we need to retrieve it's document element.  The easiest option is to retrieve it with .getElementByID() and store the returned value in a variable.  That variable can now be used to access our table!</dd>
+											<dt class="col-sm-5">table.rows.length </dt>
+											<dd class="col-sm-7">The javascript table is basically a two dimensional array, but we'll need to access the the information with an interesting dot notation.  Here we have said that we want the array containing our rows and accessed its length (the number of rows in our table)</dd>
+											<dt class="col-sm-5">table.rows[row_counter].cells.length</dt>
+											<dd class="col-sm-7">We are now retrieving the number or cells (or columns) in our given row.  Since it is technically possible for our rows to have different number of cells (thanks to colspan and rowspan) it's a good idea to assume that each row has a unique length to "future proof" your code.  </dd>
+											<dt class="col-sm-5">table.rows[row_counter].cells[col_counter].innerHTML</dt>
+											<dd class="col-sm-7">Now we are accessing the actuall html value of our cell. In this example we are working with innerHTML, but you could still use this to modify the cells style as well: table.rows[row_counter].cells[col_counter].style.css_attribute_here.  </dd>
+										</dl>
+
+									</div>
+
+									<hr>
+								</div>
+							</dd>
+						</ol>
+					</dl>
+				</div>
+			</div>
+			<div class="card card-body" id="step5">
+				<div class="stepLine">
+					<p class="alignleft h5">5. Player Information Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time7">15</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample5">
+					<dl>
+						<ol>
+							<dt><li>What it will look like</li></dt>
+							<dd>
+								<img class="img-fluid" src="img/player_info_page.gif" alt="Screenshot of the player information page">
+							</dd>
+							<br>
+							<dt><li>HTML ID's</li></dt>
+							<dd>
+								<dl class="row">
+									<dt class="col-sm-3">ID Name</dt>
+									<dd class="col-sm-9"><b>Description of ID</b></dd>
+									<hr>
+									<dt class="col-sm-3">p_year</dt>
+									<dd class="col-sm-9">The player's year in college </dd>
+									<dt class="col-sm-3">p_major</dt>
+									<dd class="col-sm-9">the player's major in college</dd>
+									<dt class="col-sm-3">g_played</dt>
+									<dd class="col-sm-9">the number of games played for Buffs</dd>
+									<dt class="col-sm-3">player_img</dt>
+									<dd class="col-sm-9">the player's photo (must set src and alt)</dd>
+									<dt class="col-sm-3">p_yards</dt>
+									<dd class="col-sm-9">the number of passing yards</dd>
+									<dt class="col-sm-3">r_yards</dt>
+									<dd class="col-sm-9">the number of rushing yards</dd>
+									<dt class="col-sm-3">rec_img</dt>
+									<dd class="col-sm-9">the number of receiving yards</dd>
+									<dt class="col-sm-3">avg_p_yards</dt>
+									<dd class="col-sm-9">the average number of passing yards for the player's Buff career</dd>
+									<dt class="col-sm-3">avg_r_yards</dt>
+									<dd class="col-sm-9">the average number of rushing yards for the player's Buff career</dd>
+									<dt class="col-sm-3">avg_rec_yards</dt>
+									<dd class="col-sm-9">the average number of receiving yards for the player's Buff career</dd>
+								</dl>
+							</dd>
+							<br>
+
+						<dt><li>To Do</li></dt>
+						<dd>
+							Write a javascript function that meets the following specifications:
+						<pre>
+
+loadPlayersPage() method:
+	parameters: none
+
+	purpose: This method will populate the dropdown menu to allow the
+		 user to select which player's information to view.
+
+		 To handle this, you will need to iterate through the players array
+		 and do the following for each player:
+			1. Create an anchor tag
+			2. Set the href to "#", this will make sure the
+				   anchor tag doesn't change pages
+			3. Set the onclick to call switchPlayers method
+				   (this will need to pass in the index inside the players array)
+			4. Set the anchor tag's text to the player's name.
+
+		 After setting all of the anchor tags, update the innerHTML of the dropdown menu.
+		 As a note, the id for the dropdown menu is player_selector.
+
+
+switchPlayers(playerNum) method:
+	parameters:
+		playerNum - The index of the football player in the players array.
+
+	purpose:
+		This method will update the the spans on the player's information pageX
+		and calculate the average passing, rushing, and receiving yards.
+
+		Span ids:
+			p_year     - the player's year in college
+			p_major    - the player's major in college
+			g_played   - the number of games played for Buffs
+			player_img - the player's photo (must set src and alt)
+			p_yards    - the number of passing yards
+			r_yards    - the number of rushing yards
+			rec_yards  - the number of receiving yards
+
+		Calculated values:
+			avg_p_yards   - the average number of passing yards for the player's Buff career
+			avg_r_yards   - the average number of rushing yards for the player's Buff career
+			avg_rec_yards - the average number of receiving yards for the player's Buff career
+						</pre>
+						</dd>
+						<hr>
+
+							<dt><li>Code Examples</li></dt>
+							<dd>
+								<div style="padding-left:15px">
+									<b><p>Working with Objects</p></b>
+									<p>In Javascript we can create an array with named fields (called an Object).  For this lab we will be working with a global object called Players which holds some player information.  Below we'll work with a local object and use it to populate some html span fields.</p>
+									<pre><code class="language-html">&lt;button class="btn btn-primary" onclick="loadObjectData()">Load Data&lt;/button>
+Fruit: &lt;span id="objectField1">&lt;/span> | Color: &lt;span id="objectField2"> &lt;/span>
+&lt;script>
+	var fruit_index = 0;//Global variable!
+	function loadObjectData(){
+		fruit = [{fruit_name: 'apple', fruit_color:'red'},
+				 {fruit_name: 'pumpkin', fruit_color:'orange'},
+				 {fruit_name: 'blueberry', fruit_color:'blue'},
+				 {fruit_name: 'grapes', fruit_color:'purple'}];
+
+		document.getElementById('objectField1').innerHTML = fruit[fruit_index].fruit_name;
+		document.getElementById('objectField2').innerHTML = fruit[fruit_index].fruit_color;
+		fruit_index++;
+		if(fruit_index >= fruit.length)//If we've gone too far, reset the index to 0.
+		{
+			fruit_index = 0;
+		}
+	}
+&lt;/script>
+</code></pre>
+									<p>Displayed as: <button class="btn btn-primary" onclick="loadObjectData()">Load Data</button>
+										&nbsp;&nbsp;&nbsp;Fruit: <span id="objectField1"></span> | Color: <span id="objectField2"> </span></p>
+									<script>
+										var fruit_index = 0;//Global variable!
+										function loadObjectData(){
+											var fruit = [{fruit_name: 'apple', fruit_color:'red'},
+													 {fruit_name: 'pumpkin', fruit_color:'orange'},
+													 {fruit_name: 'blueberry', fruit_color:'blue'},
+													 {fruit_name: 'grapes', fruit_color:'purple'}];
+
+											document.getElementById('objectField1').innerHTML = fruit[fruit_index].fruit_name;
+											document.getElementById('objectField2').innerHTML = fruit[fruit_index].fruit_color;
+											fruit_index++;
+											if(fruit_index >= fruit.length)//If we've gone too far, reset the index to 0.
+											{
+												fruit_index = 0;
+											}
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext8" href="#explanation8" onclick="showExplanation(8)">More information</a>
+									<br>
+									<div id = "explanation8" style="display:none;">
+
+										<dl class="row">
+											<dt class="col-sm-3">var fruit_index = 0;</dt>
+											<dd class="col-sm-9">We'll be using fruit_index to step through our fruit object array.  It has been declared OUTSIDE our function, which means it now has a global scope.  With a global scope, the variable can be accessed outside the function AND keep its value after the method has been exited.  Now be careful with global variables, they need to be unique and if variable names are duplicated across multiple javascript files you might get some unusual behavior/variable values.
+											<dt class="col-sm-3">[{}, {}, {}]</dt>
+											<dd class="col-sm-9">To create an object we need to use a set of curly braces { } to surround our object's fields.  This has been further surrounded by a set of [ ] square brackets to allow us to create an array.  We use a comma to seperate each object entered in our array</dd>
+											<dt class="col-sm-3">fruit_name: '  '</dt>
+											<dd class="col-sm-9">Ob object in Javascript is made up of named field entries.  To access a field we use dot notation - fruit[0].fruit_name </dd>
+										</dl>
+
+									</div>
+
+									<hr>
+								</div>
+							</dd>
+						</ol>
+					</dl>
+				</div>
+			</div>
+			<div class="card card-body" id="step6">
+				<div class="stepLine">
+					<p class="alignleft h5">6. Submission Guidelines</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(8)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time6">5</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample6">
+					<ol>
+						<dl>
+							<dt><li>Create a new github repo</li></dt>
+							<dd>
+								On github, you will need to create a new repository called Lab_Website_2 & upload your code to the github repo.  Make sure you don't overwrite last week's repo!  In general this would be a great way to continue your project, HOWEVER since it may not have been graded by your TA yet DON'T OVERWRITE LAST WEEK's LAB!!
+							</dd>
+							<dt><li>Create a link to your github repo</li></dt>
+							<dd>
+								In a text file (lab_5_link.txt), write down the following:
+								<ol>
+									<li>Your name</li>
+									<li>You partner's name (if you have one)</li>
+									<li>The link to your Lab_Website_2 Github Repo (Make sure the repo is public!!!)</li>
+								</ol>
+							</dd>
+							<dt><li>Submit to Canvas</li></dt>
+							<dd>
+								Submit your text file to the Canvas by the deadline.
+							</dd>
+						</dl>
+					</ol>
+				</div>
+			</div>
+			<!--
+			<div class="card card-body" id="step7">
+				<div class="stepLine">
+					<p class="alignleft h5">7. Jasmine for Testing - Bonus credit (10 points)</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="false" aria-controls="multiCollapseExample7">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample7">
+					<dl>
+						<ol>
+							<dt><li>What is Jasmine?</li></dt>
+							<dd>
+								Jasmine is a Javascript framework for testing your code. You can find the Jasmine documentation <a href="https://jasmine.github.io/pages/docs_home.html">here</a>.
+							</dd>
+							<br>
+							<dt><li>Setting up Jasmine</li></dt>
+							<dd>
+								Download the Jasmine_setup.zip folder and extract its contents. The folder contains the following directories and files:
+								<pre>Directory Structure:
+|--Jasmine_setup
+	|--lib
+		|--(Jasmine source code -- DO NOT MODIFY)
+	|--spec
+		|--my_scripts_spec.js (Our test cases)
+	|--src
+		|--lab5_javascript.html (Our website)
+		|--(Place a copy of my_scripts.js here)
+	|--SpecRunner.html (View and run test cases)
+								</pre>
+							</dd>
+							<br>
+							<dt><li>Your first test case</li></dt>
+							<dd>
+								Inside "my_scripts_spec.js" you will find a completed Test Suite and a Test Case for testing the changeColor() function.
+							</dd>
+							<pre><code class="language-js">
+describe("Test changeColor() method", function() {
+	var color;
+
+	// This will be called prior to running each spec
+	beforeEach(function(){
+
+	});
+
+	// Test Case for changing the home page's color
+	it('should change color', function(){
+		const body = document.getElementsByTagName(body)[0];
+		expect(window.getComputedStyle(body).backgroundColor).toEqual("rgb(255, 0, 0)");
+    });
+})
+									</code></pre>
+									<br>
+								<dl class="row">
+									<dt class="col-sm-3">describe()</dt>
+									<dd class="col-sm-9">"describe()" defines a new Test Suite. In Jasmine a Test Suite is a way to organize a series of Test Cases. The string you pass to describe() is the name of the Test Suite.</dd>
+									<hr>
+									<dt class="col-sm-3">beforeEach()</dt>
+									<dd class="col-sm-9">"beforeEach()" will run before EACH of our Test Cases. You can use it to refresh HTML elements and javascript objects</dd>
+									<dt class="col-sm-3">it()</dt>
+									<dd class="col-sm-9">"it()" defines a Test Case. The string passes to "it()" is the name of the Test Case.</dd>
+									<dt class="col-sm-3">expect()</dt>
+									<dd class="col-sm-9">"expect()" is what we assert to be true.</dd>
+								</dl>
+							</dd>
+							<dt><li>To Do</li></dt>
+							<dd>
+								Select two of the remaining javascript function for your website. Using the previous example, create two new Test Suite for these functions. Inside each Test Suite, create two Test Cases to test the function.
+							</dd>
+							<br>
+						</ol>
+					</dl>
+				</div>
+			</div> -->
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>
