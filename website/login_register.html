@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <header>
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="index.html">
+          <img src="./resources/images/cu logo.png" alt="cu logo" height="100px" width="200px"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls = "navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+          <div class="row collapse navbar-collapse" id="navbarMain">
+              <div class="col-sm">
+                <a class="nav-item" href="about.html" target="_self">About Course</a>
+              </div>
+              <div class="col-sm">
+                <a class="nav-item" href="enroll.html" target="_self">Enroll</a>
+              </div>
+              <div class="col-sm">
+                <a class="nav-item" href="instructors.html" target="_self">Teaching Staff</a>
+              </div>
+              <div class="col-sm">
+                <a class="nav-item" href="login_register.html" target="_self">Login/Register</a>
+              </div>
+          </div>
+        </div>
+       </nav>
+      </div>
+    </header>
+    <main>
+      <div id="login" class="container" style="padding-top:5%;">
+        <form onsubmit="return validateLoginForm();" action="about.html">
+          <div class="form-group row">
+            <label for="loginEmailId" class="col-sm-2 col-form-label">UserName</label>
+            <div class="col-sm-8">
+              <input type="email" class="form-control" id="loginEmailId" placeholder="Email">
+            </div>
+            <div class="col-sm-2">
+              <p id="loginEmailError"></p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" id="loginPassword" placeholder="password">
+            </div>
+            <div class="col-sm-2">
+              <p id="loginPasswordError"></p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+          </div>
+        </form>
+        <button type="button" class="btn btn-primary" onclick="showRegister();">New User? Sign Up</button>
+      </div>
+      <div id="register" class="container" style="padding-top:5%; display:none;">
+        <form  onsubmit="return validateRegisterForm();" action="login_register.html">
+          <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Full Name</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="col-sm-2">
+              <p id="nameError"></p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="studentId" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-8">
+              <input type="number" class="form-control" id="studentId" placeholder="Student ID">
+            </div>
+            <div class="col-sm-2">
+              <p id="studentIdError"></p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="emailId" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-8">
+              <input type="email" class="form-control" id="emailId" placeholder="Email">
+            </div>
+            <div class="col-sm-2">
+              <p id="emailError"></p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="col-sm-2">
+              <p id="passwordError"></p>
+            </div>
+          </div>
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+              <div class="col-sm-8">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="gender1" value="Male">
+                  <label class="form-check-label" for="gender1">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="gender2" value="Female">
+                  <label class="form-check-label" for="gender2">
+                    Female
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="gender3" value="Non-Binary">
+                  <label class="form-check-label" for="gender3">
+                    Non-Binary
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <p id="genderError"></p>
+              </div>
+            </div>
+          </fieldset>
+          <!-- <div class="form-group row">
+            <div class="col-sm-2">Prerequisites</div>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="prereq1">
+                <label class="form-check-label" for="prereq1">
+                  CSCI 1300
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="prereq2">
+                <label class="form-check-label" for="prereq2">
+                  CSCI 2270
+                </label>
+              </div>
+            </div>
+          </div> -->
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <br/><br/><br/><br/>
+    <footer class="page-footer font-small fixed-bottom">
+        <div class="p-3 bg-dark text-white">
+            <div class="footer-copyright text-center py-3">© 2019 Copyright:
+              <a href="mailto:sreesha.nath@colorado.edu" style="color:white;font-weight:bold;">Sreesha Nath</a></div>
+            </div>
+    </footer>
+    <script type="text/javascript">
+
+      var usernames = ["sreesha.nath@colorado.edu"];
+      var passwords = ["pass@123"];
+      console.log(usernames[0]);
+      function showRegister(){
+        if(document.getElementById('register').style.display == "none"){
+          document.getElementById('register').style.display = "block";
+          document.getElementById('login').style.display = "none";
+        }
+      }
+
+      function validateRegisterForm(){
+        // variable to ensure all fields are filled correctly
+        var submitOk = true;
+
+        //validating name field with min length > 0
+        var name = document.getElementById("name").value;
+        alert(name);
+        document.getElementById("nameError").innerHTML="";
+        if(name.length == 0)
+        {
+          document.getElementById("nameError").innerHTML="Please fill out the name";
+          document.getElementById("nameError").style.color="red";
+          submitOk = false;
+        }
+
+        // validating studentId based on length of min 0 and max 9
+        var studentId = document.getElementById("studentId").value;
+        document.getElementById("studentIdError").innerHTML="";
+        if(studentId.length <=0 || studentId.length>9)
+        {
+          document.getElementById("studentIdError").innerHTML="Please enter a valid student Id";
+          document.getElementById("studentIdError").style.color="red";
+          submitOk = false;
+        }
+
+        // validating email with min length > 0 and @ appearing before the last . and @ not being the first character
+        var email=document.getElementById("emailId").value;
+        var at = email.indexOf('@');
+        var dotcom = email.lastIndexOf('.');
+        document.getElementById("emailError").innerHTML="";
+        if(email.length<=0 || at>dotcom || at == 1)
+        {
+          document.getElementById("emailError").innerHTML="Please enter a valid email Id";
+          document.getElementById("emailError").style.color="red";
+          submitOk = false;
+        }
+
+        //validating password with min length > 0
+        var password=document.getElementById("password").value;
+        document.getElementById("passwordError").innerHTML="";
+        if(password.length<=0)
+        {
+          document.getElementById("passwordError").innerHTML="Please enter a valid password";
+          document.getElementById("passwordError").style.color="red";
+          submitOk = false;
+        }
+
+        //validating the gender with at least one selection
+        var gender1=document.getElementById("gender1").checked;
+        var gender2=document.getElementById("gender2").checked;
+        var gender3=document.getElementById("gender3").checked;
+        document.getElementById("genderError").innerHTML="";
+        if(!gender1 && !gender2 && !gender3)
+        {
+          document.getElementById("genderError").innerHTML="Please select a gender";
+          document.getElementById("genderError").style.color="red";
+          submitOk = false;
+        }
+
+        //if all fields are filled correctly, the method will return true
+        return submitOk;
+      }
+      function validateLoginForm()
+      {
+        var loginSubmitOk=true;
+        // validating email with min length > 0 and @ appearing before the last . and @ not being the first character
+        var username = document.getElementById("loginEmailId").value;
+        var at = username.indexOf('@');
+        var dotcom = username.lastIndexOf('.');
+        document.getElementById("emailError").innerHTML="";
+        if(username.length<=0 || at>dotcom || at == 1)
+        {
+          document.getElementById("loginEmailError").innerHTML="Please enter a valid email Id";
+          document.getElementById("loginEmailError").style.color="red";
+          loginSubmitOk = false;
+        }
+
+        //validating password with min length > 0
+        var password=document.getElementById("loginPassword").value;
+        document.getElementById("loginPasswordError").innerHTML="";
+        if(password.length<=0)
+        {
+          document.getElementById("loginPasswordError").innerHTML="Please enter a valid password";
+          document.getElementById("loginPasswordError").style.color="red";
+          loginSubmitOk = false;
+        }
+
+        if(loginSubmitOk)
+        {
+          if(usernames.indexOf(username) > -1 && password == passwords[usernames.indexOf(username)]){
+            alert("correct credentials");
+          }
+          else{
+            alert("incorrect username or password");
+            loginSubmitOk = false;
+          }
+        }
+        //if all fields are filled correctly, the method will return true
+        return loginSubmitOk;
+      }
+    </script>
+  </body>
+</html>
