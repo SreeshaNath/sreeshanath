@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Project Milestone 2</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Project Milestone 2</h1>
+					<p class="lead">Due date: 18 October 2019, 11:59 p.m.</b></p>
+				</div>
+			  </div>
+			</div>
+
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Requirement Checklist</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample1" style="padding-top:30px;">
+					     <table>
+                 <tr>
+                   <th>Check</th>
+                   <th>Criteria</th>
+                   <th>Details</th>
+                 </tr>
+                 <tr id="row1">
+                   <td class="check"><input type="checkbox" id="check1" onclick="isChecked(1)"/></td>
+                   <td class="criteria">Project	Features list</td>
+                   <td class="details">
+                     <ul>
+                       <li>Document	(as	a	bullet	point	list)	the	major	FEATURES	of your	software	application.</li>
+                       <li>Each	features should	have	a	TITLE	followed	by	a	brief	DESCRIPTION	of	that	feature.</li>
+                     </ul>
+                  </td>
+                 </tr>
+                 <tr id="row2">
+                   <td class="check"><input type="checkbox" id="check2" onclick="isChecked(2)"/></td>
+                   <td class="criteria">Requirements</td>
+                   <td class="details">
+                    <ul>
+                      <li>Document	the	key	FUNCTIONAL	and	NON-FUNCTIONAL requirements	for	a	minimum	of	SIX	features.</li>
+                      <li>Follow	one of	the	formats/templates	provided	in	class.</li>
+                      <li>Your	application	will	likely	have	many	more	features,	and	you	should	create	requirements	documents	for	all	the	features.</li>
+                      <li>But	for	this	milestone,	you	need	only	turn	in	SIX	requirements	documents.</li>
+                    </ul>
+                   </td>
+                 </tr>
+                 <tr id="row3">
+                   <td class="check"><input type="checkbox" id="check3" onclick="isChecked(3)"/></td>
+                   <td class="criteria">Project	Plan </td>
+                   <td class="details">
+                     <ul>
+                       <li>Create	a	Project	Plan	in	your	chosen	Project	Management	tool.		May	be	a	GANTT	chart,	Kanban	board,	or other suitable	format.</li>
+                       <li>The	Project	Plan	should	include	each	Feature	that	is	to	be	developed.</li>
+                       <li>The	Project	Plan	should	indicate	the	SEQUENCE	of	Sprints. That	is,	the	plan	should	show	in	what	order	the	features will	be	developed	(designed,	coded,	tested,	integrated.)</li>
+                       <li>The	Project	Plan	should	show	for	each	feature	WHEN	(by	calendar	date)	 the	feature	will	be	worked	on.</li>
+                       <li>The	Project	Plan	should	show	for	each	feature	WHO	will be	working	on	the	development	of	the	feature.</li>
+                       <li>The	Project	Plan	should	result	in	a	completed,	working application	that	is	ready	to	present	by	December 2, 2019</li>
+                     </ul>
+                  </td>
+                 </tr>
+               </table>
+        </div>
+			</div>
+      <div class="card card-body" id="step2">
+        <div class="stepLine">
+          <p class="alignleft h5">Turning Stuff in</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample2" style="padding-top:30px;">
+          <dl>
+      			<dt>Create a single PDF for the team</dt></br>
+      			<dd>- This	project	milestone	2	submission	should	be	a	PDF	document	named	<b>ProjectMilestone2_[TeamNumber]</b> and pushed to the <b>MILESTONES</b> repository in git.<br/>
+            - On Canvas, include a text file with the link to your <b>MILESTONES</b> git repository.
+      			</dd>
+          </dl>
+        </div>
+      </div>
+
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>
