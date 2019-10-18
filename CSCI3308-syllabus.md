@@ -87,6 +87,17 @@ Brief, high-level list of topics to be covered (subjects may change as the semes
 ## Grading 
 All recitations, assignments, quizzes, exams will be graded by the instructor, the TAs or the Graduate Support Staff. In case of queries with grading, please feel free to reach out to your TA or me.
 
+## Breakdown of Grades
+
+Component | Percentage(%) | Points 
+----------|--------|---------
+Team Surveys| 2 | 20
+Homework Assignments| 24 | 240
+Exams| 20 | 200
+Labs| 24 | 240
+Team Project| 30 | 300
+**Total**| **100**| **1000**
+
 ## Using Canvas
 The Canvas course pages are the official site for all notifications, assignments, and all submissions of work for grading (lab assignments, homework, quizzes and exams.)  
 
