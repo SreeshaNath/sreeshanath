@@ -20,16 +20,16 @@
 |      | 10.04 |                              |                       | Project Milestone 2   |                       |
 |   7  | 10.07 | Relational Database Concepts | SQL                   |                       |                       |
 |      | 10.09 | SQL                          |                       |                       |                       |  
-|      | 10.11 |                              |                       | Homework2             | Homework 1            |
+|      | 10.11 |                              |                       |                       | Homework 1            |
 |   8  | 10.14 | Review                       | **NO LABS!**          |                       |                       |
 |      | 10.16 | Exam                         |                       |                       |                       | 
-|      | 10.18 |                              |                       |                       | Project Milestone 2   |
+|      | 10.18 |                              |                       | Homework2             | Project Milestone 2   |
 |   9  | 10.21 | NodeJS                       | NodeJS                |                       |                       |
 |      | 10.23 | NodeJS - 2                   |                       |                       |                       | 
-|      | 10.25 |                              |                       | Project Milestone 4   | Homework 2            |
+|      | 10.25 |                              |                       | Project Milestone 4   |                       |
 |   10 | 10.28 | CI/CD, Documentation         | Project Milestone 3   |                       |                       |
 |      | 10.30 | Web Services                 |                       |                       |                       | 
-|      | 11.01 |                              |                       | Homework 3            | Project Milestone 3   |
+|      | 11.01 |                              |                       | Homework 3            | Project Milestone 3, Homework 2   |
 |   11 | 11.04 | Web Services- 2              | Web Services          |                       |                       |
 |      | 11.06 | Ethics, IP, Software Law     |                       |                       |                       | 
 |      | 11.08 |                              |                       |                       | Project Milestone 4   |
