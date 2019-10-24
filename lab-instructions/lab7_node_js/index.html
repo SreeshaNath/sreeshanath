@@ -354,8 +354,8 @@ VALUES('FF2727', 'An unnamed red color'),
     })
     .catch(error => {
         // display error message in case an error
-            request.flash('error', err);
-            response.render('pages/home', {
+            req.flash('error', error);//if this doesn't work for you replace with console.log
+            res.render('pages/home', {
                 title: 'Home Page',
                 data: '',
                 color: '',
@@ -435,8 +435,8 @@ button.btn.btn-primary.btn-block(type="submit") Submit </code></pre>
     })
     .catch(error => {
         // display error message in case an error
-            request.flash('error', err);
-            response.render('pages/home', {
+            req.flash('error', error); //if this doesn't work for you replace with console.log
+            res.render('pages/home', {
                 title: 'Home Page',
                 data: '',
                 color: '',
