@@ -260,8 +260,8 @@ VALUES('FF2727', 'An unnamed red color'),
         })
         .catch(function (err) {
             // display error message in case an error
-            request.flash('error', err);
-            response.render('pages/home', {
+            req.flash('error', err); //if this doesn't work for you replace with console.log
+            res.render('pages/home', {
                 title: 'Home Page',
                 data: '',
                 color: '',
