@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Project Milestone 5</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+  				<div class="col-10">
+  					<h1 class="display-4">Project Milestone 5</h1>
+  					<p class="lead"><b>Due date: 2 December 2019, 11:59 p.m.</b></p>
+  				</div>
+			  </div>
+			</div>
+
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Requirement Checklist</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample1" style="padding-top:30px;">
+            The test plan is the fifth deliverable required from the team. All the information listed below must be included and the test files should be in place by midnight on the due date. <br><br>
+					     <table>
+                 <tr>
+                   <th>Check</th>
+                   <th>Criteria</th>
+                   <th>Details</th>
+                 </tr>
+                 <tr id="row1">
+                   <td class="check"><input type="checkbox" id="check1" onclick="isChecked(1)"/></td>
+                   <td class="criteria">Test Plans</td>
+                   <td class="details">
+                     <ul>
+                       <li>Create a document that describes how at least three features within your finished product will be tested.</li>
+                        <li>The test plans should include specific test cases (user acceptance test cases) that describe the data and the user
+                        activity that will be executed in order to verify proper functionality of the feature.</li>
+                     </ul>
+                  </td>
+                 </tr>
+               </table>
+        </div>
+			</div>
+      <div class="card card-body" id="step2">
+        <div class="stepLine">
+          <p class="alignleft h5">Turning Stuff in</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample2" style="padding-top:30px;">
+          <dl>
+      			<dt>Create a single PDF for the team</dt><br/>
+      			<dd>
+              This project milestone 5 submission should be a PDF named ProjectMilestone5_[TeamNumber] included in your github repository containing the following components:<br>
+                • <b>Who:</b> List of people on the Team <br>
+                • <b>Title:</b> of the project <br>
+                • <b>User Acceptance Tests:</b> Copy of at least three UAT plans
+      			</dd>
+          </dl>
+        </div>
+      </div>
+
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>
