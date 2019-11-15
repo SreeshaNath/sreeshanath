@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Homework 4</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Homework 4</h1>
+					<p class="lead"><b>Due date: 6 December 2019, 11:59 p.m.</b></p>
+				</div>
+			  </div>
+			</div>
+
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Resources</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample1" style="padding-top:30px;">
+          <h5> Resources needed to complete this Homework </h5>
+          <br><br>
+          <div class="row">
+              <table>
+                  <thead>
+                      <tr>
+                          <th scope="col">Resource</th>
+                          <th scope="col">Link</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="row">What is DOM?</th>
+                          <td><a target="_blank" class="btn btn-info" href="https://www.youtube.com/watch?v=XD7fYLQeQIg"
+                                  role="button">Link1</a> &nbsp; &nbsp;<a target="_blank" class="btn btn-info" href="https://www.geeksforgeeks.org/dom-document-object-model/"
+                                  role="button">Link2</a></td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Document.get Methods</th>
+                          <td><a target="_blank" class="btn btn-info"
+                                  href="https://www.digitalocean.com/community/tutorials/how-to-access-elements-in-the-dom"
+                                  role="button">Link</a></td>
+                      </tr>
+                      <tr>
+                          <th scope="row">JQuery Document.get methods</th>
+                          <td><a target="_blank" class="btn btn-info" href="https://api.jquery.com/id-selector/"
+                                  role="button">Link</a> <br/> Note: I always forget the # needed in the beginning, you might too.</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">String templating</th>
+                          <td><a target="_blank" class="btn btn-info" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals"
+                                  role="button">Link</a> <br/> Note: The ${variable_name} way is the easiest way to do string concat. I personally use it for all my projects</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Making $.ajax calls to API</th>
+                          <td><a target="_blank" class="btn btn-info" href="http://api.jquery.com/jquery.ajax/"
+                                  role="button">Link</a> <br/>Note: You can use $.get too, but this is just easier</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Setting CSS properties using jquery</th>
+                          <td><a target="_blank" class="btn btn-info" href="http://api.jquery.com/css/"
+                                  role="button">Link</a></td>
+                      </tr>
+                      <tr>
+                          <th scope="row">What is an SVG File</th>
+                          <td><a target="_blank" class="btn btn-info" href="https://www.w3schools.com/graphics/svg_intro.asp"
+                                  role="button">Link</a></td>
+                      </tr>
+                      <tr>
+                              <th scope="row">Viewing SVG Files</th>
+                              <td><a target="_blank" class="btn btn-info" href="https://www.lifewire.com/svg-file-4120603"
+                                      role="button">Link</a></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+        </div>
+			</div>
+      <div class="card card-body" id="step2">
+        <div class="stepLine">
+          <p class="alignleft h5">Objectives [Contains starter file]</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample2" style="padding-top:30px;">
+          <ul class="list-group">
+              <li class="list-group-item">
+                  In this assignment, you will be making a dynamic weather map of the United States, visualizing temperatures for each state on the map. 
+              </li>
+              <li class="list-group-item">
+                  We will use the <a href="https://darksky.net/dev" target="_blank"> Dark Sky Forecast API </a> from Lab 9 as the data source.
+              </li>
+              <li class="list-group-item">
+                Each state will be color-coded per its current temperature as reported by the DarkSky API. There are five gradations of temperature that will be colored as listed in the table in Part 3.4.
+              </li>
+              <li class="list-group-item">
+                <b>Download the starter files from <a href="./StudentWebsite.zip">here</a></b>
+              </li>
+              <li class="list-group-item">
+                <div class="alert alert-primary">
+                  All your code goes only inside <b>index.html</b> and <b>index.js</b> in the <b>StudentWebsite</b> folder. Do not modify any other files.
+                </div>
+              </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card-body" id="step3">
+        <div class="stepLine">
+          <p class="alignleft h5">API Setup (5 points)</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample3" style="padding-top:30px;">
+          <ul class="list-group">
+              <li class="list-group-item">
+                  1. Head over to <a href="https://darksky.net/dev" target="_blank">Dark Sky API</a>
+              </li>
+              <li class="list-group-item">
+                  2. Click Try for free
+              </li>
+              <li class="list-group-item">
+                  3. Register: fill in your email, password and confirm password
+              </li>
+              <li class="list-group-item">
+                  4. Head over to your email and click the confirmation link
+              </li>
+              <li class="list-group-item">
+                  5. You will see the welcome screen after clicking the link. Then in the top right corner click Log in.
+              </li>
+              <li class="list-group-item">
+                  6. The API that you will need is the One in the "Sample API Call". It looks something like
+                  https://api.darksky.net/forecast/-your-key-here-/37.8267,-122.4233
+              </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card-body" id="step4">
+        <div class="stepLine">
+          <p class="alignleft h5">Part 1: Reading the SVG (5 points)</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample4" style="padding-top:30px;">
+          <ul class="list-group">
+              <li class="list-group-item">
+                   We will be working with SVGs for this part. The first step is for you to read up on what SVGs are from the Resources tab above.
+              </li>
+              <li class="list-group-item">
+                  We need the SVG of the United States Map. This can be found <a href="https://upload.wikimedia.org/wikipedia/commons/1/1a/Blank_US_Map_%28states_only%29.svg" target="_blank">here</a>
+              </li>
+              <li class="list-group-item">
+                  If you save the SVG locally, it's not going to work since there's no way to actually view the XML code for it. So instead head over to the <a href="https://upload.wikimedia.org/wikipedia/commons/1/1a/Blank_US_Map_%28states_only%29.svg" target="_blank">link</a> provided above, right click and click View Page Source
+              </li>
+              <li class="list-group-item">
+                  <iframe width="971" height="546" src="https://www.youtube.com/embed/5uxxc8W0Oso" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </li>
+              <li class="list-group-item">
+                  Paste the contents you see on the browser in index.html between the 'Paste World Map Here' and the 'End of World Map' tags <b>POINTS: 5</b>
+              </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card-body" id="step5">
+        <div class="stepLine">
+          <p class="alignleft h5">Part 2: Reading the JS (2 points)</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample5" style="padding-top:30px;">
+          <ul class="list-group">
+              <li class="list-group-item">
+                   Read the state_info.js into index.html at the 'Import state_info.js here'  <b>POINTS: 1</b>
+              </li>
+              <li class="list-group-item">
+                   Read the index.js into index.html at the 'Import index.js here'  <b>POINTS: 1</b>
+                 </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card-body" id="step6">
+        <div class="stepLine">
+          <p class="alignleft h5">Part 3: Index.js (88 points)</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample6" style="padding-top:30px;">
+          <ul class="list-group">
+              <li class="list-group-item">
+                  Paste your API key in index.js where it is marked "Enter your API Key here"
+              </li>
+              <li class="list-group-item">
+                  If you look at the SVG that you pasted, it has a bunch of IDs that are State Codes. You can change the color of a state code by doing "$('#CO').css('fill', "blue")" for example.
+              </li>
+              <li class="list-group-item">
+                  Iterate over each of the rows in the json and make an API call to the Dark Sky API using the latitude and longitude that we saw before.<br/>
+                  <a src="https://stackoverflow.com/questions/14810506/map-function-for-objects-instead-of-arrays" target="_blank">Here</a> is how you iterate over a json with a list of Jsons.
+              </li>
+              <li class="list-group-item">
+                  For each of these, make an API call to DarkSky. Note that the API calls are limited to 1000 per day, so use them wisely. If you want to see how the response json looks look at /examples/example_api_response.json. If you run out of requests, you may make a new account.
+              </li>
+              <li class="list-group-item">
+              
+
+                      The color to be used for a state should be determined based on the following temperature range table
+                      <br/>
+                      <table class = "table">
+                              <tr>
+                                <th>Temperature</th>
+                                <th>Color</th>
+                              </tr>
+                              <tr>
+                                <td>[default]</td>
+                                <td>#0000FF</td>
+                              </tr>
+                              <tr>
+                                <td>Less than equal to 10F</td>
+                                <td>#7FFFD4</td>
+                              </tr>
+                              <tr>
+                                <td>Between 11F and 20F</td>
+                                <td>#0000FF</td>
+                              </tr>
+                              <tr>
+                                <td>Between 21F and 30F</td>
+                                <td>#008B8B</td>
+                              </tr>
+                              <tr>
+                                <td>Between 31F and 40F </td>
+                                <td>#F08080</td>
+                              </tr>
+                              <tr>
+                                <td>Between 41F and 50F</td>
+                                <td>#F08080</td>
+                              </tr>
+                              <tr>
+                                <td>Between 51F and 60F</td>
+                                <td>#CD5C5C</td>
+                              </tr>
+                              <tr>
+                                <td>Between 61F and 70F</td>
+                                <td>#8B0000</td>
+                              </tr>
+                              <tr>
+                                <td>Between 71F and equal to  80F </td>
+                                <td>#B22222</td>
+                              </tr>
+                              <tr>
+                                <td>Greater than 90F</td>
+                                <td>#FF0000</td>
+                              </tr>
+                      </table>
+          
+              </li>
+              <li class="list-group-item">
+                <img src="./sample_output.png" alt="sample output" style="width:80%;">
+                <div class="alert alert-warning">
+                  The above is a sample of how the final image needs to be
+                  </div>
+              </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card-body" id="step7">
+        <div class="stepLine">
+          <p class="alignleft h5">Bonus Questions (20 points)</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="false" aria-controls="multiCollapseExample7">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample7" style="padding-top:30px;">
+              <div>
+                <b>Question 1: 10 points</b>
+                <ol>
+                  <li>
+                      You will create a tooltip to display other information about the weather in each state.
+                  </li>
+                  <li>
+                      The tooltip should appear when hovering over any state, and it should update when scrolling across different states. The tooltip should work for all states on the map.
+                  </li>
+                  <li>
+                      You can include as many information you want in the tooltip, but some suggested data might be things such as precipitation, humidity, or cloud cover. 
+                  </li>
+                </ol>
+                <p> Note: You're free to modify the svg element as per your need. You can use any css library to implement tooltip, you can also build your own css tooltip. You can create as many helper functions you want.</p>
+
+                <b>Question 2: 10 points</b>
+                <ul>
+                  <li>
+                    Add wind direction to the tooltip. You can use any css style arrows to show the wind direction.
+                  </li>
+                </ul>
+                <div>
+                  A simple tooltip here..
+                    <iframe width="971" height="546" src="https://www.youtube.com/embed/MNnfe1gx274" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+              </div>
+        </div>
+      </div>
+      <div class="card card-body" id="step8">
+        <div class="stepLine">
+          <p class="alignleft h5">Turning Stuff in</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample8" aria-expanded="false" aria-controls="multiCollapseExample8">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample8" style="padding-top:30px;">
+          <ul class="list-group">
+              <li class="list-group-item">
+                  Zip the whole StudentWebsite into a zip and upload that to Canvas
+              </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card-body" id="step9">
+        <div class="stepLine">
+          <p class="alignleft h5">Rubric</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample9" aria-expanded="false" aria-controls="multiCollapseExample9">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample9" style="padding-top:30px;">
+          <dl>
+      			<dd>Please find the rubric inline with the instructions</dd>
+          </dl>
+        </div>
+      </div>
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
