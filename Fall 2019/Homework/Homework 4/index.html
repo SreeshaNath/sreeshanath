@@ -124,6 +124,9 @@
           <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
         </div>
         <div class="collapse" id="multiCollapseExample3" style="padding-top:30px;">
+            <div class="alert alert-primary" role="alert">
+                If you've already setup an account on darksky(Lab 9), you can use the same account for this assisgnment. Skip this step. 
+              </div>
           <ul class="list-group">
               <li class="list-group-item">
                   1. Head over to <a href="https://darksky.net/dev" target="_blank">Dark Sky API</a>
@@ -196,22 +199,23 @@
         <div class="collapse" id="multiCollapseExample6" style="padding-top:30px;">
           <ul class="list-group">
               <li class="list-group-item">
-                  Paste your API key in index.js where it is marked "Enter your API Key here"
+                  Paste your API key in index.js where it is marked "Enter your API Key here" <b>4 Points</b>
               </li>
               <li class="list-group-item">
                   If you look at the SVG that you pasted, it has a bunch of IDs that are State Codes. You can change the color of a state code by doing "$('#CO').css('fill', "blue")" for example.
               </li>
               <li class="list-group-item">
-                  Iterate over each of the rows in the json and make an API call to the Dark Sky API using the latitude and longitude that we saw before.<br/>
-                  <a src="https://stackoverflow.com/questions/14810506/map-function-for-objects-instead-of-arrays" target="_blank">Here</a> is how you iterate over a json with a list of Jsons.
+                  Iterate over each of the rows in the json and make an API call to the Dark Sky API using the latitude and longitude that we saw before. <b>30 Points</b><br/>
+                  <a href="https://stackoverflow.com/questions/14810506/map-function-for-objects-instead-of-arrays" target="_blank">Here</a> is how you iterate over a json with a list of Jsons.
               </li>
               <li class="list-group-item">
-                  For each of these, make an API call to DarkSky. Note that the API calls are limited to 1000 per day, so use them wisely. If you want to see how the response json looks look at /examples/example_api_response.json. If you run out of requests, you may make a new account.
+                  For each of these, make an API call to DarkSky. <b>24 Points</b> <br>
+                  Note that the API calls are limited to 1000 per day, so use them wisely. If you want to learn more about the api response see <a href='https://darksky.net/dev/docs#response-format' target="_blank">this</a>.<br>
+                  If you want to look at the JSON response, see the 'example_api_response.json' file in the example folder.<br>
+                  If you run out of requests, you may make a new account or try it a day after.
               </li>
               <li class="list-group-item">
-              
-
-                      The color to be used for a state should be determined based on the following temperature range table
+                      The color to be used for a state should be determined based on the following temperature range table. <b>30 Points</b>
                       <br/>
                       <table class = "table">
                               <tr>
@@ -220,38 +224,42 @@
                               </tr>
                               <tr>
                                 <td>[default]</td>
-                                <td>#0000FF</td>
+                                <td>#808080</td>
                               </tr>
                               <tr>
                                 <td>Less than equal to 10F</td>
-                                <td>#7FFFD4</td>
+                                <td>#6495ED</td>
                               </tr>
                               <tr>
                                 <td>Between 11F and 20F</td>
-                                <td>#0000FF</td>
+                                <td>#7FFFD4</td>
                               </tr>
                               <tr>
                                 <td>Between 21F and 30F</td>
-                                <td>#008B8B</td>
+                                <td>#0000FF</td>
                               </tr>
                               <tr>
                                 <td>Between 31F and 40F </td>
-                                <td>#F08080</td>
+                                <td>#008B8B</td>
                               </tr>
                               <tr>
                                 <td>Between 41F and 50F</td>
-                                <td>#F08080</td>
+                                <td>#00BFFF</td>
                               </tr>
                               <tr>
                                 <td>Between 51F and 60F</td>
-                                <td>#CD5C5C</td>
+                                <td>#F08080</td>
                               </tr>
                               <tr>
                                 <td>Between 61F and 70F</td>
-                                <td>#8B0000</td>
+                                <td>#CD5C5C</td>
                               </tr>
                               <tr>
                                 <td>Between 71F and equal to  80F </td>
+                                <td>#8B0000</td>
+                              </tr>
+                              <tr>
+                                <td>Between 81F and equal to  90F </td>
                                 <td>#B22222</td>
                               </tr>
                               <tr>
@@ -306,13 +314,13 @@
       </div>
       <div class="card card-body" id="step8">
         <div class="stepLine">
-          <p class="alignleft h5">Turning Stuff in</p>
+          <p class="alignleft h5">Turning Stuff in. [Canvas]</p>
           <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample8" aria-expanded="false" aria-controls="multiCollapseExample8">Expand</button>
         </div>
         <div class="collapse" id="multiCollapseExample8" style="padding-top:30px;">
           <ul class="list-group">
               <li class="list-group-item">
-                  Zip the whole StudentWebsite into a zip and upload that to Canvas
+                  Compress/Archive the StudentWesbite folder by creating .zip file. You need to submit only one file on canvas.
               </li>
           </ul>
         </div>
