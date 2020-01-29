@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Lab 2</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 2 - Project Team Formation</h1>
+					<p class="lead">In this lab, we will be setting up the project teams for this semester.
+					To complete this lab, you should go through all of the steps below as instructed and complete the associated activities. Upload the completed files to Canvas.
+						<b>When you are finished with the lab, show your work to your TA.</b><br><br>
+						<b style="font-weight: bold">Also, you should meet your TA to discuss the finalized project idea in the office hours before the deadline for Project milestone 1 (Feb 7) to get credit for this lab.</b></p>
+				</div>
+				<div class="col-2">
+					<table class="table">
+						<tr>
+							<th class="h5" style="text-align:center">Est. Time  &#x023F1;</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">150</span> minutes</td>
+						</tr>
+					</table>
+				</div>
+			  </div>
+				<div class="row">
+					<div class="col-12">
+						<p class="card card-body deadline">Please note that submissions will be due exactly one week after your respective lab sessions.
+							For Example, If your lab is on this Friday 10 AM, the submission deadline will be next Friday 10 AM.</br>
+							There is no late policy for labs.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Meet Your Team</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time1">20</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample1">
+					<dl>
+						<dt>1. Find your group members</dt>
+						<dd>Gather everyone on your team and arrange yourselves in a small circle so that everyone can see and hear all group members.</dd>
+						</br>
+						<dt>2. Assign a SCRIBE</dt>
+						<dd>You should pick one person to document today's lab in a MS Word doc your Google doc. You will show your documentation to your TA at the end of lab AND your team will upload a single PDF to Canvas at the end of lab time. Make sure everyone's name is on this document.</dd>
+						</br>
+						<dt>3. Introductions</dt>
+						<dd>Go around in a circle, state your name, home town, major, year in school, and where in the world you would like to go for a three-week "dream" vacation after the end of this semester (this is hypothetical so pick anything). <br/>
+							After all team members have introduced themselves, each team member should go around in a circle and state the names of the other team members. It is okay to ask your team members for help. <br/>
+							<b>The team scribe should document everyone's name. </b>
+						</dd>
+						</br>
+						<dt>4. Schedule a meeting time</dt>
+						<dd>As a team, decide on a weekly meeting time and place to work on your group project.<br/>
+							<ul>
+								<li>You MUST pick a time outside of class/recitation.</li>
+								<li>All team members MUST be able to attend the meeting. Pick a time that works for EVERYONE.</li>
+								<li>You MUST meet for two hours each week. This can be one 2-hour meeting or two 1-hour meetings.</li>
+								<li>Think about where you might meet. You don't have to decide this right now, but come up with some options that work for everyone.</li>
+							</ul>
+							<b>The team scribe should document your weekly meeting time.</b>
+						</dd>
+          			</dl>
+        		</div>
+			</div>
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">Brainstorming</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time2">30</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample2">
+					<dl>
+						<dt>1. Team name</dt>
+						<dd>As a team, decide on a team name. This can be anything but must be appropriate (i.e., no profanity, etc.).
+							<b>The team scribe should write down your team name.</b>
+						</dd>
+						<br/>
+						<dt>2. Solicit ideas for your group project</dt>
+						<dd>As a team, you must decide what kind of software application you want to build. Each team member, should come up with at least ONE application idea or concept. <br/>
+							Next, go around in a circle and discuss each of the ideas you came up with. Then, choose your TOP FOUR ideas. You do not need to rank these, but your team must come to a consensus on which ideas are the top four. <br/>
+							<b>Document the TOP FOUR ideas.</b>
+						</dd>
+						<br/>
+						<dt>3. Application architecture</dt>
+						<dd>For EACH of your top FOUR ideas, document the basic application architecture that you might use to implement the idea. This should include front-end and back-end. <br/>
+							Examples: a website hosted on your PC, a website hosted in the cloud and available to the public, a Raspberry Pi data collector, a mobile application that connects to a cloud service, etc. <br/>
+							<b>Don't forget to write down each applicaton architecture</b>
+						</dd>
+						<br/>
+						<dt>Note</dt>
+						<dd>Today's decisions are NOT locked in stone. You have another week or so to decide your final application idea and team name.</dd>
+					</dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">A Fun Group Exercise</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time3">45</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample3">
+					<dl>
+
+            			<dt>Go <a href="./Team Challenge World Geography.pdf">here</a> to complete a little brain teaser exercise designed to get you all working together. </dt>
+						<dd>You must talk to each other, listen to each other, and answer each of the questions in the exercise.<br/>
+						<b>Document your answers (numbered 1 - 20). You will turn these in.</b></dd>
+					</dl>
+				</div>
+			</div>
+
+      <div class="card card-body" id="step5">
+        <div class="stepLine">
+          <p class="alignleft h5">Turning Stuff in</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)" >Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time5">10</span> Minutes)</p>
+        </div>
+        <div class="collapse" id="multiCollapseExample5">
+          <dl>
+			<dt>1. Create a single PDF</dt>
+			<dd>Create a single PDF containing the following: <br/>
+				<ul>
+					<li>Your team's GROUP NUMBER (ask your TA)</li>
+					<li>The first and last name of all of your team members</li>
+					<li>Your team name</li>
+					<li>The scheduled time for your weekly team meetings</li>
+					<li>Your TOP FOUR application ideas or concepts, including a brief description of the architecture and platform for each idea</li>
+					<li>Your team's answers to the exercise questions, numbered 1 - 20.</li>
+				</ul>
+			</dd>
+			<dt>2. Submit a single PDF document to Canvas</dt>
+			<dd>One member of your team should submit your team's PDF to Canvas.</dd>
+          </dl>
+        </div>
+      </div>
+
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>
