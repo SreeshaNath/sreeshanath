@@ -1,0 +1,490 @@
+ <!DOCTYPE html>
+<head>
+	<title>CSCI 3308 - Software Development Methods and Tools</title>
+  <link rel="shortcut icon" href="./resources/images/logo.png" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <style>
+  /* body{
+    background: url(resources/images/background-2.png);
+    background-size: 120%;
+  } */
+  .size{
+    padding-top: 10px;
+    width:85%;
+    height:85%;
+  }
+  </style>
+  <script type="text/javascript">
+    function loadInfo()
+    {
+      if(document.getElementById('about').style.display == "none")
+      {
+        document.getElementById('about').style.display = "block";
+        document.getElementById('home').style.display = "none";
+        document.getElementById('coursework').style.display = "none";
+        document.getElementById('instructors').style.display = "none";
+      }
+    }
+    function loadWork()
+    {
+      if(document.getElementById('coursework').style.display == "none")
+      {
+        document.getElementById('about').style.display = "none";
+        document.getElementById('home').style.display = "none";
+        document.getElementById('coursework').style.display = "block";
+        document.getElementById('instructors').style.display = "none";
+      }
+    }
+    function loadInstructors()
+    {
+      if(document.getElementById('instructors').style.display == "none")
+      {
+        document.getElementById('about').style.display = "none";
+        document.getElementById('home').style.display = "none";
+        document.getElementById('coursework').style.display = "none";
+        document.getElementById('instructors').style.display = "block";
+      }
+    }
+    function loadHome()
+    {
+      if(document.getElementById('home').style.display == "none")
+      {
+        document.getElementById('about').style.display = "none";
+        document.getElementById('home').style.display = "block";
+        document.getElementById('coursework').style.display = "none";
+        document.getElementById('instructors').style.display = "none";
+      }
+    }
+    function showLabs()
+    {
+      if(document.getElementById('lab').style.display == "none"){
+        document.getElementById('lab').style.display = "block";
+        document.getElementById('homework').style.display = "none";
+        document.getElementById('milestones').style.display = "none";
+      }
+    }
+    function showHomework()
+    {
+      if(document.getElementById('homework').style.display == "none"){
+        document.getElementById('lab').style.display = "none";
+        document.getElementById('homework').style.display = "block";
+        document.getElementById('milestones').style.display = "none";
+      }
+    }
+    function showMilestones()
+    {
+      if(document.getElementById('milestones').style.display == "none"){
+        document.getElementById('lab').style.display = "none";
+        document.getElementById('homework').style.display = "none";
+        document.getElementById('milestones').style.display = "block";
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a href="#" onclick="loadHome();">
+        <img src="./resources/images/cu logo.png" alt="cu logo" height="100px" width="200px"/>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls = "navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="container">
+        <div class="row collapse navbar-collapse" id="navbarMain">
+            <div class="col-sm">
+              <a class="nav-link" href="#" onclick="loadInfo();" target="_self">Course Information</a>
+            </div>
+            <div class="col-sm">
+              <a class="nav-link" href="#" onclick="loadWork();" target="_self">Course Work</a>
+            </div>
+            <div class="col-sm">
+              <a class="nav-link" href="#" onclick="loadInstructors();" target="_self">Teaching Staff</a>
+            </div>
+            <div class="col-sm">
+              <a class="nav-link disabled" href="#" target="_self">Login/Register</a>
+            </div>
+        </div>
+      </div>
+     </nav>
+    </div>
+  </header>
+  <main>
+    <!-- Home Page -->
+    <div id="home" class="container">
+      <div id="header" class="container">
+        <h1 style="color:black;text-align: center;padding-top:25%;">CSCI 3308: Software Development Methods and Tools</h1>
+        <h4 style="color:black;text-align: center">Fall 2019</h4>
+      </div>
+    </div>
+    <!-- End home page -->
+    <!-- About the course -->
+    <div id="about" class="container" style="display:none;">
+      <h1 style="text-align:center;padding-top:30px;"> About the Course </h1>
+      <div class="container" >
+        <div>
+          <h3>Course Description</h3>
+          <p>Covers tools and practices for software development with a strong focus on best practices used in industry and professional development, such as agile methodologies, pair-programming and test-driven design. Students develop web services and applications while learning these methods and tools. </p><br/>
+        </div>
+        <div>
+          <h3> Prerequisites </h3>
+          <p> Requires prerequisite course of CSCI 2270 or CSCI 2275 (both minimum grade C-). </p><br/>
+        </div>
+        <div>
+          <h3> Syllabus </h3>
+          <p>You can find the detailed syllabus <a href="https://github.com/SreeshaNath/sreeshanath.github.io/blob/master/CSCI3308-syllabus.md">here</a></p><br/>
+        </div>
+        <div>
+          <h3> Course Calendar </h3>
+          <p>You can find the course calendar <a href="https://github.com/SreeshaNath/sreeshanath.github.io/blob/master/courseCalendar.md" target="_blank">here</a></p><br/>
+        </div>
+        <div>
+          <h3> Schedule and Locations </h3>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>Section</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Instructor</th>
+              </tr>
+            </thead>
+            <tr>
+              <td colspan="5" style="text-align:center;"><b>Lectures</b></td>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td>Mon & Wed</td>
+              <td>10:00 a.m. - 10:50 a.m.</td>
+              <td>ECCR 150</td>
+              <td>Sreesha Nath</td>
+            </tr>
+            <tr>
+              <td>100B</td>
+              <td colspan="2">Videos available at all times</td>
+              <td><a href="https://zoom.us/j/660898400">Meets Online</a></td>
+              <td>Sreesha Nath</td>
+            </tr>
+            <tr>
+              <td>200</td>
+              <td>Mon & Wed</td>
+              <td>1:00 p.m. - 1:50 p.m.</td>
+              <td>GOLD A2B70</td>
+              <td>Sreesha Nath</td>
+            </tr>
+            <tr>
+              <td colspan="5" style="text-align:center;"><b>Recitations</b></td>
+            </tr>
+            <tr>
+              <td>101</td>
+              <td>Wed</td>
+              <td>5:00 p.m. - 6:40 p.m.</td>
+              <td>ECCE 141</td>
+              <td>Carl Mueller</td>
+            </tr>
+            <tr>
+              <td>102</td>
+              <td>Fri</td>
+              <td>8:00 a.m. - 9:40 a.m.</td>
+              <td>ECCR 235</td>
+              <td>Srinjita Bhaduri</td>
+            </tr>
+            <tr>
+              <td>111</td>
+              <td>Thu</td>
+              <td>2:00 p.m. - 3:40 p.m.</td>
+              <td>ECCR 235</td>
+              <td>Shreshtha Pankaj</td>
+            </tr>
+            <tr>
+              <td>112</td>
+              <td>Thu</td>
+              <td>4:00 p.m. - 5:40 p.m.</td>
+              <td>ECCR 235</td>
+              <td>Annika Muehlbradt</td>
+            </tr>
+            <tr>
+              <td>113</td>
+              <td>Fri</td>
+              <td>12:00 p.m. - 1:40 p.m.</td>
+              <td>ECCE 141</td>
+              <td>Alecio Madrid</td>
+            </tr>
+            <tr>
+              <td>201</td>
+              <td>Wed</td>
+              <td>6:00 p.m. - 7:40 p.m.</td>
+              <td>ECCR 235</td>
+              <td>Srinjita Bhaduri</td>
+            </tr>
+            <tr>
+              <td>202</td>
+              <td>Thu</td>
+              <td>9:00 a.m. - 10:40 a.m.</td>
+              <td>ECCR 235</td>
+              <td>Josh Ladd</td>
+            </tr>
+            <tr>
+              <td>203</td>
+              <td>Thu</td>
+              <td>3:30 p.m. - 5:10 p.m.</td>
+              <td>ECCE 141</td>
+              <td>Yash Sapra</td>
+            </tr>
+            <tr>
+              <td>204</td>
+              <td>Fri</td>
+              <td>8:00 a.m. - 9:40 a.m.</td>
+              <td>ECCE 141</td>
+              <td>Josh Ladd</td>
+            </tr>
+            <tr>
+              <td>205</td>
+              <td>Fri</td>
+              <td>10:00 a.m. - 11:40 a.m.</td>
+              <td>ECCR 235</td>
+              <td>Shreshtha Pankaj</td>
+            </tr>
+            <tr>
+              <td>206</td>
+              <td>Fri</td>
+              <td>12:00 p.m. - 1:40 p.m.</td>
+              <td>ECCR 235</td>
+              <td>Annika Muehlbradt</td>
+            </tr>
+            <tr>
+              <td>207</td>
+              <td>Fri</td>
+              <td>2:00 p.m. - 3:40 p.m.</td>
+              <td>ECCE 235</td>
+              <td>Yash Sapra</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- End about page -->
+
+    <!-- Course work page -->
+
+
+    <div id="coursework" class="container" style="display:none;">
+      <h1 style="text-align:center;padding-top:30px;">Course Work</h1>
+      <div style="text-align:center;padding-top:10px;">
+        <a class="btn btn-info" href="#" onclick="showLabs();">Labs</a>
+        <a class="btn btn-info" href="#" onclick="showMilestones();">Project Milestones</a>
+        <a class="btn btn-info" href="#" onclick="showHomework();">Homework</a>
+      </div>
+
+      <!-- Labs -->
+      <div id = "lab" style="display:none;">
+        <h3 style="padding-top:30px;">Labs</h3>
+        <table class="table">
+          <tr>
+            <thead class="thead-dark">
+              <th>Lab</th>
+              <th>Topic</th>
+              <th>Instructions</th>
+            </thead>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Initial System Setup</td>
+            <td><a class="btn btn-outline-info" href="lab-instructions/lab1_initial_setup/index.html" title="Lab 1" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Team Formation</td>
+            <td><a class="btn btn-outline-info" href="lab-instructions/lab2_team_formation/index.html" title="Lab 2" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Shell Scripting and Git</td>
+            <td><a class="btn btn-outline-info" href="lab-instructions/lab3_git_scripting/index.html" title="Lab 3" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>HTML & CSS</td>
+            <td><a class="btn btn-outline-info" href="lab-instructions/lab4_html_css/index.html" title="Lab 4" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Client Side Javascript</td>
+            <td><a class="btn btn-outline-info" href="lab-instructions/lab5_javascript/index.html" title="Lab 5" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>SQL</td>
+            <td><a class="btn btn-outline-info" href="lab-instructions/lab6_postgresql/index.html" title="Lab 6" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>NodeJS</td>
+            <td><a class="btn btn-outline-info" href="lab-instructions/lab7_node_js/index.html" title="Lab 7" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Project Milestone 3</td>
+            <td><a class="btn btn-outline-info" href="Project%20Milestones/Project%20Milestone%203/index.html" title="Lab 8" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Web Services</td>
+            <td><a class="btn btn-outline-info" href="lab-instructions/lab9_web_services/index.html" title="Lab 9" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Heroku</td>
+            <td><a class="btn btn-outline-info" href="lab-instructions/lab10_heroku_setup/index.html" title="Lab 10" target="_blank">Link</a></td>
+          </tr>
+        </table>
+      </div>
+      <!-- end of labs -->
+
+      <!-- project milestones -->
+      <div id="milestones" style="display:none;">
+        <h3 style="padding-top:30px;">Project Milestones</h3>
+        <table class="table">
+          <tr>
+            <thead class="thead-dark">
+              <th>Project Milestone</th>
+              <th>Topic</th>
+              <th>Instructions</th>
+            </thead>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Project Outline</td>
+            <td><a class="btn btn-outline-info" href="Project%20Milestones/Project%20Milestone%201/index.html" title="PM 1" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Project Plan</td>
+            <td><a class="btn btn-outline-info" href="Project%20Milestones/Project%20Milestone%202/index.html" title="PM 2" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>1 on 1 student meetings</td>
+            <td><a class="btn btn-outline-info" href="Project%20Milestones/Project%20Milestone%203/index.html" title="PM 3" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Advanced Architecture design</td>
+            <td><a class="btn btn-outline-info" href="Project%20Milestones/Project%20Milestone%204/index.html" title="PM 4" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Application testing plan</td>
+            <td><a class="btn btn-outline-info" href="Project%20Milestones/Project%20MIlestone%205/index.html" title="PM 5" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Project Presentations</td>
+            <td><a class="btn btn-outline-info" href="Project%20Milestones/Project%20MIlestone%206/index.html" title="PM 6" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Final Project Report and Product Functionality</td>
+            <td><a class="btn btn-outline-info" href="Project%20Milestones/Project%20MIlestone%207/index.html" title="PM 7" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Final Reflection</td>
+            <td><a class="btn btn-outline-info disabled" href="Project%20Milestones/Project%20MIlestone%208/index.html" title="PM 8" target="_blank">Link</a></td>
+          </tr>
+        </table>
+      </div>
+      <!-- end of project milestones -->
+
+      <!-- homework -->
+      <div id="homework" style="display:none;">
+        <h3 style="padding-top:30px;">Homework</h3>
+        <table class="table">
+          <tr>
+            <thead class="thead-dark">
+              <th>Homework</th>
+              <th>Topic</th>
+              <th>Instructions</th>
+            </thead>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>HTML & CSS</td>
+            <td><a class="btn btn-outline-info" href="Homework/Homework%201/index.html" title="HW 1" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Javascript</td>
+            <td><a class="btn btn-outline-info" href="Homework/Homework%202/index.html" title="HW 2" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>SQL</td>
+            <td><a class="btn btn-outline-info" href="Homework/Homework%203/index.html" title="HW 3" target="_blank">Link</a></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Web Services</td>
+            <td><a class="btn btn-outline-info" href="Homework/Homework%204/index.html" title="HW 4" target="_blank">Link</a></td>
+          </tr>
+        </table>
+      </div>
+      <!-- end of homework -->
+    </div>
+    <!-- End of course work page -->
+    <!-- Instructors Page -->
+    <div id="instructors" class="container" style="display:none;">
+      <h1 style="text-align:center; padding-top:30px;">Teaching staff</h1>
+      <div class="">
+        <h3 style="padding-top:20px;">Instructor</h3>
+        <p><a class="btn btn-info" href="mailto:sreesha.nath@colorado.edu?subject=CSCI 3308">Sreesha Nath</a></p>
+      </div>
+      <br/>
+      <h3>Teaching Assistants</h3>
+      <div>
+        <p>
+          <a class="btn btn-info" href="mailto:alma5914@colorado.edu?subject=CSCI 3308">Alecio Madrid</a>
+          <a class="btn btn-info" href="mailto:annika.muehlbradt@colorado.edu?subject=CSCI 3308">Annika Muehlbradt</a>
+          <a class="btn btn-info" href="mailto:carl.mueller@colorado.edu?subject=CSCI 3308">Carl Mueller</a>
+          <a class="btn btn-info" href="mailto:Joshua.Ladd@colorado.edu?subject=CSCI 3308">Joshua Ladd</a>
+          <a class="btn btn-info" href="mailto:Shreshtha.Pankaj@Colorado.EDU?subject=CSCI 3308">Shreshtha Pankaj</a>
+          <a class="btn btn-info" href="mailto:srinjita.bhaduri@colorado.edu?subject=CSCI 3308">Srinjita Bhaduri</a>
+          <a class="btn btn-info" href="mailto:Yash.sapra@colorado.edu?subject=CSCI 3308">Yash Sapra</a>
+        </p>
+      </div>
+      <br/>
+      <div>
+        <h3>Graduate Student Support</h3>
+        <p>
+            <a class="btn btn-info" href="mailto:Janani.selvan@colorado.edu?subject=CSCI 3308">Janani Selvan</a> &nbsp;
+            <a class="btn btn-info" href="mailto:karthik.siddaramanna@colorado.edu?subject=CSCI 3308">Karthik Siddaramanna</a> &nbsp;
+            <a class="btn btn-info" href="mailto:venkat.arigela@colorado.edu?subject=CSCI 3308">Venkat Arigela</a>
+        </p>
+      </div>
+      <br/>
+      <div>
+        <h3>Course Assistants</h3>
+        <p>
+            <a class="btn btn-info" href="mailto:Daniel.Scott-1@colorado.edu?subject=CSCI 3308">Daniel Scott</a> &nbsp;
+            <a class="btn btn-info" href="mailto:mailto:Elliot.Whitehead@colorado.edu?subject=CSCI 3308">Elliot Whitehead</a> &nbsp;
+            <a class="btn btn-info" href="mailto:jama8050@colorado.edu@colorado.edu?subject=CSCI 3308">Jacob Malcy</a>
+        </p>
+      </div>
+    </div>
+    <!-- End instructors page -->
+  </main>
+  <br/><br/><br/><br/>
+  <footer class="page-footer font-small fixed-bottom">
+      <div class="p-3 bg-dark text-white">
+          <div class="footer-copyright text-center py-3">© 2019 Copyright:
+            <a href="mailto:sreesha.nath@colorado.edu" style="color:white;font-weight:bold;">Sreesha Nath</a></div>
+          </div>
+  </footer>
+</body>
+</html>
