@@ -54,9 +54,9 @@ main{
 #bottom_nav{
 
 	z-index:5;
-	
+
 	position:fixed;
-	
+
 	width:100%;
 
 	bottom:0;
@@ -68,10 +68,6 @@ main{
 }
 
 .deadline {
-	border-color: red;
+	border-color: blue;
 	font-weight: bold;
 }
-
-
-
-
