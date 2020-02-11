@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Lab 4</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 4 HTML & CSS</h1>
+					<p class="lead"> This is the first step in building our website, handling the front-end <b> Hypertext Markup Language (HTML)</b> & <b> Cascading Style Sheets (CSS)</b>. In this lab, you will learn how to work with html and css and back up your code to your git repository. To receive credit for this lab, you MUST complete steps 1, 2, and 3 in recitation and get marked off by your TA. You MUST complete step 4 and 5 (either in recitation or on your own) and upload "lab_4_link.txt" to Canvas by the deadline. Step 6 is optional and if you complete it you get 10 points as extra credits. <b>You may work with a partner. </b> If you do, make sure to include your partners name at the top of "lab4_link.txt". </p>
+							<p class="h5"><a href="./Lab_Website.zip">Download </a>files to work with, make sure you extract the files before using them.</p>
+				</div>
+				<div class="col-2">
+					<table class="table">
+						<tr>
+							<th class="h5" style="text-align:center">Est. Time  &#x023F1;</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">150</span> minutes</td>
+						</tr>
+					</table>
+				</div>
+			  </div>
+				<div class="row">
+					<div class="col-12">
+						<p class="card card-body deadline">This lab is due right before recitation next week.
+							For Example, If your lab is on this Friday at 10 AM, the submission deadline will be next Friday at 10 AM.</br>
+							There is no late policy for labs.
+						</p>
+					</div>
+				</div>
+			</div>
+<!--
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Prerequisite Knowledge</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+
+				</div>
+
+				<div class="collapse" id="multiCollapseExample1">
+					<p>This lab assumes some basic familiarity with HTML & CSS.  If you are new to html & css, you'll find a few resources below to help you get up-to-speed.
+					<div class="row">
+						<div class="col-6">
+							<img src="img/w3schools.jpg" alt="The W3 Schools Logo">
+						</div>
+						<div class="col-6">
+							<p>At W3 Schools, you'll find a reference that provides explanations & examples for just about every html tag and css property.  You'll also find
+							   a handy "Try it Yourself" which provides an html editor & viewer right in your browser to help you test out the provided examples.</p>
+							   Link: <a href="https://www.w3schools.com/html/default.asp">HTML</a> & <a href="https://www.w3schools.com/css/default.asp"> CSS </a>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-6">
+							<img src="img/tutorials_point.png" alt="The TutorialsPoint Logo">
+						</div>
+						<div class="col-6">
+							<p>For a more guided online resource, checkout tutorialspoint's html & css lessons.  Where as W3 schools serves as an online reference/dictionary,
+							tutorialspoint is more akin to an actual textboook / guided reading.</p>
+							   Link: <a href="https://www.tutorialspoint.com/html/">HTML</a> & <a href="https://www.tutorialspoint.com/css/"> CSS </a>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-6">
+							<img src="img/jon_duckett.jpg" alt="The cover to Jon Duckett's book on HTML & CSS: Design and Build Websites" style="height:150px;">
+						</div>
+						<div class="col-6">
+							<p>Jon Duckett's book on html & css focuses making web design accessible to all, not just the experienced programmer!  You can read the book
+							   cover to cover or just pick out a specific chapter/topic to help you dive deeper into a specific part of web design</p>
+							   CU Boulder Library PermaLink: <a href="http://ucblibraries.summon.serialssolutions.com/#!/search?bookMark=ePnHCXMw42JgAfZbUxkhpykZgs8HtwRtvuUCccAnqAHrTy5QvQNsOgArIA7YiAiwcjQzNDPlZODyCPH1UVBTcA4O5mFgKSkqTeVlYE0DxgawwNRwcw1x9tAtTYb3JuONzQxAxz7Eo5hizM2gBlFanJ2Zk1MMLNPiQc3WYiOTCvP4pOxi8MXLQBcCFWpCFCYWZwPLFWCZU1IcX5YDnqssjkfxBFCtItTQxDSg5fHY1ShjUWOIoQpqa2Z6AXy8Kb4AcsJEPPg8bSdwc8zACGEiZCIVrgrdRCWIKtBoSEo-XBWEawJsdhiCzjolOgAB8LB_Ww">Online Book</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		-->
+<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">Directory Structure Explanation</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample2">
+
+					<div class="row" style="padding:15px">
+						<p class="h3"></p>
+						<p>We'll be building our website incrementally.  Starting today with the html/css to create a static website.  In the next few labs, we'll be adding client-side
+						   javascript for improved functionality, a database to store our website's data, and finally tie everything together with a backend server with Node.js.
+						   To that end, we'll be laying down the groundwork for our website by storing all of our html webpages in an views folder.  In our later labs we'll add additional
+						   files and even update our html files to .ejs format for handling our server side code!  So to make sure our future labs run smoothly, go ahead and ensure all of your
+						   files fit into the following directory structure.
+						<pre>Directory Structure:
+|--Lab_Website
+	|--views
+		|--login.html
+		|--register.html
+		|--home.html
+		|--team_stats.html
+		|--player_info.html
+	|--resources
+		|--css
+			|--signin.css
+			|--my_style.css
+		|--img
+			|--beproudcapaabanner.jpg
+			|--cu_boulder_logo.jpg
+			|--favicon.ico
+			|--temp_image.svg
+</pre>
+					</div>
+</div>
+			</div>
+			</div>
+			<div class="card card-body" id="step0">
+				<div class="stepLine">
+					<p class="alignleft h5">0. Tutorial</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample0" aria-expanded="false" aria-controls="multiCollapseExample0">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time4">30</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample0">
+
+
+					<div class="row" style="padding:15px">
+						<p class="h3"></p>
+						<p>TAs will walk you through how to open an HTML file and edit it using a text editor.  We would recommend not to use vim editor. Use <a href="https://www.sublimetext.com/3" target=_blank> Sublime</a> or <a href="https://atom.io" target=_blank> Atom</a>(preferable) text editors. TAs will also show you how to inspect an HTML page in a web browser and go over the elements in the page. </p>
+							<p> Useful links: </p>
+							<ul>
+								<li>w3schools: <a href="https://www.w3schools.com/html/default.asp" target=_blank>HTML</a> & <a href="https://www.w3schools.com/css/default.asp" target=_blank> CSS </a> </li>
+							 <li> Bootstrap: <a href="https://getbootstrap.com/docs/4.1/getting-started/introduction/" target=_blank>Documentation</a> </li>
+
+					</div>
+</div>
+			</div>
+			</div>
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">1. Login Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample3">
+					<br>
+                <p class="h5">TO DO</p>
+          <p>Nothing to add. Leave as-is</p>
+					<div class="row">
+						<div class="col-6">
+							<p> This webpage has been provided for you. For now, all it does is link directly to the registration page and home pages. In a future lab,
+							 we will implement a basic login service to our site (using Node.js) to verify users.</p>
+						</div>
+            <div class="col-6"  style="text-align:center;">
+              <img class="img-fluid" src="img/login_page.png" alt="Screenshot of the login page" style="height:400px;">
+            </div>
+					</div>
+
+
+			</div>
+		</div>
+			<!-- Not using this section for Fall 2019 CSCI 3308 Lab 4 -->
+			<!-- <div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">Abbreviated Instructions</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+				</div>
+				<div style="padding-left:20px" class="collapse" id="multiCollapseExample3">
+          <br><br>
+
+
+
+				</div>
+			</div> -->
+
+			<div class="card card-body" id="step4">
+				<div class="stepLine">
+					<p class="alignleft h5">2. Home Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time4">15</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample4">
+
+          <br>
+					<div class="row">
+						<div class="col-6">
+							<p>Only a basic template has been provided for the home page.  You will need to create your own personalized home page (including the components
+							listed further down in the instructions). </p>
+							<p class="h5">TO DO</p>
+						<p>Your home page must include the following components:</p>
+						<ol>
+							<li>A header tag with a message welcoming the user to your website</li>
+							<li>An image (related to Football or specifically the Buffs team)</li>
+							<li>A short description of your website (2 sentences).</li>
+							<li>A Hyperlink to the Buffs official home page [https://cubuffs.com/]</li>
+							<li>At least 1 Bootstrap class to modify your content</li>
+						</ol>
+						</div>
+            <div class="col-6"  style="text-align:center;">
+							<img class="img-fluid" src="img/home_page.png" alt="Screenshot of the home page" style="height:400px;">
+						</div>
+					</div>
+					<dl>
+
+						<hr>
+						<p class="h5">Examples</p>
+						<ol>
+							<dt><li>Headings - Structuring Content vs Changing Font</li></dt>
+							<dd>
+								<pre><code  class="language-html">&lt;h1>This is a heading! &lt;/h1>
+&lt;p class="h1">This LOOKS like a heading &lt;/p></code></pre>
+								<p>Displayed as: <h1>This is a heading!</h1> <p class="h1">This LOOKS like a heading</p></p>
+
+                 <a id="hidetext1"  class="btn btn-warning dropdown-toggle" href="#explanation1" onclick="showExplanation(1)">More information</a>
+                 <div id = "explanation1" style="display:none;">
+  								<dl class="row">
+  									<dt class="col-sm-3">&lt;h1>-&lt;h6></dt>
+  									<dd class="col-sm-9">The headings tags are semantic tags.  Meaning they add structure to the html document that can help an assistive agent (screen reader) correctly
+  									parse the file and know what each piece of text is for.  A lot of times it is used to quickly make text larger and bold, but THIS IS BAD and if you do this you're basically a terrible person.  We're only slightly kidding... Using the headings tags for changing fonts can cause a lot of problems for screen readers which can cause some serious accessibility concerns.  If you're working on a coporate site this could even be a potential lawsuit!  So only use heading tags to actually mark up sections of your document (think like an outline for a research paper). For a deeper explanation, check out W3's outline for how heading tags should be used <a href="https://www.w3.org/TR/html52/sections.html#elementdef-h1"><img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+  									<dt class="col-sm-3">.h1 -.h6 classes</dt>
+  									<dd class="col-sm-9">The heading classes, provided by Bootstrap, allow you to have the font styling of a headings tag, without breaking the semantic rules of using one.  This lets you have your page appear stylistically the way you want, but also follow the proper rules for only using heading tags for structuring the content of your webpage.</dd>
+  								</dl>
+              </div>
+							</dd>
+							<dt><li>Working with images</li></dt>
+							<dd>
+								<pre><code  class="language-html">&lt;img src="img/tree.jpg" alt="An image of a tree taken by Brian Green & listed on Wikipedia" height="120px" width="90px"> </code></pre>
+								<p>Displayed as: <img src="img/tree.jpg" alt="An image of a tree taken by Brian Green & listed on Wikipedia" height="120px" width="90px"></p>
+								<a id="hidetext2" class="btn btn-warning dropdown-toggle" href="#explanation2" onclick="showExplanation(2)">More information</a>
+                 <div id = "explanation2" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">src="..."</dt>
+									<dd class="col-sm-9">The src attribute is a filepath (relative or absolute), that details where the web browser will find the image. Image not showing? Try this:<a data-toggle="modal" href="#imageErrorModal"><img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" height="20px"></a></dd>
+									<dt class="col-sm-3">alt="..."</dt>
+									<dd class="col-sm-9">The alt or alternative text serves two purposes.  The first is if the image isn't able to load, the alt text will be loaded by the browser instead.  The second purpose is for accessibility.  A screen reader can read the alt text to a user so that they can understand what the image is about.  For stylistic images (ex. a background image), the alt text can be a short description like "A sunny oceanview", but if content in the image is being referenced in your webpage be more detailed!  Ex. "Make sure you eat mushrooms that look like the one on the left, because the ones one the right are poisonous!!" alt="A healthy mushroom, with all brown coloring. Left mushroom" alt="A poisonous mushroom, with all white coloring. Right mushroom."</dd>
+									<dt class="col-sm-3">height="..." & width="..."</dt>
+									<dd class="col-sm-9">The height & width attributes define how tall or wide an image is.  If neither is set, then the browser will try to load the image at its full resolution (unless you have applied CSS to override the default image resolution).  If only 1 value is set, then the browser will scalle the other.  For example if an image is 320 x 180 and you set the width="160px", the browser will reduce the height by half to 90px.</dd>
+									<dt class="col-sm-3">Referencing the owner</dt>
+									<dd class="col-sm-9">Always make sure to properly site the owner of an image!  Either add a caption detailing who owns the image, provide a link to the licensor's page, or reference the page you retrieved the image from.  <a href="https://commons.wikimedia.org/wiki/File:Ash_Tree_-_geograph.org.uk_-_590710.jpg">Wikipedia Link</a> | <a href="https://www.geograph.org.uk/photo/590710"> Original Source/Owner </a></dd>
+								</dl>
+								</div>
+								<dt><li>Anchor Tag - Hyperlinks</li></dt>
+							<dd>
+								<pre><code  class="language-html">&lt;a href="https://www.google.com">Link to Google &lt;/a></code></pre>
+								<p>Displayed as: <a href="https://www.google.com">Link to Google </a></p>
+								<a id="hidetext3" class="btn btn-warning dropdown-toggle" href="#explanation3" onclick="showExplanation(3)">More information</a>
+                 <div id = "explanation3" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">href="..."</dt>
+									<dd class="col-sm-9">The href, hypertext reference, says where (locally or on the network) the anchor tag is pointing too.  This can either be a relative or absolute path.</dd>
+									<dt class="col-sm-3">Relative Path</dt>
+									<dd class="col-sm-9">A relative path, defines how the operating system can retrieve a file from your webpage's current directory.  To help use navigate around our directory structures, we can use a few handy shortcuts.
+										<dl class="row">
+											<dt class="col-sm-3">../</dt>
+											<dd class="col-sm-9"> Step up one directory</dd>
+											<dt class="col-sm-3">directory_name/</dt>
+											<dd class="col-sm-9"> if text is followed by a forward slash "/" then it will be treated as a directory to step into</dd>
+											<dt class="col-sm-3">file_name.ext</dt>
+											<dd class="col-sm-9"> the final piece of text is generally the file you are trying to reference (make sure to include the file extension!)</dd>
+										</dl>
+										Example: ../resources/css/signin.css - this is a relative path from your views folder to the css file used to stylize our login page.</dd>
+									<dt class="col-sm-3">Absolute Path</dt>
+									<dd class="col-sm-9">An absolute path, defines how the operating system can retrieve a file based on it's Drive location or network location.  In general, this should only be used for referencing files that are on another computer across the network or the Internet.  You should avoid using absolute paths with your local hard drive (ex. C:// or F://), because these paths will not work if you try to open the webpages in a different computer.  For example, the TA's will be grading on a different computer. So an absolute path for your personal computer's C:// drive will break ... and so will your grade :( </dd>
+								</dl>
+							</div>
+							</dd>
+						</ol>
+					</dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step5">
+				<div class="stepLine">
+					<p class="alignleft h5">3. Football Season Statistics Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time5">30</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample5">
+          <br>
+					<div class="row">
+						<div class="col-6">
+							<p>For today's lab you will be working on creating an <a href="https://www.w3schools.com/html/html_tables.asp">html table</a> to hold the 2019 season
+							   stats for the Buffs Football Team.  You'll also be stylizing your page with Bootstrap's <a href="https://getbootstrap.com/docs/4.1/components/jumbotron/">Jumbotron</a> and
+							   <a href="https://getbootstrap.com/docs/4.1/content/tables/">table classes</a>. In future labs, we will add client-side Javascript to help update
+							   our Wins/Losses table & build our table server-side by pulling in the statistics from our database (postgreSQL & Node.js).
+							   <dl>
+					<p class="h5">TO DO</p>
+						<p>Add to your team_stats.html page the following components:</p>
+						<ol>
+							<li>JumboTron announcing the Fall 2019 Season</li>
+							<li>A table listing 3 different football matches (Colorado State, Nebraska, & Texas State)</li>
+							<li>A second table listing the Win/Loss ratio for the season</li>
+						</ol>
+						</div>
+            <div class="col-6"  style="text-align:center;">
+              <img class="img-fluid" src="img/stats_page.png" alt="Screenshot of the football season statistics page" style="height:400px;">
+            </div>
+					</div>
+
+						<hr>
+						<p class="h5">Examples</p>
+						<ol>
+							<dt><li>Bootstrap Jumbotron </li></dt>
+							<dd>
+								<pre><code  class="language-html">&lt;div class="jumbotron">
+  &lt;h1 class="display-4">Hello, world!&lt;/h1>
+  &lt;p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.&lt;/p>
+  &lt;hr class="my-4">
+  &lt;p>It uses utility classes for typography and spacing to space content out within the larger container.&lt;/p>
+&lt;/div></code></pre>
+								<p>Displayed as: <div class="jumbotron">
+									  <h1 class="display-4">Hello, world!</h1>
+									  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+									  <hr class="my-4">
+									  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+									</div></p>
+									<a id="hidetext4" class="btn btn-warning dropdown-toggle" href="#explanation4" onclick="showExplanation(4)">More information</a>
+                 <div id = "explanation4" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">class="jumbotron"</dt>
+									<dd class="col-sm-9">The jumbotron class can be applied to just about any block level element, but most of the time it will be applied to &lt;div> tags. This will alter the tag's width to be the same as it's container.</dd>
+									<dt class="col-sm-3">class="lead"</dt>
+									<dd class="col-sm-9">The lead class modifies the text's font to "pop out" and have a relatively large size.</dd>
+									<dt class="col-sm-3">class="my-4"</dt>
+									<dd class="col-sm-9">This is modifying the horizontal rule tag to use Bootstrap's Spacing classes: <a href="https://getbootstrap.com/docs/4.3/utilities/spacing//"><img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" height="20px"> </a> </dd>
+									<dt class="col-sm-3">Documentation</dt>
+									<dd class="col-sm-9">To learn more about how the Jumbotron can be customized, check out the source documentation: <a href="https://getbootstrap.com/docs/4.3/components/jumbotron/"><img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+								</dl>
+							</div>
+							</dd>
+							<dt><li>Working With Tables</li></dt>
+							<dd>
+								<pre><code  class="language-html">&lt;table>
+	&lt;tr>
+		&lt;th>Header 1&lt;/th>&lt;th rowspan="2">Header 2&lt;/th>
+	&lt;/tr>
+	&lt;tr>
+		&lt;td>Cell 1&lt;/td>
+	&lt;/tr>
+	&lt;tr>
+		&lt;td>Cell 2 &lt;/td>&lt;td>Cell 3&lt;/td>
+	&lt;/tr>
+	&lt;tr>
+		&lt;!-- Edit the column span here -->
+	&lt;/tr>
+&lt;/table></code></pre>
+								<style>
+									.exampletable
+									{
+										border:solid 1px black;
+									}
+									.exampletable th
+									{
+										border:solid 1px black;
+									}
+									.exampletable td
+									{
+										border:solid 1px black;
+									}
+								</style>
+								<p>Displayed as (additional CSS added to show the borders):
+									<table class="exampletable">
+										<tr>
+											<th>Header 1</th><th rowspan="2">Header 2</th>
+										</tr>
+										<tr>
+											<td>Cell 1</td>
+										</tr>
+										<tr>
+											<td>Cell 2 </td><td>Cell 3</td>
+										</tr>
+										<tr>
+										<td colspan="2">Cell 4</td>
+										</tr>
+									</table>
+								</p>
+								<a id="hidetext5" class="btn btn-warning dropdown-toggle" href="#explanation5" onclick="showExplanation(5)">More information</a>
+                 <div id = "explanation5" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">&lt;table></dt>
+									<dd class="col-sm-9">The table tag defines the boundaries of where the tabular data begins & ends.</dd>
+									<dt class="col-sm-3">&lt;tr> - table row</dt>
+									<dd class="col-sm-9">The &lt;tr> tag, or table row tag, groups all of the cells together that make up a single row of the table </dd>
+									<dt class="col-sm-3">&lt;th> - table header</dt>
+									<dd class="col-sm-9">The &lt;th> tag, or table header tag, defines the header cells of a table.  Typically this is in the first row of a table only.  But it is sometimes used in the first column of a table (depending on how the information is being presented). </dd>
+									<dt class="col-sm-3">&lt;td> - table data</dt>
+									<dd class="col-sm-9">The &lt;td> tag, or table data tag, defines the data for an individual table cell</dd>
+									<dt class="col-sm-3">rowspan="#"</dt>
+									<dd class="col-sm-9">The rowspan attribute allows a cell to increase in "height" by expanding downwards and merging into the number of adjacent rows specified</dd>
+									<dt class="col-sm-3">colspan="#</dt>
+									<dd class="col-sm-9">The column span attribute allows a cell to increase in "width" by expanding to the right and merging the number of adjacent rows specified </dd>
+									<dt class="col-sm-3">Further Examples</dt>
+									<dd class="col-sm-9">Want more help with tables?  Try checking out W3 schools examples:  <a href="https://www.w3schools.com/html/html_tables.asp" target=_blank><img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+									<dt class="col-sm-3">Bootstrap Styling</dt>
+									<dd class="col-sm-9">Make sure and apply some Bootstrap styling to your tables for a more professional look & feel.  <a href="https://getbootstrap.com/docs/4.3/content/tables/"><img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+								</dl>
+							</div>
+							</dd>
+						</ol>
+					</dl>
+				</div>
+			</div>
+			<div class="card card-body" id="step6">
+				<div class="stepLine">
+					<p class="alignleft h5">4. Player Information Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(6)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time6">30</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample6">
+
+					<br>
+					<div class="row">
+						<div class="col-6">
+							<p> For today's lab we will be creating a starter page for holding football player information.  For part of the page you will be working with
+							    Bootstrap's <a href="https://getbootstrap.com/docs/4.1/layout/grid/">grid system</a>, but this can also be implemented with html tables.  In
+							    future labs, we will implement the dropdown list to update which player's information is shown (client-side javascript) and then later pull in our player
+							    information from our database (postgreSQL & Node.js).
+							    <dl>
+						<p class="h5">TO DO</p>
+						<p>Add to your player_info.html page the following components:</p>
+						<ol>
+							<li>A Bootstrap Card to hold the player image & a Bootstrap dropdown menu listing 3 Football players (placeholders)</li>
+							<li>A table listing the player's information:
+								<ul>
+									<li>Year in School</li>
+									<li>Major</li>
+									<li>Games Played</li>
+									<li>Passing Yards & Average Passing Yards</li>
+									<li>Rushing Yards & Average Rushing Yards</li>
+									<li>Receiving Yards & Average Receiving Yards</li>
+								</ul>
+							</li>
+						</ol>
+						</div>
+            <div class="col-6"  style="text-align:center;">
+							<img class="img-fluid" src="img/player_page.png" alt="Screenshot of the player information page" style="height:400px;">
+
+						</div>
+					</div>
+
+						<hr>
+						<p class="h5">Examples</p>
+						<ol>
+							<dt><li>Bootstrap Cards</li></dt>
+							<dd>
+								<pre><code  class="language-html">&lt;div class="card">
+  &lt;img class="card-img-top" src="img/tree.jpg" alt="An image of a tree taken by Brian Green & listed on Wikipedia" height="120px" width="90px">
+  &lt;div class="card-body">
+    &lt;p class="card-title">Card title&lt;/p>
+    &lt;p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p>
+  &lt;/div>
+&lt;/div></code></pre>
+								<div class="row">
+									<div class="col-2">Displayed as (width was modified): </div>
+									<div class="col-2">
+										<div class="card">
+										  <img class="card-img-top" src="img/tree.jpg" alt="An image of a tree taken by Brian Green & listed on Wikipedia" height="120px" width="90px">
+										  <div class="card-body">
+										    <p class="card-title">Card title</p>
+										    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+										  </div>
+										</div>
+									</div>
+								</div>
+								<a id="hidetext6" class="btn btn-warning dropdown-toggle" href="#explanation6" onclick="showExplanation(6)">More information</a>
+                 <div id = "explanation6" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">clas="card"</dt>
+									<dd class="col-sm-9">The card class provides a block level wrapper that will expand to fill up the entire width of it's parent container.  It also provides rounded edges for the content it is surrounding.  It's a versatile option for giving attention to different types of content on your webpage. </dd>
+									<dt class="col-sm-3">class="card-body"</dt>
+									<dd class="col-sm-9">The card-body class provides padding to help provide better spacing for content inside the card</dd>
+									<dt class="col-sm-3">class="card-title"</dt>
+									<dd class="col-sm-9">The card-title modifies a section of text to have a larger font (suitable for a title)</dd>
+									<dt class="col-sm-3">class="card-text"</dt>
+									<dd class="col-sm-9">The card-text class modifies a section of text to have size/spacing to better fit inside the card's body.</dd>
+									<dt class="col-sm-3">Bootstrap Styling</dt>
+									<dd class="col-sm-9">Checkout the complete Bootstrap Card Documentation for more styling options.  <a href="https://getbootstrap.com/docs/4.3/components/card/"><img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+								</dl>
+							</div>
+							</dd>
+							<dt><li>Bootstrap Dropdowns</li></dt>
+							<dd>
+								<pre><code  class="language-html">&lt;div class="dropdown">
+  &lt;button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  &lt;/button>
+  &lt;div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    &lt;a class="dropdown-item" href="#">Action&lt;/a>
+    &lt;a class="dropdown-item" href="#">Another action&lt;/a>
+    &lt;a class="dropdown-item" href="#">Something else here&lt;/a>
+  &lt;/div>
+&lt;/div>></code></pre>
+								<p>Displayed as:<div class="dropdown">
+								  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    Dropdown button
+								  </button>
+								  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								    <a class="dropdown-item" href="#">Action</a>
+								    <a class="dropdown-item" href="#">Another action</a>
+								    <a class="dropdown-item" href="#">Something else here</a>
+								  </div>
+								</div>
+								</p>
+								<a id="hidetext7" class="btn btn-warning dropdown-toggle" href="#explanation7" onclick="showExplanation(7)">More information</a>
+                 <div id = "explanation7" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">class="dropdown"</dt>
+									<dd class="col-sm-9">The dropdown class is applied to a &lt;div> tag and help contain all of the links contained in the dropdown.</dd>
+									<dt class="col-sm-3">&lt;button data-toggle="dropdown"></dt>
+									<dd class="col-sm-9">The button acts as a toggle, to open/close the dropdown menu.  The most important attribute here is the data-toggle, which activates Bootstrap's Javascript and has it modify the dropdown-menu's visibility.</dd>
+									<dt class="col-sm-3">&lt;div class="dropdown-menu"></dt>
+									<dd class="col-sm-9">The button acts as a toggle, to open/close the dropdown menu.  The most important attribute here is the data-toggle, which activates Bootstrap's Javascript and has it modify the dropdown-menu's visibility.</dd>
+									<dt class="col-sm-3">&lt;div class="dropdown-item"></dt>
+									<dd class="col-sm-9">The dropdown-item class will need to be added to each item in your dropdown menu so that it will appear/disappear correctly.</dd>
+									<dt class="col-sm-3">Bootstrap Styling</dt>
+									<dd class="col-sm-9">Checkout the complete Bootstrap Dropdown Documentation for more styling options.  <a href="https://getbootstrap.com/docs/4.3/components/dropdowns/"><img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+								</dl>
+							</div>
+						</ol>
+					</dl>
+				</div>
+			</div>
+			<div class="card card-body" id="step7">
+				<div class="stepLine">
+					<p class="alignleft h5">5. Submission Guidelines</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(7)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="false" aria-controls="multiCollapseExample7">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time7">5</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample7">
+					<ol>
+						<dl>
+							<dt><li>Create a new github repo</li></dt>
+							<dd>
+								On github, you will need to create a new repository called Lab_Website & upload your code to the github repo.  If you're not confident in your git skills just yet, then use the github WebGUI to upload your files, but make sure you connect your local version because you'll be using this repo for the next few labs, as we build up a complete website piece by piece.
+							</dd>
+							If you are not using github WebGUI, You can follow the following instructions. Please do not forget to create the repository first on github.
+							<font color="blue"> 'github_url' is the URL of the repository you just created. (Just like Lab3)</font>.
+							Following commands should be run inside your local Lab_Website directory.
+							<pre class="command-line" data-prompt="$"><code  class="language-bash">git init
+git remote add origin github_url
+git add .
+git commit -m "Adding all of the files for lab4"
+git push</code></pre>
+							<dt><li>Create a link to your github repo</li></dt>
+							<dd>
+								In a text file (lab_4_link.txt), write down the following:
+								<ol>
+									<li>Your name</li>
+									<li>You partner's name (if you have one)</li>
+									<li>The link to your Lab_Website Github Repo (Make sure the repo is public!!!)</li>
+								</ol>
+							</dd>
+							<dt><li>Submit to Canvas</li></dt>
+							<dd>
+								Submit your text file to Canvas by the deadline.
+							</dd>
+						</dl>
+					</ol>
+				</div>
+			</div>
+			<div class="card card-body" id="step8">
+				<div class="stepLine">
+					<p class="alignleft h5">6. Registration Page - Bonus Credit (10 points)</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample8" aria-expanded="false" aria-controls="multiCollapseExample8">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample8">
+          <br>
+          			<br>
+					<div class="row">
+						<div class="col-6">
+							<p>For today's lab you can earn bonus credit for creating an html form and stylizing it with <a href="https://getbootstrap.com/docs/4.1/components/forms/">Bootstrap</a>
+							.  In future labs we will add client-side validation for our form (javascript) and later on update our database with new registered users (postgreSQL & Node.js).
+												<dl>
+						<p class="h5">TO DO</p>
+						<p>Create a form with the following fields:</p>
+						<ol>
+							<li>Name Text Field</li>
+							<li>Email Text Field</li>
+							<li>Password Text Field</li>
+							<li>Password Confirmation Text Field</li>
+							<li>Email Text Field</li>
+							<li>CU Boulder Alumni Radio Button</li>
+							<li>CU Boulder Student Radio Button</li>
+							<li>CU Boulder Undergrad/Grad Radio Button</li>
+							<li>Undergraduate Select (Freshman-Senior)</li>
+							<li>Graduate Select (MA, MBA, PhD)</li>
+							<li>Submit Button (links to home page)</li>
+						</ol>
+						</div>
+            <div class="col-6"  style="text-align:center;">
+							<img class="img-fluid" src="img/register_page.png" alt="Screenshot of the registration page" style="height:400px;">
+						</div>
+
+
+					<hr>
+					<p class="h5">Examples</p>
+						<ol>
+							<dt><li>Working With Forms</li></dt>
+							<dd>
+								<a href="https://www.w3schools.com/html/html_forms.asp" target="_blank"> Online Tutorial on Forms </a>
+								<p>We'll start with a basic html form layout.  Between a set of opening/closing &lt;form> tags we'll list all of the different input fields we want our user to work with.</p>
+								<pre><code class="language-html">&lt;form action="home.html">
+	&lt;input type="submit" value="submit" class="btn btn-primary btn-block">
+&lt;/form></code></pre>
+				<a id="hidetext8" class="btn btn-warning dropdown-toggle" href="#explanation8" onclick="showExplanation(8)">More information</a>
+                 <div id = "explanation8" style="display:none;">
+									<dl class="row">
+										<dt class="col-sm-3">action="home.html"</dt>
+										<dd class="col-sm-9">The action field acts similiar to the anchor tags href in that it lists an address for where the form data should be directed too.  For now, we'll simply 	point it towards the home page.</dd>
+										<dt class="col-sm-3">&lt;input type="submit" ...> </dt>
+										<dd class="col-sm-9">The submit button has been provided for you.  This will activate the form submission.  We've added some Bootstrap CSS to make it look like a bootstrap button.</dd>
+									</dl>
+							</div>
+							</dd>
+								<dt><li>Code Examples</li></dt>
+							<dd>
+								<div style="padding-left:15px">
+									<b><p>Labels</p></b>
+									<p>A label defines what an input field is for and adds some accessibility features for helping screen readers navigate your form.</p>
+								<pre><code class="language-html">&lt;label for="input_id">Label:&lt;/label>
+&lt;input type="text" id="input_id" name="field_name"></code></pre>
+								<p>Displayed as: <label for="input_id">Label:</label><input type="text" id="input_id" name="field_name"></p>
+									<a id="hidetext9" class="btn btn-warning dropdown-toggle" href="#explanation9" onclick="showExplanation(9)">More information</a>
+                 <div id = "explanation9" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">for="input_id"</dt>
+									<dd class="col-sm-9">The for attribute pairs the label with it's intended input field's id (ex. input_id)</dd>
+								</dl>
+							</div>
+									<hr>
+									<b><p>Text Field</p></b>
+									<pre><code  class="language-html"> &lt;input type="text" name="my_text_field" placeholder="Placeholder Text To Display"></code></pre>
+									<p>Displayed as: <input type="text" name="my_text_field"  placeholder="Placeholder Text To Display"></p>
+									<a id="hidetext10"  class="btn btn-warning dropdown-toggle" href="#explanation10" onclick="showExplanation(10)">More information</a>
+                 <div id = "explanation10" style="display:none;">
+									<dl class="row">
+										<dt class="col-sm-3">type="text"</dt>
+										<dd class="col-sm-9">Set the input field to be a single line text box</dd>
+										<dt class="col-sm-3">name="my_text_field"</dt>
+										<dd class="col-sm-9"> Set this to a unique name to allow your server-side code to reference the submitted value for this field.  Ex. student_name or student_phone_number</dd>
+										<dt class="col-sm-3">placholder="..."</dt>
+										<dd class="col-sm-9">Example text or hint for what type of information the user should enter.</dd>
+									</dl>
+								</div>
+									<hr>
+									<b><p>Email Field</p></b>
+									<pre><code  class="language-html">&lt;input type="email" name="my_email_field" placeholder="john@email.com"></code></pre>
+									<p>Displayed as: <input type="email" name="my_email_field" placeholder="john@email.com"></p>
+										<a id="hidetext11"  class="btn btn-warning dropdown-toggle" href="#explanation11" onclick="showExplanation(11)">More information</a>
+                 <div id = "explanation11" style="display:none;">
+									<dl class="row">
+										<dt class="col-sm-3">type="email"</dt>
+										<dd class="col-sm-9">The "email" input type will look the exact same as the "text" type. Its purpose is to allow the browser to pull in autofill data, provide email suggestions (from saved emails) or alter the user's keyboard's layout (mobile or non-pc devices like Roku or Amazon Fire TV)</dd>
+										<dt class="col-sm-3">name="my_email_field"</dt>
+										<dd class="col-sm-9"> Set this to a unique name to allow your server-side code to later reference the submitted value for this field.  Ex. student_name or student_phone_number</dd>
+										<dt class="col-sm-3">placholder="..."</dt>
+										<dd class="col-sm-9">Example text or hint for what type of information the user should enter./dd>
+									</dl>
+								</div>
+									<hr>
+									<b><p>Password Field</p></b>
+									<pre><code  class="language-html">&lt;input type="password" name="my_pw_field"></code></pre>
+									<p>Displayed as: <input type="password" name="my_pw_field"></p>
+										<a id="hidetext12" class="btn btn-warning dropdown-toggle" href="#explanation12" onclick="showExplanation(12)">More information</a>
+                 <div id = "explanation12" style="display:none;">
+									<dl class="row">
+										<dt class="col-sm-3">type="password"</dt>
+										<dd class="col-sm-9">The "password" input type will replace the characters the user types in with a series of *'s or dots.  Please note this only prevents nearby people from loooking over your shoulder and sneaking a peak at your password.  This is not encrypting your password, it is still treated as plain text!!</dd>
+										<dt class="col-sm-3">name="my_pw_field"</dt>
+										<dd class="col-sm-9"> Set this to a unique name to allow your server-side code to later reference the submitted value for this field.  Ex. student_name or student_phone_number</dd>
+									</dl>
+								</div>
+									<hr>
+									<b><p>Radio Button</p></b>
+									<pre><code  class="language-html">&lt;input type="radio" name="choice" value="1" checked> 1
+&lt;input type="radio" name="choice" value="2"> 2</code></pre>
+									<p>Displayed as: <input type="radio" name="choice" value="1" checked> 1 <input type="radio" name="choice" value="2"> 2</p>
+										<a id="hidetext13" class="btn btn-warning dropdown-toggle" href="#explanation13" onclick="showExplanation(13)">More information</a>
+                 <div id = "explanation13" style="display:none;">
+									<dl class="row">
+										<dt class="col-sm-3">type="radio"</dt>
+										<dd class="col-sm-9">The "radio" type is like a checkbox, but only 1 radio button can be selected within its group.</dd>
+										<dt class="col-sm-3">name="choice"</dt>
+										<dd class="col-sm-9"> The name must field must be the same for all radio buttons within a group.  This is how the browser ensures that only one of them is selected.</dd>
+										<dt class="col-sm-3">value=""</dt>
+										<dd class="col-sm-9"> Unlike a text field, the user doesn't manually enter in a unique value.  Instead, the value attribute determines what kind of information is returned when the form is submitted.  The value could be a number or string/text.</dd>
+										<dt class="col-sm-3">checked</dt>
+										<dd class="col-sm-9"> checked is an optional attribute.  It will set a radio button to be pre-selected when the browser loads the form.  As a note, only 1 radio button can have the checked attribute, since only one can be selected at a time.</dd>
+									</dl>
+								</div>
+									<hr>
+									<b><p>Select List</p></b>
+									<pre><code  class="language-html">&lt;select name="select_choice">
+  &lt;option selected>Pick an Option&lt;/option>
+  &lt;option value="1">One&lt;/option>
+  &lt;option value="2">Two&lt;/option>
+  &lt;option value="3">Three&lt;/option>
+&lt;/select></code></pre>
+									<p>Displayed as:
+										<select name="select_choice">
+										  <option selected>Pick an Option</option>
+										  <option value="1">One</option>
+										  <option value="2">Two</option>
+										  <option value="3">Three</option>
+										</select></p>
+											<a id="hidetext14" class="btn btn-warning dropdown-toggle" href="#explanation14" onclick="showExplanation(14)">More information</a>
+                 <div id = "explanation14" style="display:none;">
+									<dl class="row">
+										<dt class="col-sm-3">select</dt>
+										<dd class="col-sm-9">The &lt;select> tag will surround a group of options and display them as a clickable list.</dd>
+										<dt class="col-sm-3">name="select_choice</dt>
+										<dd class="col-sm-9">Only the &lt;select> tag will use the name attribute.  The &lt;option> tags should NOT have a name field listed.</dd>
+										<dt class="col-sm-3">option</dt>
+										<dd class="col-sm-9"> The &lt;option&lt; tag is like the the &lt;li> for ordered & unordered lists.  It will denote each individual choice a user can make for the selection list </dd>
+										<dt class="col-sm-3">value=""</dt>
+										<dd class="col-sm-9"> Each &lt;option> tag needs a value attribute set, which will let the server know which option was chosen.  The &lt;select> tag should NOT have a value field listed.</dd>
+										<dt class="col-sm-3">selected</dt>
+										<dd class="col-sm-9"> selected is an optional attribute.  It will set which option will be shown first and be pre-selected for the user.  In our example, the first option is considered default text, which is why it has no value listed.</dd>
+									</dl>
+								</div>
+								</div>
+							</dd>
+							<dt><li>Bootstrap Forms</li></dt>
+							<dd>
+								<a href="https://getbootstrap.com/docs/4.1/components/forms/" target="_blank"> Bootstrap Form Documentation </a>
+								<p>The primary goal for our lab, with respect to the registration page, is to have a complete html form.  Adding the Bootstrap CSS to our registration page is important, but not required. You'll get additional bonus points for including the Bootstrap CSS.</p>
+								<div style="padding-left:15px">
+								<b><p>Form Group & Form Control</p></b>
+								<pre><code class="language-html">&lt;div class="form-group">
+    &lt;label for="formGroupExampleInput">Example label&lt;/label>
+    &lt;input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+&lt;/div></code></pre>
+								<p>Displayed as:
+									  <div class="form-group">
+									    <label for="formGroupExampleInput">Example label</label>
+									    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+									  </div></p>
+									  	<a id="hidetext15" class="btn btn-warning dropdown-toggle" href="#explanation15" onclick="showExplanation(15)">More information</a>
+                 <div id = "explanation15" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">class="form-group"</dt>
+									<dd class="col-sm-9">The form-group class helps to ensure labels & form inputs are grouped together in a responsive web layout.</dd>
+									<dt class="col-sm-3">class="form-control"</dt>
+									<dd class="col-sm-9">The form-control class is applied to &lt;input> tags, &lt;select> tags, and &lt;textarea> tags.  It helps control sizing for each input option and helps it to flex/shrink to fit a responsive web layout.</dd>
+								</dl>
+							</div>
+								<hr>
+								<b><p>Form Inline & Screen Reader Labels</p></b>
+								<pre><code class="language-html">&lt;form class="form-inline">
+  &lt;label class="sr-only" for="firstName">Name&lt;/label>
+  &lt;input type="text" class="form-control" id="firstName" placeholder="First Name">
+  &lt;label class="sr-only" for="lastName">Username</label>
+  &lt;input type="text" class="form-control" id="lastName" placeholder="Last Name">
+&lt;/form></code></pre>
+								<p>Displayed as:
+									  <form class="form-inline">
+										  <label class="sr-only" for="firstName">First Name</label>
+										  <input type="text" class="form-control" id="firstName" placeholder="First Name">
+										  <label class="sr-only" for="lastName">Last Name</label>
+										  <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+										</form></p>
+											<a id="hidetext16" class="btn btn-warning dropdown-toggle" href="#explanation16" onclick="showExplanation(16)">More information</a>
+                 <div id = "explanation16" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">class="form-inline"</dt>
+									<dd class="col-sm-9">Instead of having the labels & inputs stacked on top of each other vertically, form-inline will layout the labels & inputs side by side horizontally.</dd>
+									<dt class="col-sm-3">class="sr-only"</dt>
+									<dd class="col-sm-9">For screen readers to read your form properly, you must ALWAYS use &lt;label> tags. But if you don't want your user to actually see the label, for aesthetic/design resigns, you can use the sr-only class to hide your label. This is great option to meet both accessibility concerns and design concerns for your website!</dd>
+								</dl>
+							</div>
+								<hr>
+								<b><p>Form Check</p></b>
+								<pre><code class="language-html">&lt;div class="form-check">
+  &lt;input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+  &lt;label class="form-check-label" for="exampleRadios1">
+    Default radio
+  &lt;/label>
+&lt;/div>
+&lt;div class="form-check">
+  &lt;input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+  &lt;label class="form-check-label" for="exampleRadios2">
+    Second default radio
+  &lt;/label>
+&lt;/div></code></pre>
+								<p>Displayed as:
+									    <div class="form-check">
+										  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+										  <label class="form-check-label" for="exampleRadios1">
+										    Default radio
+										  </label>
+										</div>
+										<div class="form-check">
+										  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+										  <label class="form-check-label" for="exampleRadios2">
+										    Second default radio
+										  </label>
+										</div></p>
+											<a id="hidetext17" class="btn btn-warning dropdown-toggle" href="#explanation17" onclick="showExplanation(17)">More information</a>
+                 <div id = "explanation17" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">class="form-check"</dt>
+									<dd class="col-sm-9">The form-check class helps to ensure labels & checkboxes/radios are grouped together in a responsive web layout.</dd>
+									<dt class="col-sm-3">class="form-check-input"</dt>
+									<dd class="col-sm-9">The form-check-input class is applied to &lt;input> tags to properly align the radio button or checkbox with its label.</dd>
+									<dt class="col-sm-3">class="form-check-label"</dt>
+									<dd class="col-sm-9">The form-check-label class is applied to &lt;label> tags to properly align the label with its radio button or checkbox.</dd>
+								</dl>
+							</div>
+							</dd>
+
+						</ol>
+					</dl>
+				</div>
+			</div>
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modals -->
+		<div class="modal fade" id="imageErrorModal" tabindex="-1" role="dialog" aria-labelledby="imageErrorModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="imageErrorModalLabel">Image Isn't Loading!</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        If your image isn't loading, trying running through this quick "debugging" list to try and narrow down the problem:
+		        <dl class="row">
+					<dt class="col-sm-3">Filename</dt>
+					<dd class="col-sm-9">Some operating systems are case sensitive about the file names being referenced (for example, Linux is case sensitive but depending on version/settings of Windows you have, it may not be!).  So make sure you filename is not only spelled correctly, but it also is the correct case.</dd>
+					<dt class="col-sm-3">Absolute Path</dt>
+					<dd class="col-sm-9">If you are using an absolute file path, make sure it includes the entire address (http:// or https://).  Also, make sure it isn't a "local" absolute path that references your local hard drive (C://user/my_documents/folder/image.jpg).  An absolute path that references YOUR hard drive can't be used on another computer!</dd>
+					<dt class="col-sm-3">Relative Path</dt>
+					<dd class="col-sm-9">Make sure your relative path is formatted correctly.  Sometimes you may have added too many ../ and stepped to far away from your webpage's directory.  Try following your relative path manually with your OS's file browser.  Do you end in the correct directory?</dd>
+				</dl>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</body>
+</html>
