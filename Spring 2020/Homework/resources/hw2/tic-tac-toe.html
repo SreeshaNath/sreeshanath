@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Question 4</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="./rules.js"></script>
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid">
+  	<div class="container">
+  		<h1>TicTacToe</h1> 
+  		<p>In this part of the assignment you'll build a simple tictactoe using bootstrap and javascript</p> <br/>
+  		<a href="https://www.google.com/search?q=tic+tac+toe" alt="how to play" target="_blank">How to play Tic-Tac-Toe</a><br/>
+		  <p>No need to modify this HTML page. All functionality needs to be implemented in the rulse.js file. The rules.js script is included in this page. <strong>However, you are encouraged to go through this HTML page source and understand how the methods defined in rules.js are being invoked.</strong></p>
+	</div>
+</div>
+
+<div class="container">
+	<form>
+	  <div class="form-group row">
+	    <label for="player1" class="col-sm-2 col-form-label">Player 1:</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="player1_id" placeholder="player1_name">
+	    </div>
+	  </div>
+	  <div class="form-group row">
+	    <label for="player2" class="col-sm-2 col-form-label">Player 2:</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="player2_id" placeholder="player2_name">
+	    </div>
+	  </div>
+	  <div class="form-group row">
+	    <div class="col-sm-5 ">
+	      <button type="button" class="btn btn-primary" onclick="begin_play()">Begin Play</button>
+	      <button type="button" class="btn btn-primary" onclick="reset_play()">Reset Play</button>
+	    </div>
+	  </div>
+	</form>
+</div>
+<div class ="container">
+	
+	<div id ="turn_info">
+		Game has not begin. 
+	</div>
+	<br/>
+</div>
+
+<div class="container">
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td class="text-center" id="A1">A1</td>
+      <td class="text-center" id="A2">A2</td>
+      <td class="text-center" id="A3">A3</td>
+    </tr>
+    <tr>
+      <td class="text-center" id="B1">B1</td>
+      <td class="text-center" id="B2">B2</td>
+      <td class="text-center" id="B3">B3</td>
+    </tr>
+    <tr>
+      <td class="text-center" id="C1">C1</td>
+      <td class="text-center" id="C2">C2</td>
+      <td class="text-center" id="C3">C3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="container">
+	<form>
+	<div class="form-group row">
+	    <label for="player1" class="col-sm-2 col-form-label">Move:</label>
+	    <div class="col-sm-5">
+	      <input type="text" class="form-control" id="move_text_id" placeholder="Cell Number for Example: A1" onkeydown="moveEnter(event)">
+	  </div>
+	  <div class="col-sm-5">
+	      <button type="button" class="btn btn-primary" onclick="play()">Play</button>
+	   </div>
+	  </div>
+	</form>
+
+</div>
+</body>
+</html>
