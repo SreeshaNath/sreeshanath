@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Homework 2</title>
+
+    <!-- Bootstrap core CSS & JS -->
+    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+    <script src="../resources/js/jquery-3.3.1.js"></script>
+    <script src="../resources/js/popper.js"></script>
+    <script src="../resources/js/bootstrap.js"></script>
+    <script src="../resources/js/clipboard.js"></script>
+    <script src="../resources/js/prism.js"></script>
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/login.css">
+    <script type="text/javascript" src="../resources/js/login.js"></script>
+    <script src="../resources/js/labScripts.js"></script>
+  </head>
+  <body onload="loadPage()">
+	<div class="modal fade" id="resourceModal" tabindex="-1" role="dialog" aria-labelledby="resourceModalTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="resourceModalLongTitle">Links!</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+          <div class="container">
+              <h4> Resources needed for the below questions: </h4>
+              <div class="row">
+                <table class="table table-striped table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">Resource</th>
+                      <th scope="col">Link</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Javascript Regular Expressions</th>
+                      <td><a class="btn btn-primary"
+                          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions"
+                          role="button" target="_blank">Link</a></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">ClassList property</th>
+                      <td><a class="btn btn-primary" href="https://www.w3schools.com/jsref/prop_element_classlist.asp"
+                          role="button" target="_blank">Link</a></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Button disabled property</th>
+                      <td><a class="btn btn-primary" href="https://www.w3schools.com/tags/att_button_disabled.asp"
+                          role="button" target="_blank">Link</a></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">getElementById</th>
+                      <td><a class="btn btn-primary"
+                          href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById"
+                          role="button" target="_blank">Link</a></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Conditional Operators</th>
+                      <td><a class="btn btn-primary" href="https://www.w3schools.com/js/js_comparisons.asp"
+                          role="button" target="_blank">Link</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
+
+
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Example Modal Window</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Your content will go here.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-login">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="avatar">
+            <img src="https://www.tutorialrepublic.com/examples/images/avatar.png" alt="Avatar">
+          </div>
+          <h4 class="modal-title">Sign Up Page</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="text" class="form-control" name="firstName" placeholder="First Name"
+              required="required">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="lastName" placeholder="Last Name"
+              required="required">
+          </div>
+          <div class="form-group">
+            <input id="psw" type="password" class="form-control" name="password" placeholder="Password"
+              required="required">
+          </div>
+          <div class="form-group">
+            <input id="cpsw" type="password" class="form-control" name="confirm password"
+              placeholder="Confirm Password" required="required">
+          </div>
+          <div class="form-group">
+            <button id="my_submit_button" class="btn btn-primary btn-block login-btn" disabled
+              onClick="onClickFunction()">Sign Up</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div id="message" style="display:block">
+            <h3>Password must contain the following:</h3>
+            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+            <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+            <p id="number" class="invalid">A <b>number</b></p>
+            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+            <p id="match" class="invalid">Password and Confirm Password Match</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <main role="main" class="container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-10">
+            <h1 class="display-4">Homework 2: Javascript</h1>
+            <p class="lead">Due date: 28 February, 11:59 p.m.</b></p>
+          </div>
+        </div>
+      </div>
+      <div class="card card-body" id="step1">
+        <div class="stepLine">
+          <p class="alignleft h5">Instructions</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample1" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Expand</button>
+      </div>
+      <div class="collapse" id="multiCollapseExample1" style="padding-top:30px;">
+        <ol>
+          <li>There are in total 4 questions in this homework and each question is mandatory.</li>
+          <li>The instructions for each question are presented in each part below.</li>
+          <li>Please follow the instructions carefully.</li>
+          <li>You are only supposed to modify the JavaScript files in part 1 and 2.</li>
+          <li>For parts 3 and 4 you will be using the bootstrap version of the website (mypage_bootstrap.html) you built in Homework 1.</li>
+          <li>Please open the HTML file in your browser to see if your code works and open it up in a
+            text editor like Sublime to read through the code and understand the function calls.</li>
+          <li>We've 1 Bonus question worth 10 points with instructions in its own section</li>
+        </ol>
+          <br />
+        </div>
+      </div>
+      <div class="card card-body" id="step2">
+        <div class="stepLine">
+          <p class="alignleft h5">Part 1: Sign Up Dialogs with Modals (32 points)</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample2" aria-expanded="false"
+          aria-controls="multiCollapseExample2">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample2" style="padding-top:30px;">
+          <div class="alert alert-primary">
+            <p>Download the archive <a href="./resources/signup-modal.zip" target="_blank">signup-modal.zip</a></p>
+            <p> You will be editing the <i>login.js</i> and <i>login.css</i> files. You should not need to edit <i>login.html</i> in order to make the password validation functional, but that is where the changes you make will be evident.
+          </div>
+        	<p>The first portion of this assignment is dedicated to understanding modals. As shown in the example below, modals allow you to incorporate a pop-up dialog into your website for any interactions that you want to happen in a sub-window on your website. Modals are typically used for log-in and sign-up interfaces, but could be used to display any content on your webpage.</p>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+				  Launch demo modal
+				</button>
+			<br>
+			<br>
+      <p> You will be creating a modal to allow users to sign up for a website with their name and a password. The example provided below has the input components your modal is expected to accept, but using Javascript and regular expressions you will be adding in scripts to make the password validation functional. </p>
+      <a href="#myModal" class="btn btn-primary" data-toggle="modal" onclick="openModal()">Click to Open Sign Up
+      Modal</a>
+      <br /><br />
+      <p>For the following questions, you will likely find it helpful to consult these resources: </p>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resourceModal">
+          Resource Links
+        </button>
+          <br />
+          <br />
+            <p>
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#part1_q1_collapse" aria-expanded="false" aria-controls="part1_q1_collapse">
+              Question 1.1  (8 Points)
+              </button>
+            </p>
+            <div class="collapse" id="part1_q1_collapse">
+              <div class="card card-body">
+                <p>For these questions, you will modifying the javascript code we provide in the file <i>login.js</i> in /resources/js/login.js to match password properties. We have provided the skeleton code for a function called openModal() that will handle your regex expressions. We have provided comments in the included file to</p>
+                <ol>
+                  <li>Write the regular expression for Javascript to match lowercase characters. <b>POINTS: 2</b><text></li>
+                  <li>Write the regular expression for Javascript to match uppercase characters. <b>POINTS: 2</b></li>
+                  <li>Write the regular expression for Javascript to match digits. <b>POINTS: 2</b></li>
+                  <li>Change the minLength variable such that the length of the password is at least 8 characters.<b>POINTS: 2</b></li>
+                </ol>
+              </div>
+            </div>
+            <br>
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#part1_q2_collapse"
+          aria-expanded="false" aria-controls="part1_q2_collapse">
+          Question 1.2  (10 points)
+        </button>
+      </p>
+      <div class="collapse" id="part1_q2_collapse">
+        <div class="card card-body">
+          You are going to work with on the CSS using the classLists feature in this question. <br /> <br />
+          <p>
+            <strong>Overall Objective: </strong><br/>
+            The password needs to have a lowercase character, an uppercase character, a digit, should match the confirm password field and should be 8 charcters long at least.<br/>
+            If you notice after clicking the "Click to Open Signup Modal", right at the bottom there are 5 rows. For example: <a href="https://imgur.com/5qkA7YV"><img
+                    src="https://i.imgur.com/5qkA7YV.png" title="source: imgur.com" /></a> <br/>
+            What you are going to be doing is playing with the bootstrap classes to change there from an red with a cross to green with a check mark when the condition is satisfied <br/>
+          </p>
+
+            <p><b>For an example, let's consider just the lowercase condition</b></p>
+            <ul class="list-group-flush">
+              <li class="list-group-item">In the beginning, this is what you have: a red cross with “A
+                lowercase letter in red”: <a href="https://imgur.com/5qkA7YV"><img
+                    src="https://i.imgur.com/5qkA7YV.png" title="source: imgur.com" /></a></li>
+              <li class="list-group-item">If a lower case is entered you need to make the following display: <a
+                  href="https://imgur.com/Opzzdfl"><img src="https://i.imgur.com/Opzzdfl.png"
+                    title="source: imgur.com" /></a></li>
+            </ul>
+          <br/>
+          <strong>There is one if-else block for each of the following:</strong><br />
+          <ul class="list-group-flush">
+            <li class="list-group-item">If lowerCaseLetters regex matches or not.</li>
+            <li class="list-group-item">If upperCaseLetters regex matches or not</li>
+            <li class="list-group-item">If numbers regex matches or not.</li>
+            <li class="list-group-item">If the minimum length of the password is >= minLength or not.</li>
+          </ul>
+          <br />
+          <b>First, use console.log to check the value of any classList, for example:</b> <br />
+          <ul class="list-group-flush">
+            <li class="list-group-item">console.log(letter.classList)</li>
+            <li class="list-group-item">You should an array be getting a single element, with a value
+              “invalid”</li>
+          </ul>
+        <br />
+          <p><b>Let's dive deeper on how to achieve what needs to be done.
+          Let's consider just the lowercase condition again.</b></p>
+          <ul class="list-group-flush">
+            <li class="list-group-item">In the beginning, this is what you have: a red cross with “A
+              lowercase letter in red”: <a href="https://imgur.com/5qkA7YV"><img
+                  src="https://i.imgur.com/5qkA7YV.png" title="source: imgur.com" /></a></li>
+            <li class="list-group-item">If we enter the "if" condition, that would mean that we have a
+              lowercase character entered. So the above needs to change.</li>
+            <li class="list-group-item">To do this, all you need to do is <font color="red">remove</font> the invalid class, and <font color="red">add</font>
+              the correct class that would have the display look as follows: <a
+                href="https://imgur.com/Opzzdfl"><img src="https://i.imgur.com/Opzzdfl.png"
+                  title="source: imgur.com" /></a></li>
+          </ul>
+          <br/>
+          <p><b>This needs to be done everywhere we have the classList.add()
+                function and classList.remove() function.</b></p>
+          <ul class="list-group-flush">
+
+            <li class="list-group-item">You can look up the names of the css classes from the login.css
+              file. </li>
+            <li class="list-group-item">The class that needs to go into these functions is defined in the
+              CSS file 'login.css'.
+              <font color="red">Do
+                not use classes from outside this file and do not add classes to this file.</font>
+            </li>
+          </ul>
+          <br/>
+          <p><b>Rubric:</b></p>
+          <ol class="list-group-flush">
+            <li class="list-group-item">"A Lowercase letter" changes from red to green after lower case is entered in the password field. If a lower case is removed and no other lower case characters remain it moves from green to red too. <b>POINTS: 2</b></li>
+            <li class="list-group-item">"A capital(Uppercase) letter" changes from red to green after upper case is entered in the password field. If a upper case and no other uppper case characters remain it moves from green to red too.  <b>POINTS: 2</b></li>
+            <li class="list-group-item">"A number" changes from red to green after digit is entered in the password field. If a digit is removed and no other digits remain it moves from green to red too. <b>POINTS: 2</b></li>
+            <li class="list-group-item">"Minimum 8 characters" changes from red to green after password of length greater than 7 is entered. If characters are deleted and the length of the password is less than 8, it moves from green to red. <b>POINTS: 2</b></li>
+            <li class="list-group-item">"Password and Confirm Password Match" changes from red to green after lower case is entered in the password field. If they dont match, it needs to move from green to red <b>POINTS: 2</b></li>
+          </ol>
+      </div>
+      </div>
+      <br>
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#rule_3_collapse"
+          aria-expanded="false" aria-controls="rule_3_collapse">
+          Question 1.3 (4 points)
+        </button>
+      </p>
+      <div class="collapse" id="rule_3_collapse">
+        <div class="card card-body">
+          <p>
+            <strong>Overall Objective: </strong><br/>
+            Validate that the text in the password field and confirm password field are equal.
+          </p>
+          <ul class="list-group-flush">
+            <li class="list-group-item"> You need to validate that the text in the password field and confirm password field are equal.
+            </li>
+            <li class="list-group-item"> For one point, all that you have to do is look at the line “var
+              passEqualsConfPass = false;” and replace false, with the correct variable comparison to make
+              sure that the passwords match. <b>POINTS: 2</b>
+            </li>
+            <li class="list-group-item"> For the second point, repeat what you did in Question 1.2 for the
+              if and else conditions for the match element. <b>POINTS: 2</b>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <br>
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#rule_4_collapse"
+          aria-expanded="false" aria-controls="rule_4_collapse">
+          Question 1.4 (10 points)
+        </button>
+      </p>
+      <div class="collapse" id="rule_4_collapse">
+        <div class="card card-body">
+        <p>
+          <strong>Overall Objective: </strong><br/>
+          Enable the Button when all the conditions for a valid password are satisfied.
+        </p>
+          <ul class="list-group-flush">
+            <li class="list-group-item"> What you will notice is that if any of the conditions for the password have a red cross, the button is disabled.</li>
+            <li class="list-group-item">What you need to do is in the enableButton() function, there is a
+              line that says “var condition = false”, replace the false with the right condition such that
+              if we have all green ticks, the button gets enabled and you can click it. <b>POINTS: 10</b></li>
+            <li class="list-group-item"> Click the button to see a successful Modal</li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="card card-body" id="step4">
+        <div class="stepLine">
+          <p class="alignleft h5">Part 2: Tic-Tac-Toe (50 points)</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample4" aria-expanded="false"
+          aria-controls="multiCollapseExample4">Expand</button>
+      </div>
+      <div class="collapse" id="multiCollapseExample4" style="padding-top:30px;">
+        <div class="container">
+            <div class="alert alert-primary" role="alert">
+                <p>Download the archive <a href="./resources/tic-tac-toe.zip" target="_blank">tic-tac-toe.zip</a>
+<pre>Directory Structure:
+    |--tic-tac-toe
+      |--tic-tac-toe.html
+      |--rules.js
+</pre>
+                </p>
+                <p>Implement the functions defined in <b>rules.js</b></p
+                <p>The tic-tac-toe board verification logic can be found <a href="./resources/Board-verification-logic.pdf" target="_blank">here</a></p>
+              </div>
+              <div class="alert alert-warning">
+                <p>You'll not be modifying <b>tic-tac-toe.html</b> </p>
+              </div>
+        </div>
+        <div class="container">
+          <h4> Implement these rules Rules in <b><u>rules.js</u></b> </h4>
+          <h7> These same rules are defined in <b><u>rules.js</u></b></h7>
+        <br/><br>
+          <div class="row">
+            <p>
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#rule_1_collapse" aria-expanded="false" aria-controls="rule_1_collapse">
+              Rule 1 - (14 - points)
+              </button>
+            </p>
+            <div class="collapse" id="rule_1_collapse">
+              <div class="card card-body">
+                <ol>
+                  <li>Input fields for the player 1 or player 2 names cannot be empty. Show an alert if the user tries to start the game without entering these two fields.  <a href="https://i.imgur.com/v0N8FeP.png" target="_blank">See picture</a> <b>POINTS: 2</b></li>
+                  <li>The game should not start if any of these fields are empty. <b>POINTS: 3</b></li>
+                  <li>Once the game has started, these two input fields should be disabled. The two fields should show the Move types of player 1 and player 2 (X or O) <a href="https://i.imgur.com/yhEu14J.png" target="_blank">See picture</a> <b>POINTS: 3</b></li>
+                  <li>Once the game has started, The turn information should be should be shown.<a href="https://i.imgur.com/SovbuDk.png" target="_blank">See picture</a><br/> <b>POINTS: 3</b><br/>Note: Turn starts with "X". The turn is shown in "Bold".</li>
+                  <li>Once the game has started, click on begin play should alert - "Already started. Please <b>Reset Play</b> to start again." <a href="https://i.imgur.com/nXimgDS.png" target="_blank">See picture</a>  <b>POINTS: 3</b></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <p>
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#rule_2_collapse" aria-expanded="false" aria-controls="rule_2_collapse">
+              Rule 2 - (8 - points)
+              </button>
+            </p>
+            <div class="collapse" id="rule_2_collapse">
+              <div class="card card-body">
+                <ol>
+                  <li>The reset play button should reset the whole game. (At any time when reset is clicked - All the three text boxes should be cleared and Turn should be set to the default message.) <b>POINTS: 2</b></li>
+                  <li>The text boxes for entering name should be enabled back. <b>POINTS: 2</b></li>
+                  <li>The Tic Tac Toe Grid should be set to its default entries. <b>POINTS: 2</b></li>
+                  <li>Clicking reset play again and again shall have the same effect every time (or no effect when clicked multiple times). <b>POINTS: 2</b><br/>Note: Do not just reload the page. (No marks will be awarded for that.)</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <p>
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Rule 3 - (28 - points)
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                <ol>
+                  <li>The text box to enter Move should only take values (A1, A2, A3, B1, B2, B3, C1, C2, C3) (Hint: It will be validated after clicking on <b>Play</b>) <b>POINTS: 3</b></li>
+                  <li>Invalid moves should be reported by an alert message.(You are encouraged to use Modal which you learned in HW1 - Usage is not mandatory.) <b>POINTS: 2</b></li>
+                  <li>If the move is a valid move, the grid should be updated with the correct move (Player 1 is always - 'X', and Player 2 is always 'O' (This is not zero!)) - The turn information should also be updated (Example: After the first move - turn is set to 'O' <a href="https://i.imgur.com/mQB9CYX.png" target="_blank">See picture</a> <b>POINTS: 4</b></li>
+                  <li>A move should always be a valid move. (Example: If say a move was made in the already filled cell, it should be invalidated with an alert.) <b>POINTS: 2</b></li>
+                  <li>If the game has not started, clicking on <b>Play</b> should give an alert "The game has not started." <b>POINTS: 2</b></li>
+                  <li>After any move, the state of the table should be validated.(See the document attached in HW2 files to better understand). If there is a winner - Show it in an alert message - (Ex - Winner is X or O) - Displaying name is not important. <a href="https://i.imgur.com/FzQMYXP.png" target="_blank">See picture</a> <b>POINTS: 13</b></li>
+                  <li>The game should reset itself once a winner is determined. <b>POINTS: 2</b></li>
+                  <li>After all the moves have exhausted, you're not required to display any message. (It should be obvious to Reset play.)</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- new step -->
+  <div class="card card-body" id="step5">
+    <div class="stepLine">
+      <p class="alignleft h5">Part 3: Add Nav bar(18 points)</p>
+      <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+      data-target="#multiCollapseExample5" aria-expanded="false"
+      aria-controls="multiCollapseExample5">Expand</button>
+    </div>
+    <div class="collapse" id="multiCollapseExample5" style="padding-top:30px;">
+      Now we'll link all the pages together, much like we saw in Lab 4 (HTML & CSS). This will allow us to navigate across different pages in our website.
+      <ol>
+        <li><b>Step 1:</b> - Add the Nav Bar from Lab 4 website into your home page (mypage_bootstrap.html from HW1), Sign up page and TicTacToe page.
+        </li>
+        <li><b>Step 2:</b>
+              Create 3 hyperlinks in this Navbar. This will look similar to Lab 4 where we've links to Home, Season Stats, Player Info page.
+              <ol>
+                <li> <em>Profile </em> This will link to your bootstrap profile page </li>
+                <li> <em>Sign Up page </em> This will link to the login.html page in the Sign Up Modal directory </li>
+                <li> <em>TicTacToe </em> This will link to your tic-tac-toe.html" in the Tic Tac Toe directory</a> </li>
+              </ol>
+          </br>
+          This is how your profile page will look after adding the nav bar. <br>
+          <div class="card card-body" style="padding-right:15px;">
+            <img src="resources/img/navbar.png" alt="Nav bar in profile" style="height:175px;">
+          </div>
+
+      </li>
+    </ol>
+  </div>
+</div>
+<!--  -->
+ <!-- new step -->
+  <div class="card card-body" id="step8">
+    <div class="stepLine">
+      <p class="alignleft h5">Part 4: Add and remove cards(30 points)</p>
+      <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+      data-target="#multiCollapseExample8" aria-expanded="false"
+      aria-controls="multiCollapseExample8">Expand</button>
+    </div>
+    <div class="collapse" id="multiCollapseExample8" style="padding-top:30px;">
+      <div class="alert alert-primary">
+        For this part you will be working with your <b>mypage_bootstrap.html</b> from HW1.
+      </div>
+      <div class="card card-body" style="width:700px;">
+        <img src="resources/img/hw2-add-remove.gif">
+      </div>
+      <br><br>
+      Take a look at the gif shown above.
+      While the style of implementation of this task is upto you, here are some steps that worked for us. <br>
+      <ul>
+        <li><b>Step 1:</b> - Give each div an id (interest1, interest2, interest3 ...)
+        </li>
+        <li><b>Step 2:</b>
+              Create an add button in your top card. Add an onClick property to call an <em> addCard() </em> method that'll take the div id as an input and add an additional card to this.
+
+              You can use the <code>tweet.appendTo('#interest1');</code> method to add a tweet to an interest1 inside this method. <xmp> var tweet = $('<div class="card" > .... more card info goes here... </div>'); </xmp>
+        </li>
+        <li> <b>Step 3:</b>
+              Once add card works, you can update the code that creates a card to add a delete button, like the one shown in the gif. Add an onClick property to call <em>deleteCard()</em> method that'll pass the id of the card to be deleted.
+        </li>
+      <li> <b>Step 4:</b>
+              To delete an element, you can call <code>document.getElementById('divIdToRemove').remove()</code>
+              <br>Note: Here <code>divIdToRemove</code> indicates the id of the card that you choose to delete.
+        </li>
+    </ul>
+  </div>
+</div>
+<!--  -->
+
+  <div class="card card-body" id="step5">
+    <div class="stepLine">
+      <p class="alignleft h5">Bonus Question (10 points)</p>
+      <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+      data-target="#multiCollapseExample5" aria-expanded="false"
+      aria-controls="multiCollapseExample5">Expand</button>
+    </div>
+    <div class="collapse" id="multiCollapseExample5" style="padding-top:30px;">
+      <ol>
+        <li><b>Bonus 2: 10 points </b> - Unit Testing</br>
+          You'll need to setup <em>Jasmine</em> in your part3 directory and write 3 unit tests for the <code>isEmpty</code> predefined in the rules.js.
+          <!-- <li> -->
+          <!--   <ul> -->
+              Create a .spec file and write 3 unit tests. These tests will call the <code>isEmpty</code> with the following values
+              <ol>
+                <li> Any non-empty string of your choice  - assert that it returns false </li>
+                <li> "" (empty string) -  assert that it returns true </li>
+                <li> undefined - assert that it returns true </li>
+              </ol>
+          </br>
+          Create a SpecRunner.html page that runs these tests when opened. You can follow <a href="https://howtodoinjava.com/javascript/jasmine-unit-testing-tutorial/" target="_blank">this</a> tutorial to learn about Jasmine, and look at a simple example <a href="https://embed.plnkr.co/plunk/ODgvKr" target="_blank">here</a></ul>.
+      </li>
+    </ol>
+  </div>
+</div>
+<div class="card card-body" id="step6">
+  <div class="stepLine">
+    <p class="alignleft h5">Submission Criteria</p>
+    <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+    data-target="#multiCollapseExample6" aria-expanded="false"
+    aria-controls="multiCollapseExample6">Expand</button>
+  </div>
+  <div class="collapse" id="multiCollapseExample6" style="padding-top:30px;">
+    <ul>
+      <li>
+        <b>Submit your files through Canvas</b>
+        <p>Complete each question in their separate folder. Compress/Archive the folder by creating .zip or .tar or .tar.gz You need to submit only one file on canvas. (Ex: HW2.zip)</p>
+        <p>
+          The content of your archive must look like below:
+          <pre>Directory Structure:
+    |--HW2
+      |--mypage_bootstrap.html
+      |--manage-cards.js (if you created a separate script file for part 4)
+      |--signup-modal
+        |--login.html
+        |--login.js
+        |--login.css
+      |--tic-tac-toe
+        |--index.html
+        |--rules.js
+          </pre>
+        </p>
+      </li>
+      <h5>AND</h5>
+      <li>
+        <b> Bonus Submission (i.e. if you are attempting Bonus questions)</b> </br>
+        - Please mention in your submission if you have attempted the bonus question.<br>
+        - Provide us with a link in your submission notes to your GitHub web page if you attempted the <b>Bonus</b> question on HW1 and have appended your HW2 files to your GitHub repository. <br>
+        - If you attempt <b>Bonus 2</b> you should submit the libraries needed to run the unit tests. <br> For eg: If you download the jasmine files and store them under lib/, you should add lib/, SpecRunner.html and the .spec files in the directory that you zipped above.
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="card card-body" id="step7">
+  <div class="stepLine">
+    <p class="alignleft h5">Rubric</p>
+    <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+    data-target="#multiCollapseExample7" aria-expanded="false"
+    aria-controls="multiCollapseExample7">Expand</button>
+  </div>
+  <div class="collapse" id="multiCollapseExample7" style="padding-top:30px;">
+    <p>Defined in each part above.</p>
+  </div>
+</div>
+</main><!-- /.container -->
+<div id="bottom_nav">
+  <div class="row">
+    <div class="col-10">
+    </div>
+    <div class="col-2">
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-10">
+          <div class="card">
+            <div class="card-body">
+              <p class="h4 text-center">Helper Icons</p>
+              <hr>
+              <div class="row">
+                <div class="col-4">
+                  <img src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px"
+                  height="30px">
+                </div>
+                <div class="col-8">Common Errors</div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <img src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px"
+                  height="30px">
+                </div>
+                <div class="col-8">More Information</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block alignright expandAll" type="button">Expand All</button>
+          <button class="btn btn-primary btn-block alignright collapseAll" type="button">Collapse All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
