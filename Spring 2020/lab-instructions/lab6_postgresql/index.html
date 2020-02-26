@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Lab 6</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 6 PostgreSQL</h1>
+					<p class="lead">This lab won't require any html or website code.  Instead we will focus on working with PostgreSQL to create a database for our football data. To receive credit for this lab, you MUST complete steps 1 through 6 in recitation and get marked off by your TA. You MUST complete step 7 (either in recitation or on your own) and <b>upload "lab_6_script_answers.txt" to Canvas by the deadline</b>. You may work with a partner. If you do, make sure to include your partners name at the top of "lab_6_script_answers.txt".
+					<p class="h5">You can download lab_6_script_answers.txt template<a href="./lab_6_script_answers.txt" download=""> here</a></p>
+
+					</p>
+				</div>
+				<div class="col-2">
+					<table class="table">
+						<tr>
+							<th class="h5" style="text-align:center">Est. Time  &#x023F1;</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">0</span> minutes</td>
+						</tr>
+					</table>
+				</div>
+			  </div>
+				<div class="row">
+					<div class="col-12">
+						<p class="card card-body deadline">This lab is due right before recitation next week.
+							For Example, If your lab is on this Friday at 10 AM, the submission deadline will be next Friday at 10 AM.</br>
+							There is no late policy for labs.
+						</p>
+					</div>
+				</div>
+
+			</div>
+
+      <div class="card card-body" id="step1">
+        <div class="stepLine">
+          <p class="alignleft h5">1. Tutorial</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)" >Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time1">20</span> Minutes)</p>
+        </div>
+        <div class="collapse" id="multiCollapseExample1" style="padding-top:10px;">
+            <dl>
+              <dt><p>You can find a more detailed explanation of Joins for PostgreSQL <a href="http://www.postgresqltutorial.com/postgresql-joins/"> here </a>.  This is also the source for the handy diagram below:</p></dt>
+              <dd>
+                <img class="rounded mx-auto d-block" src="./img/postgresql_joins.png" alt="A Diagram detailing how to use the different types of database joins">
+              </dd>
+            </dl>
+        </div>
+      </div>
+
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">2. PostgreSQL Setup in Linux</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time2">10</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample2">
+					<dl>
+						<dt>1. Switch to the postgres user account</dt>
+						<dd>
+							During the installation process PostgreSQL created a new user account named postgres.  You'll be using this user account for most of your database interactions.
+							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> sudo -u postgres psql</code></pre>
+						</dd>
+						<dt>2. Create a database for our football website</dt>
+						<dd>
+							<pre class="command-line" data-prompt="postgres=#"><code  class="language-bash"> create database football_db;</code></pre>
+						</dd>
+						<dt>3. Enter the football database</dt>
+						<dd>
+							<pre class="command-line" data-prompt="postgres=#"><code  class="language-bash"> \c football_db;</code></pre>
+						</dd>
+						<dt>4. Create football_player & football_games Tables</dt>
+						<dd>Copy the following code into psql terminal to create the football_player & footbal_games table and populate them with data.  If you are having problems with your PostgreSQL installation, insert the code instead into the DB Fiddle IDE to work through the lab exercises.
+							<pre class="command-line" data-prompt="football_db=#"><code  class="language-bash">CREATE TABLE IF NOT EXISTS football_games (
+  visitor_name VARCHAR(30),       /* Name of the visiting team                     */
+  home_score SMALLINT NOT NULL,   /* Final score of the game for the Buffs         */
+  visitor_score SMALLINT NOT NULL,/* Final score of the game for the visiting team */
+  game_date DATE NOT NULL,        /* Date of the game                              */
+  players INT[] NOT NULL,         /* This array consists of the football player ids (basically a foreign key to the football_player.id) */
+  PRIMARY KEY(visitor_name, game_date) /* A game's unique primary key consists of the visitor_name & the game date (this assumes you can't have multiple games against the same team in a single day) */
+);
+
+CREATE TABLE IF NOT EXISTS football_players(
+  id SERIAL PRIMARY KEY,       /* Unique identifier for each player (it's possible multiple players have the same name/similiar information) */
+  name VARCHAR(50) NOT NULL,   /* The player's first & last name */
+  year VARCHAR(3),             /* FSH - Freshman, SPH - Sophomore, JNR - Junior, SNR - Senior */
+  major VARCHAR(4),            /* The unique 4 character code used by CU Boulder to identify student majors (ex. CSCI, ATLS) */
+  passing_yards SMALLINT,      /* The number of passing yards in the players entire football career  */
+  rushing_yards SMALLINT,      /* The number of rushing yards in the players entire football career  */
+  receiving_yards SMALLINT,    /* The number of receiving yards in the players entire football career*/
+  img_src VARCHAR(200)         /* This is a file path (absolute or relative), that locates the player's profile image */
+);
+
+INSERT INTO football_games(visitor_name, home_score, visitor_score, game_date, players)
+VALUES('Colorado State', 45, 13, '20190831', ARRAY [1,2,3,4,5]),
+('Nebraska', 33, 28, '20190908', ARRAY [2,3,4,5,6]),
+('New Hampshire', 45, 14, '20190915', ARRAY [3,4,5,6,7]),
+('UCLA', 38, 16, '20190928', ARRAY [4,5,6,7,8]),
+('Arizona State', 28, 21, '20191006', ARRAY [5,6,7,8,9]),
+('Southern California', 20, 31, '20191013', ARRAY [6,7,8,9,10]),
+('Washington', 13, 27, '20191020', ARRAY [7,8,9,10,1]),
+('Oregon State', 34, 41, '20191027', ARRAY [8,9,10,1,2]),
+('Arizona', 34, 42, '20191102', ARRAY [9,10,1,2,3]),
+('Washington State', 7, 31, '20191110', ARRAY [10,1,2,3,4]),
+('Utah', 7, 30, '20191117', ARRAY [1,2,3,4,5]),
+('California', 21, 33, '20191124', ARRAY [2,3,4,5,6])
+;
+
+INSERT INTO football_players(name, year, major, passing_yards, rushing_yards, receiving_yards)
+VALUES('Cedric Vega', 'FSH', 'ARTS', 15, 25, 33),
+('Myron Walters', 'SPH', 'CSCI', 32, 43, 52),
+('Javier Washington', 'JNR', 'MATH', 1, 61, 45),
+('Wade Farmer', 'SNR', 'ARTS', 14, 55, 12),
+('Doyle Huff', 'FSH', 'CSCI', 23, 44, 92),
+('Melba Pope', 'SPH', 'MATH', 13, 22, 45),
+('Erick Graves', 'JNR', 'ARTS', 45, 78, 98 ),
+('Charles Porter', 'SNR', 'CSCI', 92, 102, 125),
+('Rafael Boreous', 'JNR', 'MATH', 102, 111, 105),
+('Jared Castillo', 'SNR', 'ARTS', 112, 113, 114);</code></pre>
+						</dd>
+					</dl>
+				</div>
+			</div>
+
+      <div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">3. Using DB Fiddle</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time3">5</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample3">
+					<div class="jumbotron">
+						<h2>Only Use DB Fiddle as a Last Resort!</h2>
+						<p class="lead"> Today's lab focuses on creating a database for our football website using PostgreSQL.  Next week we will look at connecting this database to our website using Node.js, which means you will need to have a PostgreSQL database to work with next week.  Since some students may have still be having issues getting their VM up and running or still can't get PostgreSQL working we have a temporary backup option of DB Fiddle (Click the Toggle in bottom right corner menu).  You can use DB Fiddle to load a temporary PostgreSQL database and test your database scripts.  Please note, you should be saving your work outside of DB Fiddle! So as you solve each Lab Question, write your answer down in a text file. </p>
+
+					</div>
+					<dl>
+						<dt>1. Click the DB Fiddle Button</dt>
+						<dd>
+							The modal containing DB Fiddle will pop-up for easy access.  If you would like you can also open the DB Fiddle site in seperate browser/tab <a href="https://www.db-fiddle.com/">www.db-fiddle.com</a>.
+						</dd>
+						<dt>2. Set your Database Langauge as PostgreSQL 10</dt>
+						<dd>
+							<img src="./img/db_select.png" class="img-fluid" alt="Dropdown menu selection to choose PostgresQL">
+						</dd>
+						<dt>3. Place the table creation & insertion scripts in the left ide pane (Schema SQL)</dt>
+						<dd>Copy the following code into Schema SQL pane to create the football_player & footbal_games table and populate them with data.
+							<pre><code  class="language-sql">CREATE TABLE IF NOT EXISTS football_games (
+  visitor_name VARCHAR(30),       /* Name of the visiting team                     */
+  home_score SMALLINT NOT NULL,   /* Final score of the game for the Buffs         */
+  visitor_score SMALLINT NOT NULL,/* Final score of the game for the visiting team */
+  game_date DATE NOT NULL,        /* Date of the game                              */
+  players INT[] NOT NULL,         /* This array consists of the football player ids (basically a foreign key to the football_player.id) */
+  PRIMARY KEY(visitor_name, game_date) /* A game's unique primary key consists of the visitor_name & the game date (this assumes you can't have multiple games against the same team in a single day) */
+);
+
+CREATE TABLE IF NOT EXISTS football_players(
+  id SERIAL PRIMARY KEY,       /* Unique identifier for each player (it's possible multiple players have the same name/similiar information) */
+  name VARCHAR(50) NOT NULL,   /* The player's first & last name */
+  year VARCHAR(3),             /* FSH - Freshman, SPH - Sophomore, JNR - Junior, SNR - Senior */
+  major VARCHAR(4),            /* The unique 4 character code used by CU Boulder to identify student majors (ex. CSCI, ATLS) */
+  passing_yards SMALLINT,      /* The number of passing yards in the players entire football career  */
+  rushing_yards SMALLINT,      /* The number of rushing yards in the players entire football career  */
+  receiving_yards SMALLINT,    /* The number of receiving yards in the players entire football career*/
+  img_src VARCHAR(200)         /* This is a file path (absolute or relative), that locates the player's profile image */
+);
+
+INSERT INTO football_games(visitor_name, home_score, visitor_score, game_date, players)
+VALUES('Colorado State', 45, 13, '20190831', ARRAY [1,2,3,4,5]),
+('Nebraska', 33, 28, '20190908', ARRAY [2,3,4,5,6]),
+('New Hampshire', 45, 14, '20190915', ARRAY [3,4,5,6,7]),
+('UCLA', 38, 16, '20190928', ARRAY [4,5,6,7,8]),
+('Arizona State', 28, 21, '20191006', ARRAY [5,6,7,8,9]),
+('Southern California', 20, 31, '20191013', ARRAY [6,7,8,9,10]),
+('Washington', 13, 27, '20191020', ARRAY [7,8,9,10,1]),
+('Oregon State', 34, 41, '20191027', ARRAY [8,9,10,1,2]),
+('Arizona', 34, 42, '20191102', ARRAY [9,10,1,2,3]),
+('Washington State', 7, 31, '20191110', ARRAY [10,1,2,3,4]),
+('Utah', 7, 30, '20191117', ARRAY [1,2,3,4,5]),
+('California', 21, 33, '20191124', ARRAY [2,3,4,5,6])
+;
+
+INSERT INTO football_players(name, year, major, passing_yards, rushing_yards, receiving_yards)
+VALUES('Cedric Vega', 'FSH', 'ARTS', 15, 25, 33),
+('Myron Walters', 'SPH', 'CSCI', 32, 43, 52),
+('Javier Washington', 'JNR', 'MATH', 1, 61, 45),
+('Wade Farmer', 'SNR', 'ARTS', 14, 55, 12),
+('Doyle Huff', 'FSH', 'CSCI', 23, 44, 92),
+('Melba Pope', 'SPH', 'MATH', 13, 22, 45),
+('Erick Graves', 'JNR', 'ARTS', 45, 78, 98 ),
+('Charles Porter', 'SNR', 'CSCI', 92, 102, 125),
+('Rafael Boreous', 'JNR', 'MATH', 102, 111, 105),
+('Jared Castillo', 'SNR', 'ARTS', 112, 113, 114);</code></pre>
+						</dd>
+					</dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step4">
+				<div class="stepLine">
+					<p class="alignleft h5">4. Creating Tables & Inserting Data</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time4">10</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample4" style="padding-top:10px;">
+          <h5>To Do</h5>
+          <ol>
+            <li>
+					            Write an SQL Script to create a new table to hold information on the competing universities.
+                      The table should hold the following information:<br><br>
+                      		&nbsp; University Name    (VARCHAR(200)) (Note: University Name should be unique and set as PRIMARY KEY)<br>
+                      		&nbsp; Date Established   (Date)<br>
+                      		&nbsp; Address	           (Text)<br>
+                      		&nbsp; Student Population (Int)<br>
+                      		&nbsp; Acceptance Rate    (Decimal)<br>
+					  </li>
+            <br>
+					  <li>
+					            Write an insert statement to add the University Information
+                      The table should hold the following information:<br><br>
+                      		&nbsp; University Name :-   CU Boulder <br>
+                      		&nbsp; Date Established :-  1876 <br>
+                      		&nbsp; Address :-	           1100 28th St, Boulder, CO 80303 <br>
+                      		&nbsp; Student Population :- 35,000 <br>
+                      		&nbsp; Acceptance Rate :-   80% <br>
+
+					  </li>
+          </ol>
+
+          <a class="btn btn-warning dropdown-toggle" id="hidetext1" href="#explanation1" onclick="showExplanation(1)">More information</a>
+          <div id = "explanation1" style="display:none;">
+            <dl>
+  						<dt>Create a Table</dt>
+  						<dd>
+  							<p>Basic Create Table Syntax</p>
+  							<pre><code class="language-sql">CREATE TABLE table_name(
+     column_name1 datatype,
+     column_name2 datatype,
+  );
+                    </code>
+                </pre>
+  							<p>Example</p>
+  							<pre><code class="language-sql">CREATE TABLE store(
+  id SERIAL PRIMARY KEY,            /* the primary key for each entry */
+  item_name VARCHAR(40) NOT NULL,   /* the name of a store item       */
+  qty INTEGER NOT NULL,             /* the number of items in stock   */
+  price FLOAT NOT NULL,		      /* the price per item             */
+  slogan VARCHAR(200));             /* a catchphrase used by the item's corporate creator */
+                </code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">CREATE TABLE</dt>
+  								<dd class="col-sm-9">
+                    To actually create a table we must start with the "CREATE TABLE" command.  Follow this with the name of the table you want to actually create.  You can also add "IF NOT EXISTS" [CREATE TABLE IF NOT EXISTS table_name] to your script to ensure postgreSQL doesn't try to reacreate a table (handy when working with long/re-used scripts).
+                    <span style="color:blue">PLEASE NOTE: While this is in uppercase, postgreSQL is NOT case sensitive.  It is convention to list the postgreSQL commands in upper case.</span>
+                  </dd>
+  								<dt class="col-sm-3">SERIAL</dt>
+  								<dd class="col-sm-9">
+                    The SERIAL command creates an auto-incrementer that is managed by the database.  Each time a new entry is added to the table, the SERIAL column is set and the value is incremented by 1
+                  </dd>
+  								<dt class="col-sm-3">PRIMARY KEY</dt>
+  								<dd class="col-sm-9">
+                    The PRIMARY KEY defines a unique identifier for each row of the table.  THIS MUST BE A UNIQUE VALUE!  This is how the database differntiates the various rows/entries of the table.
+                  </dd>
+  								<dt class="col-sm-3">NOT NULL</dt>
+  								<dd class="col-sm-9">
+                    The NOT NULL attribute requires that a field be set when a new entry is added to the table.  This is a design choice, so only set a field to NOT NULL, when you really want to ensure that data is entered.  For example, the slogan field does not have "NOT NULL" listed.  Meaning that you can add a new item to the store table a skip the slogan field, but must provide a name, qty, and price.
+                  </dd>
+  								<dt class="col-sm-3">; - Semi-colon</dt>
+  								<dd class="col-sm-9">
+                    Just about every postgreSQL command ends with a semi-colon.  If you don't add one, then the terminal will simply wait until you enter it.  MAKE SURE TO ADD YOUR SEMI-COLONS!
+                  </dd>
+  							</dl>
+  						</dd>
+  						<hr>
+  						<dt>Insert Values Into A Table</dt>
+  						<dd>
+  							<p>Basic Create Insert Syntax</p>
+  							<pre><code class="language-sql">INSERT INTO table_name (column_name1, column_name2, column_name3,...column_nameN)
+  VALUES (value1, value2, value3,...valueN), /* First entry being added  */
+  (value1, value2, value3,...valueN);        /* Second entry being added */
+  </code></pre>
+  							<p>Example</p>
+  							<pre><code class="language-sql">INSERT INTO store(item_name, qty, price, slogan)
+  VALUES('Gold Fish', 5, 2.55, 'The snack that smiles back'),         /* Each entry is listed on a separate lines for readability.     */
+  ('Kit Kat', 20, 0.99, 'Break me a piece off of that Kit Kat Bar'),  /* The entire insert statement can be listed as one line of text */
+  ('Pringles', 2, 2.55, 'Once you pop you cant stop');
+
+  /* Here's an insert WITHOUT slogan */
+  INSERT INTO store(item_name, qty, price)
+  VALUES('apple', 15, 0.5),  /* apples, pears, and carrots don't really have a slogan. */
+  ('pear', 22, 0.5),        /* So it doesn't make sense to have a value listed here.  */
+  ('carrot', 102, 0.15);
+  </code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">INSERT INTO</dt>
+  								<dd class="col-sm-9">This command is often listed after the CREATE TABLE command to help populate a table, but can also be called at any time to add new information to the database table.</dd>
+  								<dt class="col-sm-3">(name, qty, price, slogan)</dt>
+  								<dd class="col-sm-9">This will list all of the columns (in the same order that matches your VALUES section), you want to add values for.  In this example, you'll see we don't list "id".  This is a serial value and will therefore be handled by the database.  Also, in the second example we leave out slogan.  Because slogan can be NULL, it can also be thought of as an optional field.</dd>
+  								<dt class="col-sm-3">VALUES("apple",15, 0.5)</dt>
+  								<dd class="col-sm-9">Here we list as many entries as we wish to add to our table. In between our paranthesis (  ) we will list, in order, all of the data for a new table entry.  Make sure to add a comma to seperate multiple entries VALUES(...), (...), (...);</dd>
+  							</dl>
+  							<hr>
+  							<dt>Data Types</dt>
+  						<dd>
+  							<p>You Can find the official documentation that lists all of PostgreSQL's supported data types <a href="https://www.postgresql.org/docs/10/datatype.html">here</a></p>
+  							<dl class="row">
+  								<dt class="col-sm-2">VARCHAR(#)</dt>
+  								<dd class="col-sm-10">variable-length character string, where # defines the maximum number of characters.  This is a go-to option for defining strings that need to be set a maximum length. As a note, make sure to use single quotes ' ' when working with VARCHAR data.</dd>
+  								<dt class="col-sm-2">TEXT</dt>
+  								<dd class="col-sm-10">The TEXT type is fairly similiar to the VARCHAR(#) data type, but removes the character limit.</dd>
+  								<dt class="col-sm-2">Whole Numbers</dt>
+  								<dd class="col-sm-10">Whole numbers, or integers, can come in various sizes (smallint, int, and bigint).   You should choose which one to use based on the specific data you hope to store.  <br>
+  									<table class="table">
+  										<thead>
+  											<tr>
+  												<th>Name</th>
+  												<th>Number of Bytes</th>
+  												<th>Range</th>
+  												<th>Recommended Use</th>
+  											</tr>
+  										</thead>
+  										<tbody>
+  											<tr>
+  												<td>smallint</td>
+  												<td>2</td>
+  												<td>-32,768 to 32,767</td>
+  												<td>Only use when you KNOW your values won't exceed its range (ex. the height of a person in inches or the age of a person in years)</td>
+  											</tr>
+  											<tr>
+  												<td>int or integer</td>
+  												<td>4</td>
+  												<td>-2,147,483,648 to 2,147,483,647</td>
+  												<td>Considered the "work-horse" data type and most often used for giving you a good balance between range and data storage.</td>
+  											</tr>
+  											<tr>
+  												<td>bigint</td>
+  												<td>8</td>
+  												<td>-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807</td>
+  												<td>Only use when you KNOW you are dealing with very large values (ex. number of transactions Amazon handles in a year). </td>
+  											</tr>
+  										</tbody>
+  									</table>
+  								</dd>
+  								<dt class="col-sm-2">Decimal Numbers</dt>
+  								<dd class="col-sm-10">Decimal Numbers come in three different option - real, double precision, and numeric(#, #).  Like the whole numbers above, the type you use depends on what kind of information you hope to store.  <br>
+  									<table class="table">
+  										<thead>
+  											<tr>
+  												<th>Name</th>
+  												<th>Precision</th>
+  												<th>Recommended Use</th>
+  											</tr>
+  										</thead>
+  										<tbody>
+  											<tr>
+  												<td>real</td>
+  												<td>6 Decimal Places</td>
+  												<td>Having up to 6 Decimal Places, means that real will work for "most cases" when dealing with decimal numbers.</td>
+  											</tr>
+  											<tr>
+  												<td>double precision</td>
+  												<td>15 Decimal Places</td>
+  												<td>Use when you're dealing with scientific data or small decimal information.</td>
+  											</tr>
+  											<tr>
+  												<td>numeric(precision, scale)</td>
+  												<td><b>precision</b> defines the total number of digits in a value<br>
+  												    <b>scale</b> defines the number of decimal places in a value<br>
+  													Example: 12345.67 - this value has a precision of 7 (7 total digits) and a score of 2 (2 decimal places)</td>
+  												<td>Use this when you are dealing with currencies or other data that requires a maximum number of digits.  According to the <a href="https://www.postgresql.org/docs/10/datatype-numeric.html">documentation</a>:
+  													<blockquote class="blockquote">
+  														<p class="mb-0">Numeric values are physically stored without any extra leading or trailing zeroes. Thus, the declared precision and scale of a column are maximums, not fixed allocations.</p>
+  													</blockquote>
+  												</td>
+  											</tr>
+  										</tbody>
+  									</table>
+  								</dd>
+  								<dt class="col-sm-2">DATE</dt>
+  								<dd class="col-sm-10">Date values, in postgreSQL, are in the yyyy-mm-dd format - '2019-11-25'. To work with dates see the list of handy date functions below:
+  									<table class="table">
+  										<thead>
+  											<tr>
+  												<th>Function Name & Example</th>
+  												<th>Function Description</th>
+  											</tr>
+  										</thead>
+  										<tbody>
+  											<tr>
+  												<td>to_date(date_text, date_format)</td>
+  												<td rowspan="2">
+  													The to_date() function will convert a string literal into a date value, using the provided date formate.  Further details <a href="http://www.postgresqltutorial.com/postgresql-to_date/">here</a>
+  												</td>
+  											</tr>
+  											<tr>
+  												<td>to_date('20191125', 'yyyymmdd')</td>
+  											</tr>
+  											<tr>
+  												<td>NOW():: DATE</td>
+
+  												<td rowspan="4">To retrieve the current date on the  server you can use the NOW() function, with the :: DATE option added to it we will only get the current date (removes the time information).  The other option is to retrieve the CURRENT_DATE which will is in the default format of 'yyyy-mm-dd'.
+  												</td>
+  											</tr>
+  											<tr>
+  												<td>SELECT NOW()::DATE</td>
+  											</tr>
+  											<tr>
+  												<td>CURRENT_DATE</td>
+  											</tr>
+  											<tr>
+  												 <td>SELECT CURRENT_DATE;</td>
+  											</tr>
+  											<tr>
+  												<td>Further Examples</td>
+  												<td>If you want to learn more about working with dates, check out this resource <a href="www.postgresqltutorial.com/postgresql-date/
+  "> here</a>
+  											</tr>
+  										</tbody>
+  									</table>
+  								</dd>
+  								<dt class="col-sm-1">Arrays</dt>
+  								<dd class="col-sm-11">PostgreSQL allows you to include array information inside of table cells!  This a great option if you need to store a list of data points but don't want to have to worry about dealing with messy parsing (like you would with csv values!).  Let's look at a few examples <a href="http://www.postgresqltutorial.com/postgresql-array/">here</a> and the source documentation <a href="https://www.postgresql.org/docs/10/arrays.html"> here</a>
+
+  								</dd>
+  							</dl>
+  						</dd>
+  						</dd>
+  					</dl>
+          </div>
+				</div>
+			</div>
+			<div class="card card-body" id="step5">
+				<div class="stepLine">
+					<p class="alignleft h5">5. Query Basics</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time5">30</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample5" style="padding-top:10px;">
+          <h5>To Do</h5>
+          <ol>
+            <li>
+					     Write a script to list the Football Players (name & major), organized by major in college.<br> <br>
+               <b>Output:</b> <br>
+               <img src="./img/5.1.answer.png" alt="" class="col-md">
+					  </li>
+            <br>
+					  <li>
+					     Write a script to list all of the Football Players (name & rushing yards) who have 70 or more rushing yards.<br> <br>
+               <b>Output:</b> <br>
+               <img src="./img/5.2.answer.png" alt="" class="col-md">
+					  </li>
+            <br>
+					  <li>
+					     Write a script to list all of the games played against Nebraska (show all game information).<br> <br>
+               <b>Output:</b> <br>
+               <img src="./img/5.3.png" alt="" class="col-md"> <br>
+					  </li>
+            <br>
+					  <li>
+					     Write a script to list all of the games CU Boulder has won.<br> <br>
+               <b>Output:</b> <br>
+               <img src="./img/5.4.png" alt="" class="col-md"> <br>
+					  </li>
+            <br>
+					  <li>
+			         Write a script to list all of the games played in the Fall 2019 Season (show team name & game date) Google the dates for fall season.<br> <br>
+               <b>Output:</b> <br>
+               <img src="./img/5.5.png" alt="" class="col-md"> <br>
+					  </li>
+			<br>
+					  <li>
+					  Write a script to list the average number of points CU has scored in past games. <br> <br>
+					<b>Output:</b> <br>
+				<img src="./img/5.5.1.answer.png" alt="" class="col-md"> <br>
+					  </li>
+			<br>
+					  <li>
+			         Write a script to list the majors of the Football players and calculate how many of them are in each of the majors listed. Rename the column where you calculate the majors to number_of_players.<br> <br>
+               <b>Output:</b> <br>
+               <img src="./img/5.6.answer.png" alt="" class="col-md"> <br>
+					  </li>
+            <br>
+          <li>
+             Write a script to modify the above query in 5.7 to include only the Football players who are majoring in Computer Science.<br> <br>
+             <b>Output:</b> <br>
+             <img src="./img/5.7.answer.png" alt="" class="col-md"> <br>
+          </li>
+        </ol>
+          <a class="btn btn-warning dropdown-toggle" id="hidetext2" href="#explanation2" onclick="showExplanation(2)">More information</a>
+          <br>
+          <div id="explanation2" style="display:none;">
+            <dl>
+  						<dt>Select Statement</dt>
+  						<dd>
+  							<p>Basic Select Syntax</p>
+  							<pre><code class="language-sql">SELECT column_name FROM table_name WHERE condition_is_true</code></pre>
+  							<p>Select Everything</p>
+  							<pre><code class="language-sql"> SELECT * FROM store;/* Most basic query - show me everything */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">SELECT *</dt>
+  								<dd class="col-sm-9">The asterisk or "star" acts a wild card in our select statement.  When we don't want to limit the number of fields/columned returned we can use * to select all of them.</dd>
+  								<dt class="col-sm-3">FROM store </dt>
+  								<dd class="col-sm-9">The FROM statement defines where we want to retrieve our data (this is usually a table name, but could also be a view or even a subquery).</dd>
+  							</dl>
+  							<p>Limit Our Columns</p>
+  							<pre><code class="language-sql"> select item_name, qty from store; /* Only show the item_name and qty columns. */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">SELECT item_name, qty</dt>
+  								<dd class="col-sm-9">We can limit the number of fields that are actually displayed.  This is great when we have large tables with a large number of rows or when we want to display columns side-by-side for improved readability.</dd>
+  							</dl>
+  							<p>Limit Our Rows</p>
+  							<pre><code class="language-sql">select item_name, qty from store where price < 1;  /* Now we are limiting our query to show only the rows where the price is less than 1 dollar */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">where price < 1;</dt>
+  								<dd class="col-sm-9">Our where clause helps us limit the number or rows returned.  This is true/false boolean statement that the database evaluates for each row.  If the row evaluates to true, its information is returned.  Otherwise the row is skipped over/ignored.</dd>
+  							</dl>
+  						</dd>
+  						<hr>
+  						<dt>Aliases</dt>
+  						<dd>
+  							<p>Basic Syntax</p>
+  							<pre><code class="language-sql">SELECT column_name AS alias_name FROM table_name as table_alias_name</code></pre>
+  							<p>Rename A Column</p>
+  							<pre><code class="language-sql"> SELECT item_name, qty AS quantity FROM store;</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">AS alias_name</dt>
+  								<dd class="col-sm-9">Sometime our columns have short or abbreviated names (like qty).  To help improve readability when we run our scripts, we can use an alias to temporarily rename our column.  In this example we are altering qty to the complete word quantity.  But what if we wanted to work with multiple words?  Then we can also place our alias in double quotes: qty as "Quantity of Items in Stock".</dd>
+  							</dl>
+  							<p>Rename A Table</p>
+  							<pre><code class="language-sql"> SELECT item_name, qty FROM store as retail_establishment;</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">AS table_alias_name</dt>
+  								<dd class="col-sm-9">Aliases can also be applied to tables, but we don't usually do it for making our readouts more readable.  Instead these are uses for helping us handle subqueries and joins.  We'll cover these use cases in the next section.</dd>
+  							</dl>
+  							<p>Combining Fields</p>
+  							<pre><code class="language-sql"> SELECT item_name || ' : ' || slogan AS catch_phrase FROM store WHERE slogan IS NOT NULL;</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">item_name || ' : ' || slogan </dt>
+  								<dd class="col-sm-9">The last option we'll discuss for using aliases is to help us rename concatenated or calculated fields.  We use the double pipe || for string concatenation in SQL.  So this statement states that we will be concatenating the item_name column and slogan columns, with a colon in between.  The where clause was added to remove the rows that lack a slogan.</dd>
+  							</dl>
+  						</dd>
+  						<hr>
+  						<dt>Count</dt>
+  						<dd>
+  							<p>All Rows</p>
+  							<pre><code class="language-sql">SELECT COUNT(*) FROM store; /*count the number of rows in the store table */
+  SELECT COUNT(*) FROM store WHERE price > 1; /* Count the number of items that cost more than 1 dollar */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">COUNT(*)</dt>
+  								<dd class="col-sm-9">The COUNT() function will return the number of rows that match a query.  Our first example is a quick way to check how many rows are in a table (a great way to see if an insert statement or script worked correctly!).  The second example will incorporate a where clause, letting us now how many rows meet a specific condition.   </dd>
+  							</dl>
+  							<hr>
+  							<p>Ignore Null</p>
+  							<pre><code class="language-sql">SELECT COUNT(slogan) FROM store; /*count the number of rows in the store table where slogan isn't null */
+  SELECT COUNT(slogan) FROM store WHERE price > 1; /* Count the number of items that cost more than 1 dollar and do not have a null slogan */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">COUNT(slogan)</dt>
+  								<dd class="col-sm-9">If a column name is listed inside of the COUNT() function, then rows with null fields will be ignored.  In our now updated examples, we list the slogan column (which can be null).  This means all of our fruit (which lack a slogan) are completely ignored by the COUNT() function.</dd>
+  							</dl>
+  							<p>Ignore Null & Duplicates</p>
+  							<pre><code class="language-sql">SELECT COUNT(distinct price) FROM store; /*count the number of rows in the store table with unique non-null prices */
+  SELECT COUNT(DISTINCT prices) FROM store WHERE price > 1; /* Count the number of rows in the store table which have unique non-null prices that are above 1 dollar. */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">COUNT(DISTINCT prices)</dt>
+  								<dd class="col-sm-9">By adding the DISTINCT keyword, we can limit our search to ignore duplicates.  In this example, Gold Fish & Pringles share the same price, so collectively they only count as 1 entry!  Use DISTINCT to help you determine how varied your table data is.</dd>
+  							</dl>
+  						</dd>
+  						<dt>Sum</dt>
+  						<dd>
+  							<p>All Rows</p>
+  							<pre><code class="language-sql">SELECT SUM(qty) FROM store; /*count the total for the entire qty column*/
+  SELECT SUM(qty) FROM store WHERE price > 1; /* Count the total qty for items that cost more than 1 dollar*/</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">SUM(qty)</dt>
+  								<dd class="col-sm-9">The SUM() function will add up all of the numeric values in a column and return their combined sum.  Just like COUNT(), we can apply a WHERE clause to limit which rows we add together.  As a note, this will ignore null entries. </dd>
+  							</dl>
+  						</dd>
+  						<dt>Math Operations</dt>
+  						<dd>
+  							<p> A complete list of operations can be found in the official documentation <a href="https://www.postgresql.org/docs/10/functions-math.html">here</a> Use the table listed below for our Math Operations Examples</p>
+  							<pre><code class="language-sql">CREATE TABLE user_account(
+  id SERIAL PRIMARY KEY,            /* the primary key for each entry      */
+  user_name VARCHAR(40) NOT NULL,   /* the name of a user                  */
+  starting_balance FLOAT NOT NULL,  /* the user's starting amount of money */
+  ending_balance FLOAT NOT NULL,	  /* the user's current amount of money  */
+  qty_shoes smallint NOT NULL,      /* the number of shoes owned           */
+  qty_shirts smallint NOT NULL);    /* the number of shirts owned          */
+
+  INSERT INTO user_account(user_name, starting_balance, ending_balance, qty_shoes, qty_shirts)
+  VALUES('John Smith', 450.0, 350.0, 25, 10),
+  ('Jane Smith', 750.75, 472.55, 5, 72),
+  ('Sam Samuel', 120.50, 100.75, 3, 2);</code></pre>
+  							<p>Addition </p>
+  							<pre><code class="language-sql">SELECT user_name, (qty_shoes + qty_shirts) as "Quantity of Stuff" from user_account;/* Calculate how many total things a user has in his/her account */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">(qty_shoes + qty_shirts)</dt>
+  								<dd class="col-sm-9">Working with the plus sign, we can add the values of two columns together for each table entry.  For example, John Smith has 25 shoes and 10 shirts, so the above SQL statement will display : John Smith 35</dd>
+  							</dl>
+  							<p>Subtraction</p>
+  							<pre><code class="language-sql">SELECT user_name, (starting_balance - ending_balance) as "Money Spent" from user_account;/* Calculate much money the user has spent on clothing */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">(starting_balance - ending_balance)</dt>
+  								<dd class="col-sm-9">Working with the minus sign, we can subtract the values of two columns from one another for each table entry.  For example, Jane Smith has $750.75 starting balance and an ending balance of 472.55, so the above SQL statement will display : Jane Smith 278.2</dd>
+  							</dl>
+  							<p>Division</p>
+  							<pre><code class="language-sql">SELECT user_name, (qty_shoes / CAST((qty_shoes + qty_shirts) as float))  as "Percent Shoes" FROM user_account; /*Calculate the percentage of the user's purchases which are shoes, convert to a normal percentage. */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">(qty_shoes / (...))</dt>
+  								<dd class="col-sm-9">For this example, we use the forward slash / and combine it with an addition operation to calculate what percentage of the user's purchases have been for shoes. For example, Sam Samuel has 3 shoes and 2 shirts, so the above SQL statement will display : Sam Samuel 0.6 </dd>
+  								<dt class="col-sm-3">CAST (...)</dt>
+  								<dd class="col-sm-9">Our math operations will try to perserve the data type of the columns being used.  This means if our operation works with whole numbers, then our answer will be a whole number.  To work around this, we can use CAST() to treat one of our values as a float, which will result in a decimal number for our answer!</dd>
+  							</dl>
+  							<p>Multiplication</p>
+  							<pre><code class="language-sql">SELECT user_name, ((qty_shoes / CAST((qty_shoes + qty_shirts) as float)) * 100) || '%' as "Percent Shoes" FROM user_account; /*Calculate the percentage of the user's purchases which are shoes, convert to a normal percentage. */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">((...)* 100)</dt>
+  								<dd class="col-sm-9">Like many other programming langauges, we can use the asterisk to handle multiplication.  In this case we are multiplying with a constant 100.  For example, Sam Samuel has 3 shoes and 2 shirts, so the above SQL statement will display : Sam Samuel 60% </dd>
+  							</dl>
+  						</dd>
+  					</dl>
+          </div>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step6">
+				<div class="stepLine">
+					<p class="alignleft h5">6. Views & SubQueries</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(6)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time6">20</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample6" style="padding-top:10px;">
+          <h5>To Do</h5>
+          <ol>
+	          <li>
+					    Write a script to create a view that counts the total number of winning games.
+					  </li>
+					  <li>
+					    Write a script to create a view that counts the total number of games played.
+					  </li>
+					  <li>
+					    Write a script that uses the two views you created (from 6.1 and 6.2) to calculate the percent of wins.<br><br>
+              <b>Output for 6.3: </b> <br>
+              <img src="./img/6.3.answer.png" alt="" class="col-md">
+					  </li>
+            <br>
+					</ol>
+          <a class="btn btn-warning dropdown-toggle" id="hidetext3" href="#explanation3" onclick="showExplanation(3)">More information</a>
+          <br>
+          <div id="explanation3" style="display:none;">
+            <dl>
+  						<dt>Working With Views</dt>
+  						<dd>
+  							<p>Basic View Syntax</p>
+  							<pre><code class="language-sql">CREATE VIEW view_name as your_query_goes_here;</code></pre>
+  							<p>Example</p>
+  							<pre><code class="language-sql">CREATE VIEW inventory_cost AS
+  SELECT item_name, (qty * price) AS "Total Cost"
+  FROM store;
+  </code></pre>
+  							<p>Access a View</p>
+  							<pre><code class="language-sql">SELECT * FROM inventory_cost; /* Retrieve all of the rows from inventory_cost's query */
+  SELECT * FROM inventory_cost WHERE "Total Cost" > 12; /* Restrict the rows returned to only those with an inventory cost greater than 12 dollars  */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">CREATE VIEW</dt>
+  								<dd class="col-sm-9">A VIEW works with a pre-defined query and creates a resulting table.  The view's fields can be accessed in the exact same way as a normal table!  This is a handy way to aggregate data into more easy to access table format.  Also, if you find yourself re-using query over and over, make it into a view for easier access.</dd>
+  							</dl>
+  						</dd>
+  						<dt>Working With SubQueries</dt>
+  						<dd>
+  							<p>Example</p>
+  							<pre><code class="language-sql">SELECT * FROM store WHERE price > (SELECT price FROM store WHERE item_name = 'Kit Kat');/* Display all of the store items that have a price greater than a Kit Kat */</code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">CREATE VIEW</dt>
+  								<dd class="col-sm-9">A subquery can allow you to run an inner query that feeds its results into an outer query.  Often this is utilized in the WHERE clause of a select statement to help define which rows a query should work with.  In our example above, our subquery will retrieve the current price of a Kit Kat.  This means we don't have to worry about "hard coding" the price for a Kit Kat.  Our outer query will always work, even if the price of a Kit Kat is updated. </dd>
+  							</dl>
+  						</dd>
+  					</dl>
+          </div>
+
+				</div>
+			</div>
+			<div class="card card-body" id="step7">
+				<div class="stepLine">
+					<p class="alignleft h5">7. Handling Joins</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(7)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="false" aria-controls="multiCollapseExample7">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time7">20</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample7" style="padding-top:10px;">
+          <h5>To Do</h5>
+          <ol>
+            <li>
+             Write a script that will count how many games "Cedric Vega" has played in during his entire football career. <br>  <span style="color:blue">Note: Don't worry about handling multiple Cedric Vegas, you can assume there is only 1 football player named Cedric Vega.  This should to simplify your query.</span><br><br>
+             <b>Output for 7.1: </b> <br>
+             <img src="./img/7.1.answer.png" alt="" class="col-md">
+           </li>
+           <li>
+             Write a script that will calculate the average number of rushing yards for "Cedric Vega", based on the number of games he has played. <br> <span style="color:blue">Note: Don't worry about handling multiple Cedric Vegas, you can assume there is only 1 football player named Cedric Vega.  This should to simplify your query.</span>
+           </li>
+          </ol>
+          <a class="btn btn-warning dropdown-toggle" id="hidetext4" href="#explanation4" onclick="showExplanation(4)">More information</a>
+          <br>
+          <div id="explanation4" style="display:none;">
+            <p>Tables For Examples</p>
+  							<pre><code class="language-sql">CREATE TABLE employee_info(
+     id SERIAL PRIMARY KEY,
+     name TEXT NOT NULL,
+     age int NOT NULL,
+     phone_number VARCHAR(10) NOT NULL
+  );
+
+  CREATE TABLE salary(
+     employee_id INT PRIMARY KEY,
+     starting_salary FLOAT NOT NULL,
+     current_salary FLOAT NOT NULL
+  );
+
+  INSERT INTO employee_info(name, age, phone_number)
+  VALUES('Randolph Esquire', 33, '1112223333'),
+  ('Clarence Roosevelt', 12, '4442220000'),
+  ('Rachel Null', 44, '1002004000'),
+  ('Sarah The Third', 102, '1032034003');
+
+  INSERT INTO salary(employee_id, starting_salary, current_salary)
+  VALUES(1, 35000, 37222.32),
+  (2, 55.33, 78.92),
+  (3, 123450.12, 277111.32),
+  (5, 100, 323.5);
+  </code></pre>
+  					<dl>
+  						<dt>FULL Join</dt>
+  						<dd>
+  							<pre><code class="language-sql"> SELECT employee_info.name, salary.current_salary FROM employee_info FULL JOIN salary ON employee_info.id = salary.employee_id;
+  </code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">FULL JOIN</dt>
+  								<dd class="col-sm-9">The FULL JOIN will return all the entries that from each table that have matching pairs.  For any entry that doesn't, it will display null for tha field.  In this example, that means entry "5" and "Sarah The Third" will have to be paired up with null values.</dd>
+  							</dl>
+  						</dd>
+  						<dt>Inner Join</dt>
+  						<dd>
+  							<pre><code class="language-sql"> SELECT employee_info.name, salary.current_salary FROM employee_info INNER JOIN salary ON employee_info.id = salary.employee_id;
+  </code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">INNER JOIN</dt>
+  								<dd class="col-sm-9">The INNER JOIN will return only the entries that have a shared value, in this case a shared id between the salary & employee_id tables.  You'll see that Sarah the Third is not listed in the results nor is entry "5" in the salary table.  These entries don't have any matches, so they are left out!</dd>
+  							</dl>
+  						</dd>
+  						<dt>OUTER Join</dt>
+  						<dd>
+  							<pre><code class="language-sql"> SELECT employee_info.name, salary.current_salary FROM employee_info FULL JOIN salary ON employee_info.id = salary.employee_id WHERE employee_info.id IS NULL OR salary.employee_id IS NULL;
+  </code></pre>
+  							<dl class="row">
+  								<dt class="col-sm-3">FULL JOIN</dt>
+  								<dd class="col-sm-9">The OUTER JOIN is the opposite of the inner join.  It will only return the entries that DON'T have matching pairs (i.e. unique data entries).  This means you will only see the rows that contain a null value on other side. (Entry "5" & "Sarah The Third")</dd>
+  							</dl>
+  						</dd>
+  					</dl>
+          </div>
+
+				</div>
+			</div>
+			<div class="card card-body" id="step8">
+				<div class="stepLine">
+					<p class="alignleft h5">8. Submission Guidelines</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(8)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample8" aria-expanded="false" aria-controls="multiCollapseExample8">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time8">5</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample8">
+					<ol>
+						<dl>
+							<dt><li>Check your scripts file</li></dt>
+							<dd>
+								In the text file you downloaded (lab_6_script_answers.txt), make sure you have the following:
+								<ol>
+									<li>Your name</li>
+									<li>You partner's name (if you have one)</li>
+									<li>Your PostgreSQL scripts that answer each question.</li>
+								</ol>
+							</dd>
+							<dt><li>Submit to Canvas</li></dt>
+							<dd>
+								Submit your text file to the Canvas submission folder.  Make sure all submissions have been uploaded by the Deadline
+							</dd>
+						</dl>
+					</ol>
+				</div>
+			</div>
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+							<button type="button" style="margin:5px" class="btn btn-primary btn-block alignright" data-toggle="modal" data-target="#fiddleModal">Open DB Fiddle IDE</button>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="fiddleModal" tabindex="-1" role="dialog" aria-labelledby="fiddleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-xl" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="fiddleModalLabel">DB Fiddle IDE - <span style="color:blue">Make sure to save your work elsewhere!</span></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <div class="embed-responsive embed-responsive-16by9">
+				  <iframe class="embed-responsive-item" src="https://www.db-fiddle.com"></iframe>
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</body>
+</html>

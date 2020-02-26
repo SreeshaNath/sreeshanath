@@ -1,0 +1,95 @@
+Name: <Your Name>
+Partner's Name : <Partner's Name>
+
+###Answer Scripts
+
+
+##SECTION 4
+
+#4.1 :Write an SQL Script to create a new table to hold information on the competing universities. The table should hold the following information:
+
+  University Name (Text) (Note: University Name should be unique and set as PRIMARY KEY)
+  Date Established (Date)
+  Address (Address)
+  Student Population (Int)
+  Acceptance Rate (Decimal)
+
+>> (Your Answer here)
+
+
+
+#4.2 Write an insert statement to add the University Information The table should hold the following information:
+
+       University Name :- CU Boulder
+       Date Established :- 1876
+       Address :- 1100 28th St, Boulder, CO 80303
+       Student Population :- 35,000
+       Acceptance Rate :- 80%
+
+>> (Your Answer here)
+
+
+
+##SECTION 5
+
+##5.1 Write a script to list the Football Players (name & major), organized by major in college.
+
+>>
+
+##5.2 Write a script to list all of the Football Players (name & rushing yards) who have 70 or more rushing yards.
+
+>>
+
+##5.3 Write a script to list all of the games played against Nebraska (show all game information).
+
+>>
+
+##5.4 Write a script to list all of the games CU Boulder has won.
+
+>>
+
+#5.5 Write a script to list all of the games played in the Fall 2019 Season (show team name & game date).
+
+>>
+
+## 5.6 Write a script to list the average number of points CU has scored in past games.
+
+>>
+
+## 5.7 Write a script to list the majors of the Football players and calculate how many of them are in each of the majors listed. Rename the column where you calculate the majors to number_of_players.
+
+>>
+
+## 5.8 Write a script to modify the above query in 5.6 to include only the Football players who are majoring in Computer Science.
+
+>>
+
+
+##SECTION 6
+
+## 6.1 Write a script to create a view that counts the total number of winning games.
+
+>>
+
+##6.2 Write a script to create a view that counts the total number of games played.
+
+>>
+
+##6.3 Write a script that uses the two views you created (from 6.1 and 6.2) to calculate the percent of wins.
+
+>>
+
+
+##SECTION 7
+
+##7.1 Write a script that will count how many games "Cedric Vega" has played in during his entire football career.
+
+>>
+
+##7.2 Write a script that will calculate the average number of rushing yards for "Cedric Vega", based on the number of games he has played.
+
+>>
+
+
+
+
