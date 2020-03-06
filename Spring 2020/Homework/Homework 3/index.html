@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Homework 3</title>
+    <!-- Bootstrap core CSS & JS -->
+    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+    <script src="../resources/js/jquery-3.3.1.js"></script>
+    <script src="../resources/js/popper.js"></script>
+    <script src="../resources/js/bootstrap.js"></script>
+    <script src="../resources/js/clipboard.js"></script>
+    <script src="../resources/js/prism.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/login.css">
+    <script type="text/javascript" src="../resources/js/login.js"></script>
+    <script src="../resources/js/labScripts.js"></script>
+  </head>
+  <body onload="loadPage()">
+    <main role="main" class="container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-10">
+            <h1 class="display-4">Homework 3: SQL</h1>
+            <p class="lead">Due date: 13th March, 11:59 p.m.</b></p>
+          </div>
+        </div>
+      </div>
+      <div class="card card-body" id="step1">
+        <div class="stepLine">
+          <p class="alignleft h5">Instructions</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample1" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample1" style="padding-top:30px;">
+          <ol>
+            <li>Start a postgresql instance and run the scripts mentioned in Part 1:Setup.</li>
+            <li>Verify that the tables have been created and the data has been inserted correctly.</li>
+            <li>Once the data is loaded, complete Parts 3 and 4.</li>
+            <li>Turn in a file with the QUERY and the RESULT for each question. We have included an example .txt file with a format for your submission; feel free to use this or your own version, but remember to include both query and result!</li>
+          </ol>
+        </div>
+      </div>
+      <div class="card card-body" id="step2">
+        <div class="stepLine">
+          <p class="alignleft h5">Part 1: Setup</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample2" aria-expanded="false"
+          aria-controls="multiCollapseExample2">Expand</button>
+        </div>
+
+        <div class="collapse" id="multiCollapseExample2" style="padding-top:30px;">
+          <div class="alert alert-primary">
+            <h6>Download the files needed for this homework from
+            <a href="./homework3.zip" style="color:darkblue;"><b><u>here</u></b></a></h6>
+          </div>
+          <ol>
+            <li>Start your postgres instance<br>
+            <pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">sudo -u postgres psql</code></pre>
+          </li>
+          <br>
+            <li>Run the <b>create.sql</b> script to build your database <br>
+            <pre class="command-line" data-prompt="postgres=#"><code  class="language-bash">\i &lt;path_to_create.sql&gt;;</code></pre>
+            For eg: <br>
+            <pre class="command-line" data-prompt="postgres=#"><code  class="language-bash">\i Downloads/homework3/create.sql;</code></pre>
+          </li>
+          <br>
+          <li>Run the <b>insert.sql</b> script to populate your database. This step will take a couple of minutes and print 'INSERT 0 1' on your screen. <br>
+            <pre class="command-line" data-prompt="postgres=#"><code  class="language-bash">\i &lt;path_to_insert.sql&gt;;</code></pre>
+            For eg: <br>
+            <pre class="command-line" data-prompt="postgres=#"><code  class="language-bash">\i Downloads/homework3/insert.sql;</code></pre>
+          </li>
+          </ol>
+        </div>
+      </div>
+      <div class="card card-body" id="step3">
+        <div class="stepLine">
+          <p class="alignleft h5">Part 2: Verification</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample3" aria-expanded="false"
+          aria-controls="multiCollapseExample3">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample3" style="padding-top:30px;">
+          Follow these steps to verify Step 1 was sucessful:
+          <ol>
+            <li> Verify create step ran fine by running:
+               <pre class="command-line" data-prompt="postgres=#"><code  class="language-bash">\dt;</code></pre><br>
+               The output should look like the image here. If the output looks different, you should retry building your database. <br/>
+               <div class="container">
+                 <img src="../resources/hw3/dt.png" alt="list table output" style="padding-right:15px; height:350px;">
+               </div>
+             </li><br>
+            <li> Verify insert step ran fine by running
+              <pre class="command-line" data-prompt="postgres=#"><code  class="language-bash">select count(*) from &lt;table_name&gt;</code></pre>
+              <br>Replace <b>&lt;table_name&gt;</b>with the following table names and verify the row count.<br><br>
+              <div class="row">
+                <div class="col-4">
+                  <table class="table table-sm table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Table name</th>
+                        <th>No. of rows</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>actor </td>
+                        <td>200</td>
+                      </tr>
+                      <tr>
+                        <td>address</td>
+                        <td>603</td>
+                      </tr>
+                      <tr>
+                        <td>category</td>
+                        <td>16</td>
+                      </tr>
+                      <tr>
+                        <td>city</td>
+                        <td>600</td>
+                      </tr>
+                      <tr>
+                        <td>country</td>
+                        <td>109</td>
+                      </tr>
+                      <tr>
+                        <td>customer</td>
+                        <td>599</td>
+                      </tr>
+                      <tr>
+                        <td>film</td>
+                        <td>1000</td>
+                      </tr>
+                      <tr>
+                        <td>film_actor</td>
+                        <td>5462</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-4" style="vertical-align: top;">
+                  <table class="table table-sm table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Table name</th>
+                        <th>No. of rows</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>film_category</td>
+                        <td>1000</td>
+                      </tr>
+                      <tr>
+                        <td>inventory</td>
+                        <td>4581</td>
+                      </tr>
+                      <tr>
+                        <td>language</td>
+                        <td>6</td>
+                      </tr>
+                      <tr>
+                        <td>payment</td>
+                        <td>16049</td>
+                      </tr>
+                      <tr>
+                        <td>rental</td>
+                        <td>16044</td>
+                      </tr>
+                      <tr>
+                        <td>staff</td>
+                        <td>2</td>
+                      </tr>
+                      <tr>
+                        <td>store</td>
+                        <td>2</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </li>
+          </ol>
+
+        </div>
+      </div>
+      <div class="card card-body" id="step4">
+        <div class="stepLine">
+          <p class="alignleft h5">Part 3: Build a Data Model (25 Points)</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample4" aria-expanded="false"
+          aria-controls="multiCollapseExample4">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample4" style="padding-top:30px;">
+          <p>Create a database model for the tables you just created. Remember to include the following in your diagram:
+            <ul>
+              <li>variable types</li>
+              <li>relationships between tables</li>
+              <li>primary keys</li>
+              <li>foreign keys</li>
+            </ul>
+          </p>
+          <div class="alert alert-primary">
+            <p><b>Tools that you might find helpful to create the Data Model:</b></p>
+            <div class="row">
+              <div class="col-2">
+                <a href="https://www.draw.io/" target="_blank">Draw.io</a>
+              </div>
+              <div class="col-2">
+                <a href="http://staruml.io/" target="_blank">StarUML</a>
+              </div>
+              <div class="col-2">
+                <a href="https://cloud.smartdraw.com/" target="_blank">SmartDraw</a>
+              </div>
+            </div>
+          </div>
+          <div class="alert alert-warning">
+           You may use the below diagram as a reference.
+          </div>
+          <div class="container">
+            <img src="sqlite-sample-database-model.jpg" alt="Sample database model">
+          </div>
+        </div>
+      </div>
+      <div class="card card-body" id="step5">
+        <div class="stepLine">
+          <p class="alignleft h5">Part 4: Build queries (75 points)</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample5" aria-expanded="false"
+          aria-controls="multiCollapseExample5">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample5" style="padding-top:30px;">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Question</th>
+                <th>Expected output</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>1</td>
+              <td>Find number of rentals with a rental price of 4.99</td>
+              <td>336</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Create an alphabetical listing (last name, first name) of all inactive customers</td>
+              <td>15 rows</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Print the payment_id, amount, and payment_date of the most expensive payment(s) in the payments table. (10 rows)</td>
+              <td>10 rows</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Count the number of films spoken in English. You must not hard code English's language_code. Give two solutions for this problem: the first using a subquery and the second using a join of tables. </td>
+              <td>1000</td>
+              <td>8</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Find the maximum number of invetories for a film.</td>
+              <td>8</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>For each customer in the payment table, print their customer_id and the sum of all of their payment amounts as Total_Amount only for the newest customers whose customer_id is greater than 500.</td>
+              <td>99 rows</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Print the total sales (payment.amount) for movies based on cateogry</td>
+              <td>16 rows</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Find number of rentals made by user with first name: JOHN last name: FARNSWORTH</td>
+              <td>31</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Find number of rentals made before Jan 1, 2017</td>
+              <td>328</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Create a NEW table named short_films with the following items:  film_id (integer), title (varchar(40), length (integer), replacement_cost (decimal(9,2)), and rating (varchar(5)). None of these columns can be null. Include a PRIMARY KEY constraint on film_id.</td>
+              <td>No output</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>Populate the table short_films with the films from the film table whose length is < 50. The column names correspond exactly. This entails an INSERT with a SELECT query as the insert value. </td>
+              <td>28 inserts</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>Delete the rows in short_films where the replacement_cost is more than 19.99.</td>
+              <td>13 deletions</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>Add a new column to the short_films table called stars of type INT, with a default value of 5.</td>
+              <td>No output</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>Alter the name of the length column in short_films to say 'length_min' and add a new column named 'length_sec' and fill it with the length in seconds of each movie.</td>
+              <td>No output</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>Drop the short_films table.</td>
+              <td>No output expected</td>
+              <td>4</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="card card-body" id="step6">
+        <div class="stepLine">
+          <p class="alignleft h5">Submission Criteria</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample6" aria-expanded="false"
+          aria-controls="multiCollapseExample6">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample6" style="padding-top:30px;">
+          <dt></dt>
+          <dd>
+              - Name your file Homework3_[YourName] and submit it on Canvas. <br>
+              - Turn in a file with the QUERY and the RESULT for each question. <br>
+              - We have included an example.txt file, in the zip file, with a format for your submission; feel free to use this or your own version, <b> but remember to include both query and result! </b>
+              </dd>
+        </div>
+      </div>
+      <div class="card card-body" id="step7">
+        <div class="stepLine">
+          <p class="alignleft h5">Rubric</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+          data-target="#multiCollapseExample7" aria-expanded="false"
+          aria-controls="multiCollapseExample7">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample7" style="padding-top:30px;">
+          <dd>
+            <p>- Points are defined in against each query.</p>
+          </dd>
+        </div>
+      </div>
+
+      </main><!-- /.container -->
+      <div id="bottom_nav">
+        <div class="row">
+          <div class="col-10">
+          </div>
+          <div class="col-2">
+            <div class="row">
+              <div class="col-2">
+              </div>
+              <div class="col-10">
+                <div class="card">
+                  <div class="card-body">
+                    <p class="h4 text-center">Helper Icons</p>
+                    <hr>
+                    <div class="row">
+                      <div class="col-4">
+                        <img src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px"
+                        height="30px">
+                      </div>
+                      <div class="col-8">Common Errors</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-4">
+                        <img src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px"
+                        height="30px">
+                      </div>
+                      <div class="col-8">More Information</div>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-primary btn-block alignright expandAll" type="button">Expand All</button>
+                <button class="btn btn-primary btn-block alignright collapseAll" type="button">Collapse All</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>
