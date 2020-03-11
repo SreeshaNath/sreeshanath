@@ -96,7 +96,7 @@
 					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
 
 					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
-					<p class="alignright h5">(<span class="time" id="time1">15</span> Minutes)</p>
+					<p class="alignright h5">(<span class="time" id="time1">30</span> Minutes)</p>
 				</div>
 				<div class="collapse" id="multiCollapseExample2">
 					<br>
@@ -538,7 +538,7 @@ if (data) {
 				color_msg: info[1][0].color_msg
 			})
     })
-    .catch(error => {
+    .catch(err => {
         // display error message in case an error
             request.flash('error', err);
             response.render('pages/home', {
@@ -625,7 +625,7 @@ if (data) {
 				color_msg: color_message
 			})
     })
-    .catch(error => {
+    .catch(err => {
         // display error message in case an error
             request.flash('error', err);
             response.render('pages/home', {
@@ -820,7 +820,7 @@ db.task('get-everything', task => {
 			result_3: data[2]
 		})
 })
-.catch(error => {
+.catch(err => {
     // display error message in case an error
         request.flash('error', err);
         res.render('pages/page_name',{
