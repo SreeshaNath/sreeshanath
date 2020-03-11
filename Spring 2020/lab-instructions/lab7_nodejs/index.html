@@ -432,7 +432,7 @@ VALUES('FF2727', 'An unnamed red color'),
         })
         .catch(function (err) {
             // display error message in case an error
-            request.flash('error', err);
+            console.log('error', err);
             response.render('pages/home', {
                 title: 'Home Page',
                 data: '',
@@ -540,7 +540,7 @@ if (data) {
     })
     .catch(err => {
         // display error message in case an error
-            request.flash('error', err);
+            console.log('error', err);
             response.render('pages/home', {
                 title: 'Home Page',
                 data: '',
@@ -627,7 +627,7 @@ if (data) {
     })
     .catch(err => {
         // display error message in case an error
-            request.flash('error', err);
+            console.log('error', err);
             response.render('pages/home', {
                 title: 'Home Page',
                 data: '',
@@ -772,7 +772,7 @@ db.any(query)
     })
     .catch(function (err) {
         // display error message in case an error
-        request.flash('error', err);
+        console.log('error', err);
         res.render('pages/page_name',{
 			my_title: "My Title Here",
 			data: '',
@@ -822,7 +822,7 @@ db.task('get-everything', task => {
 })
 .catch(err => {
     // display error message in case an error
-        request.flash('error', err);
+        console.log('error', err);
         res.render('pages/page_name',{
 			my_title: "Page Title Here",
 			result_1: '',
