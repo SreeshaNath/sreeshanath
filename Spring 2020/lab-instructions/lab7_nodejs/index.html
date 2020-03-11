@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Lab 7</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 7 Node.JS</h1>
+					<p class="lead">
+						In this lab, we will integrate all of the components that we have learned in this course so far. We will create a backend server and connect it to our database. We will also connect our backend server to our front-end or client-side webpages. You will edit the extended template (below) which includes all of the files necessary to work with Node.
+						To receive credit for this lab, you MUST complete steps 1 to 3 in recitation and get marked off by your TA. You MUST complete step 4 and 5 (either in recitation or on your own) and upload "lab_7_link.txt" to Canvas by the deadline.
+						<b style="color: #27C47C;">It is highly recommended that you work with a partner on this lab -- it's a long one. </b> Make sure to include your partners name at the top of "lab_7_link.txt". <br></p>				</div>
+				<div class="col-2">
+					<table class="table">
+						<tr>
+							<th class="h5" style="text-align:center">Est. Time  &#x023F1;</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">0</span> minutes</td>
+						</tr>
+					</table>
+				</div>
+			  </div>
+				<div class="row">
+					<div class="col-12">
+						<p class="card card-body deadline">This lab is due right before recitation next week.
+							For Example, If your lab is on this Friday at 10 AM, the submission deadline will be next Friday at 10 AM.</br>
+							There is no late policy for labs.
+						</p>
+					</div>
+				</div>
+			</div>
+			<p class="h5"><a href="./Lab_Website_3.zip">Download </a>the extended template and make sure you extract the files before using them.</p>
+			<br>
+
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Resources</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)" >Mark Complete</button>
+
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+
+				</div>
+
+				<div class="collapse" id="multiCollapseExample1">
+					<div class="row">
+						<div class="col-6">
+							<img class="img-fluid" width="150" height="150" src="img/beginning_node.jpg" alt="The Beginning Node.js Book Cover">
+						</div>
+						<div class="col-6">
+							<p>Beginning Node.js is your step-by-step guide to learning all the aspects of creating maintainable Node.js applications. You will see how Node.js is focused on creating high-performing, highly-scalable websites, and how easy it is to get started. Many front-end devs regularly work with HTML, CSS, PHP, even WordPress, but haven't yet got started with Node.js. This book explains everything for you from a beginner level, enabling you to start using Node.js in your projects right away. </p>
+							   Link: <a href="http://ucblibraries.summon.serialssolutions.com/#!/search?bookMark=ePnHCXMw42JgAfZbU5lBe6gsTIDViwX41l9LcOMZWNtxwAdATEC1kSEng6AT6AoC0CiAgl9-SqpeVjEPA0tJUWkqLwNrGjAOgMWkqptriLOHbmkyvA8ZDx3diE8C1pCWJpYWlhXGxKoDAM_TLLk">CU Boulder Library Link</a>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-6">
+							<img class="img-fluid" src="img/tutorials_point.png" alt="TutorialsPoints Logo">
+						</div>
+						<div class="col-6">
+							<p>Check out TutorialsPoints resources on working with Node.js</p>
+							   Link: <a href="https://www.tutorialspoint.com/nodejs/">Tutorial Page</a>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-6">
+							<img class="img-fluid" width="100" height="100" src="img/nodejs_logo.png" alt="The official Node.js Logo">
+						</div>
+						<div class="col-6">
+							<p>To learn from the official resources, checkout Node.js official documentation & the official documentation for EJS</p>
+							    <a href="https://nodejs.org/en/docs/">Node.js Documentation</a> | <a href="https://ejs.co/#docs">EJS Documentaiton </a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">1. Walkthrough  </p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
+
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time1">15</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample2">
+					<br>
+					<p>The lab files have been modified to now work with "partials" and include statements.  Since we are now working with a server-side application, we can have our server simplify some of our code and compile the html files for us!  The views folder has now been updated into two seperate folders: partials & pages</p>
+					<dl>
+						<dt>PARTIALS</dt>
+						<dd>A partial is a small piece of a webpage's html, meaning it is not a complete webpage that could be rendered by a browser.  Instead we create re-usable components of our webpage, which can make it easier to maintain our website's code.  Think of this as being similiar to why we use an external css file.  Updating this one css file can affect our entire website, without having to work with each individual page.  We have create three partials for our site:
+							<dl class="row">
+								<dt class="col-sm-3">header</dt>
+								<dd class="col-sm-9">The header contains all of the code that was originally placed in the top of our html webpage.  This included our css references, our meta-data, and the title for our webpage.
+									<pre ><code class="language-html">&lt;!doctype html>
+&lt;html lang="en">
+  &lt;head>
+    &lt;meta charset="utf-8">
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    &lt;meta name="description" content="">
+    &lt;title><% my_title %>&lt;/title>
+	&lt;link rel='icon' href='../resources/img/favicon.ico' type='image/x-icon'/>
+    <!-- Bootstrap core CSS -->
+	&lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<% if(typeof local_css == 'string' && local_css){ %>
+	 &lt;link href="../resources/css/<%=local_css%>" rel="stylesheet">
+	<% } %>
+    <!-- Custom styles for this template -->
+	&lt;link href="../resources/css/my_style.css" rel="stylesheet">
+  &lt;/head>
+  &lt;body></code></pre>
+								</dd>
+								<dt class="col-sm-3">menu</dt>
+								<dd class="col-sm-9">The menu partial covers our navigation bar.  This will handle all of our webpage links (which will now work via routes instead of relative addresses) to make it much easier to add additional webpages to our site.
+								<pre><code class="language-html">&lt;nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  &lt;a class="navbar-brand" href="home.html">
+	&lt;img class="rounded-circle" src="../resources/img/cu_boulder_logo.jpg" alt="" width="30" height="30">
+  &lt;/a>
+  &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+	&lt;span class="navbar-toggler-icon">&lt;/span>
+  &lt;/button>
+  &lt;div class="collapse navbar-collapse" id="navbarText">
+	&lt;ul class="navbar-nav mr-auto">
+	  &lt;li class="nav-item">
+		&lt;a class="nav-link" href="/home">Home&lt;/a>
+	  &lt;/li>
+	  &lt;li class="nav-item">
+		&lt;a class="nav-link" href="/team_stats">Season Stats&lt;/a>
+	  &lt;/li>
+	  &lt;li class="nav-item">
+		&lt;a class="nav-link" href="/player_info">Player Information&lt;/a>
+	  &lt;/li>
+	&lt;/ul>
+	&lt;div class="form-inline my-2 my-lg-0">
+		&lt;button class="btn btn-outline-light my-2 my-sm-0" type="submit">Logout&lt;/button>
+	&lt;/div>
+  &lt;/div>
+&lt;/nav></code></pre>
+								</dd>
+								<dt class="col-sm-3">footer</dt>
+								<dd class="col-sm-9">The footer partial includes all of our javascript files & the closing code for our webpage's html
+									<pre><code class="language-html">	&lt;script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">&lt;/script>
+	&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">&lt;/script>
+	&lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">&lt;/script>
+	&lt;script src="../resources/js/my_scripts.js">&lt;/script>
+&lt;/body>
+&lt;/html></code></pre>
+								</dd>
+								<dt class="col-sm-3">include statement</dt>
+								<dd class="col-sm-9">To actual use our partial files, we need use an "include", which will copy the partial's code and paste it directly into the complete webpage.  At the top and bottom of the views in out pages directory, you will see the following include statements:
+									<pre><code class="language-html"><% include ../partials/header %>
+<% include ../partials/menu %>
+
+...THE HTML CODE FOR YOUR WEBPAGE GOES HERE...
+
+<% include ../partials/footer %></code></pre>
+								</dd>
+							</dl>
+						</dd>
+						<hr>
+						<dt>PAGES</dt>
+						<dd>The pages are the modified versions of our original html files, previously located in the "views" directory.  We are going to now update our html files to use a new format called Embedded Javascript or EJS (file extensions are now .ejs). EJS will include html code and Server-Side javascript code.  The files in our pages folder are as follows:
+							<dl>
+								<dt class="col-sm-3">login.ejs</dt>
+								<dd class="col-sm-9">You can ignore this file. We won't be dealing with user login credentials for this lab </dd>
+								<dt class="col-sm-3">registration.ejs</dt>
+								<dd class="col-sm-9">You can ignore this file.  We won't worry about handling user registration / user account creation for this lab</dd>
+								<dt class="col-sm-3">home.ejs</dt>
+								<dd class="col-sm-9">The home page will now be updated to work with a new table (favorite_colors) to help store all of the different color options we would like to use for our page's background-color.  The home page will no longer be using client-side javascript methods for changing the color.  Instead we will update our home page to use get/post requests to decide which color to use.</dd>
+								<dt class="col-sm-3">team_stats.ejs</dt>
+								<dd class="col-sm-9">The Footbal Season Stats page has now been updated to fill in information for all of our football games via queries to our football_games database table.</dd>
+								<dt class="col-sm-3">player_info.ejs</dt>
+								<dd class="col-sm-9">The Football Player Information Page will no longer use a client-side javascript array to populate our dropdown menu nor to fill in the individual player names.  Instead we will use a get request to choose which player's information will be displayed.</dd>
+							</dl>
+						</dd>
+						<a class="btn btn-warning dropdown-toggle" id="hidetext11" href="#explanation9" onclick="showExplanation(11)">More information</a>
+						<br>
+						<div id = "explanation11" style="display:none;">
+						<dl class="row">
+							<dt class="col-sm-3">Documentation</dt>
+							<dd class="col-sm-9">Check out the tags section of the EJS documentation <a href="https://ejs.co/#docs">Here</a> It also covers the notation listed below.</dd>
+							<dt class="col-sm-3"><% </dt>
+							<dd class="col-sm-9">This is a scripting tag, which will allow you to embed your javascript.  But this will have no output to the actual webpage, just javascript coded logic.</dd>
+							<dt class="col-sm-3"><%- </dt>
+							<dd class="col-sm-9">With the minus sign, any javascript variables will be "echoed" out to the webpage, with their html code "unescaped"</dd>
+							<dt class="col-sm-3"><%# </dt>
+							<dd class="col-sm-9">This is a comment tag, which will a be server-side only comment.</dd>
+							<dt class="col-sm-3"><%%</dt>
+							<dd class="col-sm-9">This escapes the percent symbol and allows you to use an actual <% without any javascript code.</dd>
+							<dt class="col-sm-3"> %></dt>
+							<dd class="col-sm-9">Normal closing tag</dd>
+							<dt class="col-sm-3"> -%></dt>
+							<dd class="col-sm-9">Trim mode- remove any trailing newline characters</dd>
+							<dt class="col-sm-3"> _%></dt>
+							<dd class="col-sm-9">Whitespace Slurping - remove any trailing whitespaces</dd>
+						</dl></div>
+					</dl>
+				</div>
+			</div>
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">2. Updates to PostgreSQL Database</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)" >Mark Complete</button>
+
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time5">5</span> Minutes)</p>
+
+				</div>
+				<div class="collapse" id="multiCollapseExample3">
+					<br>
+					<p>We have a few updates to make to our PostgreSQL database so that it can work with today's lab.  Specifically, we'll need to add a password to our database, update the football_players data to know include image url's, and add a new table "favorite_colors" which will be used on our home page.</p>
+					<dl>
+						<dt>1. Switch to the postgres user account</dt>
+						<dd>
+							During the installation process PostgreSQL created a new user account named postgres.  You'll be using this user account for most of your database interactions.
+							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> sudo -u postgres psql</code></pre>
+						</dd>
+						<dt>2. Create a password</dt>
+						<dd>
+							The node.js server will later on be setup to directly access our postgres database.  But in order to do that, our database has to have a password for our database connection tools.  Make sure you enter a password that you can remember!
+							<pre class="command-line" data-prompt="postgres=#"><code  class="language-bash"> \password </code></pre>
+						</dd>
+						<dt>3. Switch to the football_db database</dt>
+						<dd>
+							<pre class="command-line" data-prompt="postgres=#"><code  class="language-bash"> \c football_db;</code></pre>
+						</dd>
+						<dt>4. Update our tables</dt>
+						<dd>Copy the following code into psql terminal to create the football_player, footbal_games, and favorite_colors tables and populate them with data.  If you are having problems with your PostgreSQL installation, MAKE SURE TO DO THIS LAB WITH A PARTNER
+							<pre class="command-line" data-prompt="football_db=#"><code  class="language-bash">DROP TABLE football_games;
+CREATE TABLE IF NOT EXISTS football_games (
+  visitor_name VARCHAR(30),       /* Name of the visiting team                     */
+  home_score SMALLINT NOT NULL,   /* Final score of the game for the Buffs         */
+  visitor_score SMALLINT NOT NULL,/* Final score of the game for the visiting team */
+  game_date DATE NOT NULL,        /* Date of the game                              */
+  players INT[] NOT NULL,         /* This array consists of the football player ids (basically a foreign key to the football_player.id) */
+  PRIMARY KEY(visitor_name, game_date) /* A game's unique primary key consists of the visitor_name & the game date (this assumes you can't have multiple games against the same team in a single day) */
+);
+
+DROP TABLE football_players;
+CREATE TABLE IF NOT EXISTS football_players(
+  id SERIAL PRIMARY KEY,       /* Unique identifier for each player (it's possible multiple players have the same name/similiar information) */
+  name VARCHAR(50) NOT NULL,   /* The player's first & last name */
+  year VARCHAR(3),             /* FSH - Freshman, SPH - Sophomore, JNR - Junior, SNR - Senior */
+  major VARCHAR(4),            /* The unique 4 character code used by CU Boulder to identify student majors (ex. CSCI, ATLS) */
+  passing_yards SMALLINT,      /* The number of passing yards in the players entire football career  */
+  rushing_yards SMALLINT,      /* The number of rushing yards in the players entire football career  */
+  receiving_yards SMALLINT,    /* The number of receiving yards in the players entire football career*/
+  img_src VARCHAR(200)         /* This is a file path (absolute or relative), that locates the player's profile image */
+);
+
+INSERT INTO football_games(visitor_name, home_score, visitor_score, game_date, players)
+VALUES('Colorado State', 45, 13, '20180831', ARRAY [1,2,3,4,5]),
+('Nebraska', 33, 28, '20180908', ARRAY [2,3,4,5,6]),
+('New Hampshire', 45, 14, '20180915', ARRAY [3,4,5,6,7]),
+('UCLA', 38, 16, '20180928', ARRAY [4,5,6,7,8]),
+('Arizona State', 28, 21, '20181006', ARRAY [5,6,7,8,9]),
+('Southern California', 20, 31, '20181013', ARRAY [6,7,8,9,10]),
+('Washington', 13, 27, '20181020', ARRAY [7,8,9,10,1]),
+('Oregon State', 34, 41, '20181027', ARRAY [8,9,10,1,2]),
+('Arizona', 34, 42, '20181102', ARRAY [9,10,1,2,3]),
+('Washington State', 7, 31, '20181110', ARRAY [10,1,2,3,4]),
+('Utah', 7, 30, '20181117', ARRAY [1,2,3,4,5]),
+('California', 21, 33, '20181124', ARRAY [2,3,4,5,6])
+;
+
+INSERT INTO football_players(name, year, major, passing_yards, rushing_yards, receiving_yards, img_src)
+VALUES('Cedric Vega', 'FSH', 'ARTS', 15, 25, 33, '../resources/img/player1.jpg'),
+('Myron Walters', 'SPH', 'CSCI', 32, 43, 52, '../resources/img/player2.jpg'),
+('Javier Washington', 'JNR', 'MATH', 1, 61, 45, '../resources/img/player3.jpg'),
+('Wade Farmer', 'SNR', 'ARTS', 14, 55, 12, '../resources/img/player4.jpg'),
+('Doyle Huff', 'FSH', 'CSCI', 23, 44, 92, '../resources/img/player5.jpg'),
+('Melba Pope', 'SPH', 'MATH', 13, 22, 45, '../resources/img/player6.jpg'),
+('Erick Graves', 'JNR', 'ARTS', 45, 78, 98, '../resources/img/player7.jpg' ),
+('Charles Porter', 'SNR', 'CSCI', 92, 102, 125, '../resources/img/player8.jpg'),
+('Rafael Boreous', 'JNR', 'MATH', 102, 111, 105, '../resources/img/player9.jpg'),
+('Jared Castillo', 'SNR', 'ARTS', 112, 113, 114, '../resources/img/player10.jpg');
+
+DROP TABLE favorite_colors;
+CREATE TABLE IF NOT EXISTS favorite_colors(
+  hex_value VARCHAR(6) PRIMARY KEY, /* This is the hexvalue for the color, it assumes that the value DOES NOT # */
+  name VARCHAR(50),                 /* The html safe name for the color.  This can be null */
+  color_msg  TEXT NOT NULL          /* A message describing the chosen color */
+);
+
+INSERT INTO favorite_colors(hex_value, name, color_msg)
+VALUES('FF6347', 'TOMATO', 'This color gets it name from the red fruit that at one time was considered poisonous!'),
+('3CB371', 'Medium Sea Green', 'Not sure what the difference is between Small & Large Sea Green... but I guess this one is in between them.'),
+('EE82EE','Violet', 'Roses are Red, Violets are blue...'),
+('545AA7','Liberty', 'Not to be confused with the color of the Liberty Bell (which is indeed a copper color)');
+
+INSERT INTO favorite_colors(hex_value, color_msg)
+VALUES('FF2727', 'An unnamed red color'),
+('27FF27', 'An unnamed green color'),
+('870087', 'An unnamed magenta color'),
+('8F8FFF', 'An unnamed blue color');</code></pre>
+						</dd>
+						<dt>5. Exit the psql terminal</dt>
+						<dd>
+							<pre class="command-line" data-prompt="postgres=#"><code  class="language-bash"> \q</code></pre>
+						</dd>
+						<dt>6. Ensure our postgres service is running in the background</dt>
+						<dd>
+							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">sudo -u postgres service postgresql start</code></pre>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<!--
+			<div class="card card-body" id="step5">
+				<div class="stepLine">
+					<p class="alignleft h5">Model-View-Controller (MVC) </p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample5">
+
+				</div>
+			</div>-->
+			<div class="card card-body" id="step5">
+				<div class="stepLine">
+					<p class="alignleft h5">3. Home Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time2">40</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample5">
+					<p>Below you'll find a guided walkthrough for setting up our home page.  This will include handling a get request, post request, accessing our favorite_colors table, and finaly working with ejs in our home.ejs.  By following along, you'll learn all of the skills necessary to finish the remaining two webpages our site (team_stats.ejs & player_info.ejs)</p>
+					<dl>
+						<dt>1. Handling a Get Request</dt>
+						<dd>
+							<p>Let's start by adding a way for us to access our home page, via a GET request.  Copy the following code into your server.js file (right after the login & registration pages' app.get())</p>
+							<pre><code class="language-js">app.get('/home', function(req, res) {
+	res.render('pages/home',{
+		my_title:'Home Page',
+		color: 'FF0000',
+		color_msg: 'The Color Red'
+	});
+});</code></pre>
+
+							<a class="btn btn-warning dropdown-toggle" id="hidetext1" href="#explanation1" onclick="showExplanation(1)">More information</a>
+							<br>
+							<div id = "explanation1" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">app.get</dt>
+									<dd class="col-sm-9">Here we define which method we want to work with (our only options are get/post).  For a lot of our webpage routing, we'll be using get requests.</dd>
+									<dt class="col-sm-3">'/home'</dt>
+									<dd class="col-sm-9">Our server will be listening for this specific route to be added to our website's base url.  <b style="color:red">THIS IS NOT A RELATIVE PATH!</b>  This is a route, that our server is listening to and then works on then decides on how best to render the home page</dd>
+									<dt class="col-sm-3">res.render('pages/home'</dt>
+									<dd class="col-sm-9">The res object will allow us to render our webpage.  Here we are defining the route to our home webpage's .html file (file extension not included), based on our starting point being the views directory. <b style="color:red">THIS IS WHERE YOU USE A RELATIVE PATH!</b></dd>
+									<dt class="col-sm-3">my_title:'Home Page'</dt>
+									<dd class="col-sm-9">After our path, inside of a pair of curly braces, we can define any variables we wish to pass onto our webpage. These variables (a.k.a. parameters) can then be referenced inside of the view or html file and dynamically decide what information is shown to the user.  In this case, we are passing in the title of our web page.</dd>
+									<dt class="col-sm-3">color:'FF0000'</dt>
+									<dd class="col-sm-9">This variable defines the color we will be using to update our webpage's background color.  For now, let's hard-coded our value to be the hex value for red.  Later on, we'll incorporate a get request parameter & a database query.</dd>
+									<dt class="col-sm-3">color_msg:'The Color Red'</dt>
+									<dd class="col-sm-9">This variable defines a message that describes our color.  For now, let's keep it hard-coded with 'The Color Red'</dd>
+								</dl>
+							</div>
+
+							<br>
+							<p><b>Start our Webserver</b></p>
+							<p>To load our home page, we will need to first start up our Node.js server.  Copy the following command into your terminal (make sure you are in the same directory as your server.js file!)</p>
+							<pre class="command-line" data-user="csci3308" data-filter-output="(out)" data-host="csci3308-VirtualBox"><code  class="language-bash">node server.js
+(out)3000 is the magic port</code></pre>
+							<br>
+							<p><b>View our Webpage</b></p>
+							<p>To view our homepage, go to <a href="localhost:3000/home">localhost:3000/home</a>.  For this lab, our server will only be accessible locally, so we will use localhost for our ip-address.  We'll follow this with our port number (3000) and the route we are taking "/home". Now you'll notice our background-color hasn't changed, nor is our message displayed.  We'll need to update our home.ejs file to use the passed in variables.</p>
+						</dd>
+
+						<hr>
+						<br>
+						<dt>2. Update Home.ejs</dt>
+						<dd>
+							<p>Open up the home.ejs file (inside views/pages) and you'll find a commented line called TODO: FIRST EJS UPDATE.  Add the following code, which will now use our passed in variables!</p>
+							<pre><code class="language-html">&lt;p> Color Message:
+		<% if(color)
+		{%>
+			<%- color_msg %>
+			<% var script_text = '&lt;script>document.body.style.backgroundColor = "#' + color + '";&lt;/script>'; %>
+			<%- script_text %>
+	 <% }%>
+&lt;/p></code></pre>
+							<a class="btn btn-warning dropdown-toggle" id="hidetext2" href="#explanation2" onclick="showExplanation(2)">More information</a>
+							<br>
+							<div id = "explanation2" style="display:none;">
+						<dl class="row">
+								<dt class="col-sm-3"><% %></dt>
+								<dd class="col-sm-9">To embed our javascript code, we use the <% %> symbols to let our server node, this block of code should be intepreted as server-side javascript code, not html code!</dd>
+								<dt class="col-sm-3">if(color) </dt>
+								<dd class="col-sm-9">When working with parameters that are passed into our view, there is not guarantee that the variable will be set.  Sometimes our parameters will be null which might signify that a portion of our webpage shouldn't be shown.  Currently, color is hard coded to the value 'FF0000', but that won't stay the case for long! </dd>
+								<dt class="col-sm-3"><%- color_msg %> </dt>
+								<dd class="col-sm-9">We have added the "minus" sign to our opening <%, which signifies that the javascript code inside should be intepreted and it's html code preserved.  Basically, we'll be using this as a way to "echo" the html code that we generate.  In this example, we'll be displaying the message describing our color</dd>
+								<dt class="col-sm-3"><% var script_text = ...</dt>
+								<dd class="col-sm-9">This should look familiar, in that this is the code from our changeColor() method.  We are now moving our client side method's code to the server side.  This will now set the background-color to match the variable color, which was passed in from server.js </dd>
+								<dt class="col-sm-3"><%- script_text %></dt>
+								<dd class="col-sm-9">Output our the javascript we just set, which will now change the webpage's background color when the page renders.</dd>
+							</dl>
+						</div>
+							<hr>
+							<p><b>Refresh Home Page</b></p>
+							<p>After you have updated a webpage (.ejs file), you can simply refresh your browser to view the changes.  You only have to restart your server when you make changes to the server.js file</p>
+						</dd>
+						<hr>
+						<br>
+						<dt>3. Handle a Database Request</dt>
+						<dd>
+							Now we will work on handling a simple database request.  Our goal here is to have our home page list a button for each color option in our favorite_colors table.  Let's start by <b style="color:red">replacing</b> our previous get request in our server.js file with the following code:
+							<pre><code class="language-js">app.get('/home', function(req, res) {
+	var query = 'select * from favorite_colors;';
+	db.any(query)
+        .then(function (rows) {
+            res.render('pages/home',{
+				my_title: "Home Page",
+				data: rows,
+				color: '',
+				color_msg: ''
+			})
+
+        })
+        .catch(function (err) {
+            // display error message in case an error
+            request.flash('error', err);
+            response.render('pages/home', {
+                title: 'Home Page',
+                data: '',
+                color: '',
+                color_msg: ''
+            })
+        })
+});</code></pre>
+
+							<a class="btn btn-warning dropdown-toggle" id="hidetext3" href="#explanation3" onclick="showExplanation(3)">More information</a>
+							<br>
+							<div id = "explanation3" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">var query = ...</dt>
+									<dd class="col-sm-9">Here we set the postgres query we want to execute.  Make sure you place a semi-colon INSIDE the single quotes, to ensure the query is able to run.  Without it, you will receive some server errors!</dd>
+									<dt class="col-sm-3">db.any(query)</dt>
+									<dd class="col-sm-9">Using the database object created earlier in our server.js file, we can pass in our query to our postgres database.  We are using the "any" function which means our query will return zero or more rows.  Check out some of the additional documentation here: <a href="https://vitaly-t.github.io/pg-promise/Database.html#any">Documentation</a></dd>
+									<dt class="col-sm-3">.then & .catch</dt>
+									<dd class="col-sm-9">The then/catch components operate like a try/catch block in other programming languages.  Inside of the .then() we'll execute our code IF our query is successful (no errors), otherwise we will jump over to the .catch()</dd>
+									<dt class="col-sm-3">function (rows) {</dt>
+									<dd class="col-sm-9">Inside of our .then() we will create a function that will hold onto the results from our postgres query.  For this example, we have named the data "rows" but you can name it just about any variable name you wish.</dd>
+									<dt class="col-sm-3">data: rows,</dt>
+									<dd class="col-sm-9">Inside of render call we will update our parameters.  We now have a new parameter called data, which will hold the query results. We've also removed our hard-coded values and instead just use '' for color * color_msg.</dd>
+								</dl>
+							</div>
+
+						</dd>
+						<dd>
+							<div class="alert alert-success" role="alert">
+								Do not forget to change the postgres password in server.js file. It is set to 'pwd' now, change it to the password you set at the beginning.
+							</div>
+						</dd>
+
+						<hr>
+						<br>
+						<dt>4. Iterate over Query Results in Home.ejs</dt>
+						<dd>
+							<p>Now that we have access to our favorite_colors' data, we can update our home page to now include some buttons and usable form to actually update our webpage's background-color.  Add the following code below the TODO: Second EJS Update, which is listed inside of your home.ejs file. </p>
+							<pre><code class="language-js"><%
+if (data) {
+    var buttons = '';
+	data.forEach(function(item){
+  		 buttons += '&lt;button type="submit" name="color_selection" class="btn btn-block" style="background-color:#' + item.hex_value + '" value="' + item.hex_value + '">';
+			 if(item.name){
+		       buttons += item.name + '&lt;/button>';
+		     }
+		     else{
+		    	 buttons += item.hex_value + '&lt;/button>';
+		     }
+  	 }); %>
+  	 <%- buttons %>
+<% } %></code></pre>
+							<a class="btn btn-warning dropdown-toggle" id="hidetext4" href="#explanation3" onclick="showExplanation(4)">More information</a>
+							<br>
+							<div id = "explanation4" style="display:none;">
+							<dl class="row">
+								<dt class="col-sm-3">var buttons= '';</dt>
+								<dd class="col-sm-9">Our code here will iterate over each entry in our query results and add an html button for it.  The buttons variable will keep track fo all of the html code we are generating</dd>
+								<dt class="col-sm-3">data.forEach(function(item){</dt>
+								<dd class="col-sm-9">The easiest way to step through each row, is with a forEach() statement.  If you want to see how your information in data is setup, try adding a console.log(data)!  (please note this will show up in your terminal, not your web browser's console)</dd>
+								<dt class="col-sm-3">buttons+=...</dt>
+								<dd class="col-sm-9">Here we are appending to our buttons string a new button's html code.</dd>
+								<dt class="col-sm-3">item.hex_value</dt>
+								<dd class="col-sm-9">Each row is a Javascript Object with named fields relating to the column's name.  So here we are accessing the current row (item) and retrieving the value in the hex_value column (item.hex_value)</dd>
+								<dt class="col-sm-3">if(item.name){ </dt>
+								<dd class="col-sm-9">We have used if statements to check if our parameters (data, color, color_msg) are set, but we can also use them to see if our database fields are set (i.e. null or not null).  In this case, the name field can be null.  If this occurs for one of the rows we retrieve, our code will display the hex value inside of our button, instead of name.</dd>
+								<dt class="col-sm-3"><%- buttons %> </dt>
+								<dd class="col-sm-9">After we have added all of our buttons, we will need to "echo" them out into our html form using the <%- %></dd>
+							</dl>
+							</div>
+							<br>
+							<p><b>Restart The Server</b></p>
+							<div class="row">
+								<div class="col-6">
+									<p>Now that our home.ejs file and server.js files have been updated, go ahead and restart the Node.js server.  Remember you can use ctrl + c to end a running application in Linux.  Then you can re-run "node server.js", to restart our server.  Refresh your webpage and you should now see a series of buttons displayed. </p>
+								</div>
+								<div class="col-6"  style="text-align:center;">
+									<img class="img-fluid" src="img/home.png" alt="Screenshot of the login page" style="height:400px;">
+								</div>
+							</div>
+						</dd>
+
+							<hr>
+							<br>
+						<dt>5. Process a GET Request's Parameters</dt>
+						<dd>
+							<p>Our home page has a form which contains all of our potential color options. But it still cannot change our background color! We need to add a new route to our server.js file which can accept and process our GET request's color_selection parameter. Add the following code, below our previous app.get(/home). <b style="color:red">ADD THIS CODE, this will NOT replace our existing get.app('\home').</b></p>
+							<pre><code class="language-js">app.get('/home/pick_color', function(req, res) {
+	var color_choice = req.query.color_selection;
+	var color_options =  'select * from favorite_colors;';
+	var color_message = "select color_msg from favorite_colors where hex_value = '" + color_choice + "';";
+	db.task('get-everything', task => {
+        return task.batch([
+            task.any(color_options),
+            task.any(color_message)
+        ]);
+    })
+    .then(info => {
+    	res.render('pages/home',{
+				my_title: "Home Page",
+				data: info[0],
+				color: color_choice,
+				color_msg: info[1][0].color_msg
+			})
+    })
+    .catch(error => {
+        // display error message in case an error
+            request.flash('error', err);
+            response.render('pages/home', {
+                title: 'Home Page',
+                data: '',
+                color: '',
+                color_msg: ''
+            })
+    });
+
+});</code></pre>
+
+							<a class="btn btn-warning dropdown-toggle" id="hidetext5" href="#explanation5" onclick="showExplanation(5)">More information</a>
+							<br>
+							<div id = "explanation5" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-5">'/home/pick_color'</dt>
+									<dd class="col-sm-7">This route has to match the action="" field from our form!  This is how the server nows to handle our form's get request.</dd>
+									<dt class="col-sm-5">req.query.color_selection</dt>
+									<dd class="col-sm-7">To access our the parameters of our get request, we will use "req.query", which is followed by the name of the parameter we wish to access.  The color_selection parameter matches the name field from the buttons we created on our home page: &lt;button name="color_selection></dd>
+									<dt class="col-sm-5">var color_message = ...</dt>
+									<dd class="col-sm-7">Our color_message is a second query which explicit grabs the color_msg for our chosen color.</dd>
+									<dt class="col-sm-5">db.task('get-everything', task => {</dt>
+									<dd class="col-sm-7">We now have multiple queries to deal with!  To handle them all, we will use the database's task operation which can handle batch processing of our queries.</dd>
+									<dt class="col-sm-5">task.any(color_options),</dt>
+									<dd class="col-sm-7">Inside of db.task() we can list as many queries as we need.  Just make sure to separate the queries with commas!</dd>
+									<dt class="col-sm-5">data: info[0],</dt>
+									<dd class="col-sm-7">When working with multiple queries, we will have to operate with multiple results.  The variable info is an array with all of our results.  To access an individual query's results we use info[query_index]. </dd>
+									<dt class="col-sm-5">color_msg: info[1][0].color_msg</dt>
+									<dd class="col-sm-7">Since our second query only has 1 value returned, we can actually access it's field directly (color_msg). </dd>
+								</dl>
+							</div>
+
+						</dd>
+						<hr>
+						<br>
+						<dt>6. Add POST Request Form</dt>
+						<dd>
+							<p>Our final task for our home page is to include a form that lets use add a new favorite color, via a post request. Copy and paste the following code below TODO: Third EJS Update, within the form tags for our post request!</p>
+							<pre><code class="language-html">&lt;div class="form-group row">
+	&lt;label class="col-sm-2 col-form-label" for="color_hex">Color Hex Value:&lt;/label>
+	&lt;div class="col-sm-10">
+		&lt;input type="text" class="form-control" name="color_hex" id="color_hex"  placeholder="Enter Hex Value" maxlength="6">
+	&lt;/div>
+&lt;/div>
+&lt;div class="form-group row">
+	&lt;label class="col-sm-2 col-form-label"  for="color_name">Color Name:&lt;/label>
+	&lt;div class="col-sm-10">
+		&lt;input type="text" class="form-control" name="color_name" id="color_name" placeholder="Enter Color's Name">
+	&lt;/div>
+&lt;/div>
+&lt;div class="form-group row">
+	&lt;label  class="col-sm-2 col-form-label" for="color_message">Color Message:&lt;/label>
+	&lt;div class="col-sm-10">
+		&lt;input type="text" class="form-control" id="color_message" name="color_message" placeholder="Enter the Color's Description">
+	&lt;/div>
+&lt;/div>
+&lt;button type="submit" class="btn btn-primary btn-block">Submit&lt;/button></code></pre>
+						</dd>
+						<hr>
+						<br>
+						<dt>7. Handle the POST Request's Parameters</dt>
+						<dd>
+							<p>The following code is the last update we need to make to our server.js (with respects to our home page).  We'll be adding an app.post(). It will use the same route as our get request ('/home/pick_color') but processes the form data using a POST request and applies an insert to our favorite_colors table.</p>
+							<pre><code class="language-js">app.post('/home/pick_color', function(req, res) {
+	var color_hex = req.body.color_hex;
+	var color_name = req.body.color_name;
+	var color_message = req.body.color_message;
+	var insert_statement = "INSERT INTO favorite_colors(hex_value, name, color_msg) VALUES('" + color_hex + "','" +
+							color_name + "','" + color_message +"') ON CONFLICT DO NOTHING;";
+
+	var color_select = 'select * from favorite_colors;';
+	db.task('get-everything', task => {
+        return task.batch([
+            task.any(insert_statement),
+            task.any(color_select)
+        ]);
+    })
+    .then(info => {
+    	res.render('pages/home',{
+				my_title: "Home Page",
+				data: info[1],
+				color: color_hex,
+				color_msg: color_message
+			})
+    })
+    .catch(error => {
+        // display error message in case an error
+            request.flash('error', err);
+            response.render('pages/home', {
+                title: 'Home Page',
+                data: '',
+                color: '',
+                color_msg: ''
+            })
+    });
+});</code></pre>
+
+							<a class="btn btn-warning dropdown-toggle" id="hidetext6" href="#explanation6" onclick="showExplanation(6)">More information</a>
+							<br>
+							<div id = "explanation6" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-5">app.post()</dt>
+									<dd class="col-sm-7">We are not working with a post request.  Much of the syntax here is similiar to the get request, but the key difference will be in how we access our post data vs get data.</dd>
+									<dt class="col-sm-5">req.body.color_hex</dt>
+									<dd class="col-sm-7">To access our post data we will need to use our "body-parser" module.  This changes our notation from "req.query"(get) to "req.body"(post).  With each being followed by the parameter name we want to work with.</dd>
+									<dt class="col-sm-5">var insert_statement = ...</dt>
+									<dd class="col-sm-7">Handling an insert statement is just about the same as our select statements.  We set a variable with the insert statement's information and then pass it to our db.task() method.  We are using db.task here because we need to add a new value AND retrieve our new list of colors.</dd>
+									<dt class="col-sm-5">data: info[1],</dt>
+									<dd class="col-sm-7">Because our select statement is our second query, it will be at index 1 in our info array which contains all of our query results.</dd>
+									<dt class="col-sm-5">color: color_hex</dt>
+									<dd class="col-sm-7">After running our two queries, we will pass in our brand new color and use it to set our home page's background-color.</dd>
+								</dl>
+							</div>
+
+						</dd>
+						<hr>
+						<br>
+						<dt> More information: GET vs. POST</dt>
+						<dd>
+							<p><b>GET Request</b></p>
+							A get request will pass information to the server via the URL by appending parameters & values to the end of the URL address.  This information can then be parsed and processed by the server.  <b>Key Benefit: A get request is visible to the user and can therefore be bookmarked, saved, and shared by the user</b>
+							<p>Basic Get Form</p>
+							<pre><code class="language-html">form(action="route/to/take", method="get")
+	input(type="text", placeholder="Text here", name="parameter_name")
+	button(type="submit") Submit </code></pre>
+							<p>Displayed as:
+								<input type="text" placeholder="Text here" name="parameter_name">
+								<button type="submit">Submit</button></p>
+							<br>
+							<p><b>Handling A GET Request</b></p>
+							<pre><code class="language-js">app.get('/route/to/take', function(req, res) {
+	var get_variable = req.query.parameter_name;
+	res.render('pages/web_page_name',{
+		text_variable:"Text Value",
+		number_variable: 5,
+		parameter_variable: get_variable
+	});
+});</code></pre>
+
+							<a class="btn btn-warning dropdown-toggle" id="hidetext7" href="#explanation7" onclick="showExplanation(7)">More information</a>
+							<br>
+							<div id = "explanation7" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">app.get</dt>
+									<dd class="col-sm-9">Here we define which method we want to work with (our only options are get/post).  For a lot of our webpage routing, we'll be using get requests.</dd>
+									<dt class="col-sm-3">'/route/to/take'</dt>
+									<dd class="col-sm-9">Our server will be listening for this specific route to be added to our website's base url.  <b style="color:red">THIS IS NOT A RELATIVE PATH!</b>  Our server will be working with routes now and it will then determine which webpage to load and how.  This means we can have multiple routes which all lead to the same webpage (each one potentially loading the page differently).  Also, since this is not a relative path to our webpage, a route's information may not explicitly state which webpage it is referencing.</dd>
+									<dt class="col-sm-3">req.query.parameter_name</dt>
+									<dd class="col-sm-9">To retrieve the parameter values from our quest request we need to use 'req.query' followed by the name of the parameter we want to access.  This will let use grab in any values passed to use via a form's get submission.</dd>
+									<dt class="col-sm-3">res.render('pages/web_page'</dt>
+									<dd class="col-sm-9">The res object will allow us to render our webpage.  Here we are defining the route to our webpage, based on our starting point being the views directory. <b style="color:red">THIS IS WHERE YOU USE A RELATIVE PATH!</b></dd>
+									<dt class="col-sm-3">variable_name:"Text Value",</dt>
+									<dd class="col-sm-9">After our path, inside of a pair of curly braces, we can define any variables we wish to pass onto our webpage. These variables can then be referenced inside of the view or ejs file and dynamically decide what information is shown on to the user.</dd>
+								</dl>
+							</div>
+							<br>
+							<p><b>POST Request</b></p>
+							A post request will pass information to the server via a data package, which is hidden from the user.  But be aware, this does not hide the information from anyone "sniffing" the network.  You will have to use other tools (such as SSL) to properly secure the post request.  <b>Key Benefit: Information is hidden from the user (& with SSL it can be secured), which makes this a great option for login information & handling form data like account registration.</b>
+							<p>Basic Post Form</p>
+							<pre><code class="language-html">!-- The only difference here is method has changed to post! -->
+form(action="route/to/take", method="post")
+	input(type="text", placeholder="Text here", name="parameter_name")
+	button(type="submit") Submit </code></pre>
+							<p>Displayed as:
+								<input type="text" placeholder="Text here" name="parameter_name">
+								<button type="submit">Submit</button></p>
+							<br>
+							<p><b>Handling A POST Request</b></p>
+							<pre><code class="language-js">app.post('/route/to/take', function(req, res) {
+	var get_variable = req.body.parameter_name;
+	res.render('pages/web_page_name',{
+		text_variable:"Text Value",
+		number_variable: 5,
+		parameter_variable: get_variable
+	});
+});</code></pre>
+
+
+							<a class="btn btn-warning dropdown-toggle" id="hidetext8" href="#explanation8" onclick="showExplanation(8)">More information</a>
+							<br>
+							<div id = "explanation8" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">app.post</dt>
+									<dd class="col-sm-9">Most of the information for our post request is identical to our get request.  The only two differences are here in the method call to post & in accessing our passed in parameters.</dd>
+									<dt class="col-sm-3">req.body.parameter_name;</dt>
+									<dd class="col-sm-9">To retrieve the parameter values from our quest request we need to use 'req.body' followed by the name of the parameter we want to access.  This will be utilizing an npm module called "body-parser" which parses the post requests data for us.</dd>
+								</dl>
+							</div>
+						</dd>
+					</dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step6">
+				<div class="stepLine">
+					<p class="alignleft h5">4. Team Stats Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(6)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time3">30</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample6">
+					<dl>
+						<dt><br>TODO: Edit your sever.js and team_stats.pug files to populate the two tables.</dt>
+						<dd><br>
+							<pre>
+Team Stats Page:
+/team_stats - get request (no parameters)
+	This route will require no parameters.  It will require 3 postgres queries which will:
+		1. Retrieve all of the football games in the Fall 2018 Season
+		2. Count the number of winning games in the Fall 2018 Season
+		3. Count the number of lossing games in the Fall 2018 Season
+	The three query results will then be passed on to the team_stats view (pages/team_stats).
+	The team_stats view will display all fo the football games for the season, show who won each game,
+	and show the total number of wins/losses for the season.
+    </pre>
+						</dd>
+
+						<hr>
+						<br>
+						<dt>A Single Query</dt>
+						<dd>
+							<pre><code class="language-js"> var query = 'SELECT * FROM table_name;';
+db.any(query)
+    .then(function (rows) {
+        res.render('pages/page_name',{
+			my_title: "My Title Here",
+			data: rows,
+		})
+
+    })
+    .catch(function (err) {
+        // display error message in case an error
+        request.flash('error', err);
+        res.render('pages/page_name',{
+			my_title: "My Title Here",
+			data: '',
+		})
+	})</code></pre>
+
+
+							<a class="btn btn-warning dropdown-toggle" id="hidetext9" href="#explanation9" onclick="showExplanation(9)">More information</a>
+							<br>
+							<div id = "explanation9" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-3">var query</dt>
+									<dd class="col-sm-9">The first step in accessing a postgres database, is to determine WHAT you want to access.  This query can be a select statement, an update, or even an insert statement.  These will be the main three query types you'll want to work with when accessing your database</dd>
+									<dt class="col-sm-3">db.any(query)</dt>
+									<dd class="col-sm-9">We use the database object we created at the top of server.js file make a call to the postgres database.  He we use the "any" method call which means we can have zero or more rows returned.  There are other options available (listed <a href="https://vitaly-t.github.io/pg-promise/Database.html">Here</a>). But for today's lab, when working with single queries we'll just use the "any" method.</dd>
+									<dt class="col-sm-3">.then & .catch</dt>
+									<dd class="col-sm-9">The then/catch components operate like a try/catch block in other programming languages.  Inside of the .then() we'll execute our code IF our query is successful (no errors), otherwise we will jump over to the .catch()</dd>
+									<dt class="col-sm-3">function (rows) {</dt>
+									<dd class="col-sm-9">Inside of our .then() we will create a function that will hold onto the results from our postgres query.  For this example, we have named the data "rows" but you can name it just about any variable name you wish.</dd>
+									<dt class="col-sm-3">data: rows,</dt>
+									<dd class="col-sm-9">Inside of the render call we will pass in our results as a parameter called data.  Which ever view we are rending will now be able to access our results via the parameter data.</dd>
+								</dl>
+							</div>
+
+						</dd>
+						<hr>
+						<br>
+						<dt>Multiple Queries</dt>
+						<dd>
+							<pre><code class="language-js">var query1 = 'select * from table_name;';
+var query2 = 'select * from table_name_2;';
+var query3 = 'select * from table_name_3;';
+db.task('get-everything', task => {
+    return task.batch([
+        task.any(query1),
+        task.any(query2),
+        task.any(query3)
+    ]);
+})
+.then(data => {
+	res.render('pages/page_name',{
+			my_title: "Page Title Here",
+			result_1: data[0],
+			result_2: data[1],
+			result_3: data[2]
+		})
+})
+.catch(error => {
+    // display error message in case an error
+        request.flash('error', err);
+        res.render('pages/page_name',{
+			my_title: "Page Title Here",
+			result_1: '',
+			result_2: '',
+			result_3: ''
+		})
+});</code></pre>
+
+
+							<a class="btn btn-warning dropdown-toggle" id="hidetext10" href="#explanation10" onclick="showExplanation(10)">More information</a>
+							<br>
+							<div id = "explanation10" style="display:none;">
+								<dl class="row">
+									<dt class="col-sm-5">db.task('get-everything', task => {</dt>
+									<dd class="col-sm-7">We now have multiple queries to deal with!  To handle them all, we will use the database's task operation which can handle batch processing of our queries.</dd>
+									<dt class="col-sm-5">task.any(query1),</dt>
+									<dd class="col-sm-7">Inside of db.task() we can list as many queries as we need.  Just make sure to separate the queries with commas!</dd>
+									<dt class="col-sm-5">result1: data[0],</dt>
+									<dd class="col-sm-7">When working with multiple queries, we will have to operate with multiple results.  The variable info is an array with all of our results.  To access an individual query's results we use data[query_index]. </dd>
+								</dl>
+							</div>
+
+						</dd>
+
+
+					</dl>
+				</div>
+			</div>
+			<div class="card card-body" id="step7">
+				<div class="stepLine">
+					<p class="alignleft h5">5. Football Player Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(7)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="false" aria-controls="multiCollapseExample7">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time4">40</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample7">
+					<dl>
+						<dt><br>TODO: Edit your server.js and player_info.ejs files to populate the drop down selector and the player information table.</dt>
+						<dd><br>
+							<pre>
+Football Player Page:
+/player_info - get request (no parameters)
+	This route will handle a single query to the football_players table which will retrieve the id & name for all of the football players.
+	Next it will pass this result to the player_info view (pages/player_info), which will use the ids & names to populate the select tag for a form
+
+/player_info/select_player - get request (player_id)
+	This route will handle three queries and a work with a single parameter.
+	Parameter:
+		player_id - this will be a single number that refers to the football player's id.
+	Queries:
+		1. Retrieve the user id's & names of the football players (just like in /player_info)
+		2. Retrieve the specific football player's informatioin from the football_players table
+		3. Retrieve the total number of football games the player has played
+							</pre>
+
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="card card-body" id="step10">
+				<div class="stepLine">
+					<p class="alignleft h5">6. Submission Guidelines</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(10)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample10" aria-expanded="false" aria-controls="multiCollapseExample10">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time6">5</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample10">
+					<ol>
+						<dl>
+							<dt><li>Create a new github repo</li></dt>
+							<font>
+								On github, you will need to create a new repository called Lab_Website_3 & upload your code to the github repo.  Make sure you don't overwrite last week's repo!  In general this would be a great way to continue your project,<font color="blue"> HOWEVER since it may not have been graded by your TA yet DON'T OVERWRITE LAST WEEK's LAB!!. </font>
+								</dd>
+								If you are not using github WebGUI, You can follow the following instructions. Please do not forget to create the repository first on github.
+								<font color="blue"> 'github_url' is the URL of the repository you just created. (Just like Lab3)</font>.
+								Following commands should be run inside your local Lab_Website directory.
+								<pre class="command-line" data-prompt="$"><code  class="language-bash">git init
+git remote add origin github_url
+git add .
+git commit -m "Adding all of the files for lab7"
+git push</code></pre>
+								<dt><li>Create a link to your github repo</li></dt>
+								<dd>
+									In a text file (lab_7_link.txt), write down the following:
+									<ol>
+										<li>Your name</li>
+										<li>You partner's name (if you have one)</li>
+										<li>The link to your Lab_Website_4 Github Repo (Make sure the repo is public!!!)</li>
+									</ol>
+								</dd>
+								<dt><li>Submit to Canvas</li></dt>
+								<dd>
+									Submit your text file to the Canvas by the deadline.
+								</dd>
+						</dl>
+					</ol>
+				</div>
+			</div>
+			<!--
+			<div class="card card-body" id="step11">
+				<div class="stepLine">
+					<p class="alignleft h5">Rubric</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample11" aria-expanded="false" aria-controls="multiCollapseExample11">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample11">
+					<table class="table table-hover">
+
+					</table>
+				</div>
+			</div> -->
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
