@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Project Milestone 4</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Project Milestone 4</h1>
+					<p class="lead"><b>Due date: 30 March 2020, 11:59 p.m.</b></p>
+				</div>
+			  </div>
+			</div>
+
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Requirement Checklist</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample1" style="padding-top:30px;">
+					     <table>
+                 <tr>
+                   <th>Check</th>
+                   <th>Criteria</th>
+                   <th>Details</th>
+                 </tr>
+                 <tr id="row1">
+                   <td class="check"><input type="checkbox" id="check1" onclick="isChecked(1)"/></td>
+                   <td class="criteria">Revised List of Features</td>
+                   <td class="details">
+                     <ul>
+                       <li>This	is	an	updated	list	of	your	FEATURES	inventory	(from	Milestone	2).</li>
+                        <li>It is normal for feature lists to change during	the	course	of	a	project.</li>
+                        <li>Some features	may	have	been	dropped.		Some	features	may	have	been	added.</li>
+                        <li>This	revised	features	list	should	reflect these	changes.</li>
+                        <li>This	revised	features list	should	identify	the	PRIORITY	order	of	how	the	features	will	be	developed.</li>
+                     </ul>
+                  </td>
+                 </tr>
+                 <tr id="row2">
+                   <td class="check"><input type="checkbox" id="check2" onclick="isChecked(2)"/></td>
+                   <td class="criteria">Architecture	Diagram</td>
+                   <td class="details">
+                     <ul>
+                       <li>This	deliverable	is	a	picture	or	diagram	that	shows	each	architectural	component	of	your application.</li>
+                        <li>The	diagram	should	identify	how	your	application’s	front-end,	integration	layer,	and	backend	processes	will	be hosted.</li>
+                        <li>This	diagram	should	identify	the	flow	of	data	from	one	layer	to	another.</li>
+                        <li>This	diagram	should	identify	the	protocols	being	used	to/from	each component	layer.</li>
+                     </ul>
+                  </td>
+                 </tr>
+                 <tr id="row3">
+                   <td class="check"><input type="checkbox" id="check3" onclick="isChecked(3)"/></td>
+                   <td class="criteria">Front	End	design</td>
+                   <td class="details">
+                     <ul>
+                       <li>This	deliverable	is	a	series	of	diagrams	that	show	the	basic	design	of	your application’s	front	end.</li>
+                        <li>Typically,	this	design	is	most	easily	presented	in terms	of	a	WIREFRAME.</li>
+                        <li>This	may	be	hand	drawn,	or	created	using	a	web	page	wireframe	drawing	tool.</li>
+                        <li>The	front	end	design	should	identify	each major	feature	of	the	application’s	front	end</li>
+                     </ul>
+                  </td>
+                 </tr>
+                 <tr id="row4">
+                   <td class="check"><input type="checkbox" id="check4" onclick="isChecked(4)"/></td>
+                   <td class="criteria">Web	Service	Design</td>
+                   <td class="details">
+                     <ul>
+                       <li>If	your	application	is using	Web	Services	via	APIs,	this	deliverable	should	list	the	Web	Service	being	used	along	with	a	description	of	the	Web	Service’s	API	including	the	data	being	passed	to	and	received	from	the	API.</li>
+                     </ul>
+                  </td>
+                 </tr>
+                 <tr id="row5">
+                   <td class="check"><input type="checkbox" id="check5" onclick="isChecked(5)"/></td>
+                   <td class="criteria">Database design</td>
+                   <td class="details">
+                     <ul>
+                        <li>This	deliverable	provides	a	summary	design	of	your	application’s	database. </li>
+                        <li>The	design	document	should	identify	each	type	of	data	being	stored	in	your database.</li>
+                        <li>This	may	be	documented	in	terms	of	a	schema	definition,	showing	data	entities	(“files”)		and	attributes	(“fields”)</li>
+                        <li>This	may	be	documented	via	an	Entity	Relationship	Diagram	showing	database	tables	and	columns.</li>
+                        <li>The	document	should	identify	the	specific	DBMS	technology	being	used	to	store	your	application	data	(PostgreSQL,	MySQL,	Firebase,	etc.)</li>
+                     </ul>
+                  </td>
+                 </tr>
+               </table>
+               <br><br>
+               <div class="alert alert-primary">
+                 <p style="font-style:italic">
+                   - If	you	are	not	using	a	relational	database	(we	recommend	PostgreSQL),	your	backend	documentation must	include a	brief	justification	explaining	your	chosen	data	architecture,	data	storage,	data	 retrieval,	etc.,	and		clearly	explain	why	the	alternative	database	technology	was	chosen.	<br>
+                   - If	your	app	will	not	have	registration/log	in	capabilities,	you	must	submit	a	justification	report	describing the	security	measures	built	into	your	application	and how	individual	users	are	authenticated	and	tracked,	and	clearly	explain	why	the	alternative	authentication	method	was	chosen. <br>
+                   - Staff reserves	the	right	to	deny	any	requested	exceptions.</p>
+               </div>
+
+        </div>
+			</div>
+      <div class="card card-body" id="step2">
+        <div class="stepLine">
+          <p class="alignleft h5">Turning Stuff in</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample2" style="padding-top:30px;">
+          <dl>
+      			<dt>Create a single PDF for the team</dt><br/>
+      			<dd>
+              - Document what features were completed, what worked during the demo, what issues were faced either during the development or during the demo, and what were the suggestions offered by the TA. <br>
+              - This	project	milestone	4	submission	should	be	a	PDF	document	named	<b>ProjectMilestone4_[TeamNumber]</b> and pushed to the <b>MILESTONES</b> repository in git.<br/>
+              - On Canvas, include a text file with the link to your <b>MILESTONES</b> git repository.
+      			</dd>
+          </dl>
+        </div>
+      </div>
+
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
