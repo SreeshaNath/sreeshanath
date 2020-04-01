@@ -1,0 +1,164 @@
+<!-- Home Page -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>Weather Information</title>
+    <!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<style>
+      #thermometer_inner { width: 95%; height: 20%; margin:2.5%; background: red; position:absolute; bottom:10%;}
+      #thermometer_outer {height:400px; position:relative;}
+      #temp_today { color:white; text-align:center; position:relative; top:0%; }
+      body{
+      /*image sourced from https://www.google.com/url?sa=i&url=https%3A%2F%2Fopenweathermap.org%2F&psig=AOvVaw20P3Gfg93XrGNztO2nPhr0&ust=1585803443098000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMDXlKq4xugCFQAAAAAdAAAAABAD*/
+      background-image: url('./img/weather.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      }
+      .container{
+      /* margin-top: 2%; */
+      padding:2%;
+      opacity: 0.9;
+      background: #FFFFFF;
+      }
+	</style>
+  </head>
+  <body>
+  	<div class="container">
+		<br>
+		<h1 id="heading" style="text-align:center">Weather Forecast</h1>
+		<hr>
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <div class="col-2">
+            <!-- source for images: https://www.iconfinder.com/iconsets/weather-line-19 -->
+            <img id="image_today" class="img-fluid" src="img/clear-day.png" alt="Today's Weather Icon">
+          </div>
+          <div class="col-10">
+            <h5>
+              Local Date/Time: <span id="local_time">2020-04-01 11:00AM</span><br>
+              Precipitation: <span id="precip_today">10%</span><br>
+              Humidity: <span id="humidity_today">80%</span><br>
+              Wind Speed: <span id="wind_today">5</span> mph<br>
+              Summary: <span id="summary_today">Summary Info</span>
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+
+      </div>
+      <div class="col-4">
+        <div class="card" >
+          <div id="thermometer_outer">
+            <div id="thermometer_inner"><p id="temp_today" class="h3"> 0 F</p></div>
+          </div>
+          <div class="card-body">
+              <h5 class="text-center">Thermometer</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+		<br>
+		<h2 class="h1" style="text-align:center;">5 Day Forecast</h2>
+		<hr>
+		<div class="row" id="5_day_forecast">
+
+		</div>
+		<br>
+	</div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	<script>
+    //helper functions
+    var dayOfWeek = "";
+    function formatDate(date, month, year)
+    {
+      month = (month.length < 2) ? ('0' + month) : month;
+      date = (date.length < 2)? ('0' + date) : date;
+      return [year,month,date].join('-');
+    }
+    function getDayofWeek(date, month, year){
+      var week_names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      dayOfWeek =  week_names[new Date([month,date,year].join('-')).getDay()];
+    }
+    function getFarenheitTemp(temp){
+      return (9*temp/5)+32;
+    }
+    //run when the document object model is ready for javascript code to execute
+		$(document).ready(function() {
+			var url =''; //Place your weatherstack API Call Here - access_key to be used: 5bc82451636190abd9d7afe6fe9b20b5
+
+			$.ajax({url:url, dataType:"jsonp"}).then(function(data) {
+      	/*
+					Read the current weather information from the data point values [https://weatherstack.com/documentation] to
+					update the webpage for today's weather:
+					1. image_today : This should display an image for today's weather.
+									 This will use the icon that is returned by the API. You will be looking for the weather_icons key in the response.
+
+          2. location: This should be appended to the heading. For eg: "Today's Weather Forecast - Boulder"
+
+					3. temp_today : This will be updated to match the current temperature. Use the getFarenheitTemp to convert the temperature from celsius to farenheit.
+
+					4. thermometer_inner : Modify the height of the thermometer to match the current temperature. This means if the
+										   current temperature is 32 F, then the thermometer will have a height of 32%.  Please note,
+										   this thermometer has a lower boundary of 0 and upper boundary of 100.
+
+					5. precip_today : This will be updated to match the current probability for precipitation. Be sure to check the unit of the value returned and append that to the value displayed.
+
+					6. humidity_today : This will be updated to match the current humidity percentage (make sure this is listed as a
+										percentage %)
+
+					7. wind_today : This will be updated to match the current wind speed.
+
+					8. summary_today: This will be updated to match the current summary for the day's weather.
+
+				*/
+
+				/* Process the daily forecast for the next 5 days */
+        //helper function - to be used to get the key for each of the 5 days in the future when creating cards for forecasting weather
+        function getKey(i){
+            var date =new Date();
+            var d = date.getDate() + i;
+            var m = date.getMonth() + 1;
+            var y = date.getFullYear();
+            var key_forecast = formatDate(d.toString(),m.toString(),y.toString()).toString();
+            getDayofWeek(d,m,y);
+            return data.forecast[key_forecast];
+        }
+				/*
+					For the next 5 days you'll need to add a new card listing:
+						1. The day of the week
+						2. The temperature high
+						3. The temperature low
+            4. Sunrise
+            5. Sunset
+
+					Each card should use the following format:
+					<div style="width: 20%;">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title"><!-- List Day of the Week Here --></h5>
+								<p class="card-text">High:<!--List Temperature High --> <br>
+									Low: <!-- List Temperature Low --><br>
+                  Sunrise: <!-- List Time of Sunrise --><br>
+                  Sunset: <!-- List Time of Sunset --></p>
+							</div>
+						</div>
+					</div>
+
+          <Hint1 - To access the forecast data> You need to make sure to carefully see the JSON response to see how to access the forecast data. While creating the key to access forecast data make sure to convert it into a string using the toString() method.
+
+					<Hint2 - To add the cards to the HTML> - Make sure to use string concatenation to add the html code for the daily weather cards.  This should
+					be set to the innerHTML for the 5_day_forecast.
+				*/
+			})
+		})
+ 	</script>
+</body>
+</html>
