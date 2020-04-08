@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Lab 10</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 10 Heroku Website</h1>
+					<p class="lead">This lab will go over the steps needed to host our Node.js website and PostgreSQL database on Heroku. This lab is a "walk through" lab where the main focus is to ensure you can host your group project online.
+            To receive credit for this lab, you MUST complete steps 1 and 3 in recitation and get marked off by your TA. You must upload "lab_10_link.txt" to Canvas by the deadline. </p>
+        </div>
+				<div class="col-2">
+					<table class="table">
+						<tr>
+							<th class="h5" style="text-align:center">Est. Time  &#x023F1;</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">0</span> minutes</td>
+						</tr>
+					</table>
+				</div>
+        			  </div>
+				<div class="row">
+					<div class="col-12">
+						<p class="card card-body deadline">This lab is due right before recitation next week.
+							For Example, If your lab is on this Friday at 10 AM, the submission deadline will be next Friday at 10 AM.</br>
+							There is no late policy for labs.
+						</p>
+					</div>
+				</div>
+        <p class="h5"><a href="./complete_student_site.zip">Download </a>the template and make sure you extract the files before using them.</p>
+
+			</div>
+
+      <div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Lab Overview</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample1">
+					<br>
+					<br>
+                      The abbreviated steps for todays lab are as follows:
+          						<ol>
+          							<li>Regsiter for Heroku</li>
+          							<li>Create a new Heroku App</li>
+          							<li>Install Heroku CLI </li>
+									<li>Make changes to the code/Add environment variables</li>
+									<li>Upload the completed Node.js code to Heroku</li>
+          							<li>Setup PostgreSQL database on Heroku</li>
+          							<li>Submit a link to your Heroku App to Canvas</li>
+          						</ol></p>
+				</div>
+			</div>
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">1. Setup Heroku App</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+            <p class="alignright h5">(<span class="time" id="time1">20</span> Minutes)</p>
+        </div>
+				<div class="collapse" id="multiCollapseExample2">
+					<ol>
+						<dl>
+							<dt><li>Register Heroku Account</li></dt>
+							<dd>
+								<div class="row">
+									<div class="col-6">
+										<img src="img/heroku_register.png" alt="Screenshot of Heroku Registration Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Go to Heroku's Registration page <a href="https://signup.heroku.com/login" target="_blank">here</a> and create an account.</p>
+									</div>
+								</div>
+							</dd>
+							<br>
+							<hr>
+							<br>
+							<dt><li>Create a New App</li></dt>
+							<dd>
+								<div class="row">
+									<div class="col-6">
+										<img src="img/dashboard_heroku.png" alt="Screenshot of Heroku Dashboard Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Click on "Create New App"</p>
+									</div>
+								</div>
+								<br>
+								<hr>
+								<br>
+								<div class="row">
+									<div class="col-6">
+										<img src="img/heroku_create_app.png" alt="Screenshot of App Creation Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Name your app, there is no required name here because every student submission will need to be a unique name. Please remember this name as you will need it in further steps. Let's call this 'app_name' for now</p>
+									</div>
+								</div>
+								<br>
+								<hr>
+								<br>
+								<div class="row">
+									<div class="col-6">
+										<img src="img/heroku_app_dash.png" alt="Screenshot of Heroku App Dashboard Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Once you have named your app, you'll be shown your Heroku App's Dashboard.</p>
+									</div>
+								</div>
+							</dd>
+							<dt><li>Upload Node.js Website Code to Heroku</li></dt>
+							<dd>
+								<div class="row">
+									<p>To upload your code to Heroku, you'll need to install the Heroku CLI.<br>For Linux:</p>
+								</div>
+								<div class="row">
+									<div class="col-12">
+										<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">sudo snap install --classic heroku</code></pre>
+									</div>
+								</div>
+								<div class="row">
+									<p>For Windows/Mac users, go <a href="https://devcenter.heroku.com/articles/heroku-cli" target="_blank">here</a> to download the installer.</p>
+								</div>
+								<br>
+								<hr>
+								<br>
+								<div class="row">
+									<div class="col-6">
+										<img src="img/upload_code_heroku.png" alt="Screenshot of instructions for uploading code to heroku" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Follow the directions for your App Dashboard for connecting your website's code to heroku.
+                      <div class="alert alert-danger" role="alert">
+                        <b><u>IMPORTANT:</u></b> Make sure that you follow the instructions from WITHIN the "complete_student_site" directory.  If you haven't already, download the complete_student_site.zip file and unzip it to your local machine.
+                      </div>
+                      <div class="alert alert-secondary" role="alert">
+                        <b><u>ALTERNATIVE:</u></b>  If the website you created in <b>Lab 7</b> is working perfectly and there are no errors, you can upload it to Heroku instead of the complete_student_site we provided.
+                      </div>
+									</div>
+								</div>
+								<p>Below you'll find a guided walkthrough for changing your app to make it work with heroku. You will do this by accessing the environment variables. An environment variable is a variable whose value is set outside the program, typically through functionality built into the operating system or microservice. An environment variable is made up of a name/value pair, and any number may be created and available for reference at a point in time. <a href="https://www.twilio.com/blog/2017/08/working-with-environment-variables-in-node-js.html"> Read Me</a> to understand more about environment variables in node.js</p>
+								<dl>
+									<dt>1. Configure the Database url.</dt>
+									<dl>
+										<p>As you are hosting the website on heroku, the database should also be hosted on heroku (You will do that in step 3). Hence the db configuration in your code should point to environment variable DATABASE_URL. The DATABASE_URL will be automatically set by heroku when you add database as a resource in your step 3.</p>
+										<pre><code class="language-js">// const dbConfig = {
+// 	host: 'localhost',
+// 	port: 5432,
+// 	database: 'football_db',
+// 	user: 'postgres',
+// 	password: 'pwd'
+// };
+
+const dbConfig = process.env.DATABASE_URL;
+
+											</code></pre></dl></dl>
+								<dl>
+									<dt>2. Configure the port.</dt>
+									<dl>
+										<p>As you are hosting the website on heroku, the hardcoded port 3000 does might not be available when you run your app. So, you will configure the port to environment variable PORT. This will automatically be assigned by heroku when you run your app.</p>
+										<pre><code class="language-js">//app.listen(3000);
+app.listen(process.env.PORT);
+											</code></pre></dl></dl>
+								<dl><dt>3. Push your changes to heroku</dt><dl>	<p>Now your code is ready to be pushed to heroku. Once you push your code, it will generate a build for you. You can see the process on Overview tab of your heroku dashboard. Please do the following steps inside your lab7 or downloaded complete_student_site</p>							<div class="row">
+									<div class="col-12">
+										<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">heroku login</code></pre>
+									</div>
+									<div class="col-12">
+										<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">git init
+heroku git:remote -a [app_name]</code></pre>
+									</div>
+									<div class="col-12">
+										<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">git add .
+git commit -am "Initial Setup"
+git push heroku master</code></pre>
+									</div>
+								</div></dl></dl>
+
+							</dd>
+						</dl>
+					</ol>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">2. Setup Heroku PostgreSQL Database</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time1">30</span> Minutes)</p>
+        </div>
+				<div class="collapse" id="multiCollapseExample3">
+					<br>
+					<ol>
+					<dl>
+						<dt><li>Add a Heroku Resource</li></dt>
+						<dd>
+							<div class="row">
+									<div class="col-6">
+										<img src="img/postgres_resource.png" alt="Screenshot of Heroku Resource Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>To create a PostgreSQL database, you'll need to first add a new Heroku Resource. Select the Heroku Resource tab and type in "postgres" to find the Heroku Postgres Resource.</p>
+									</div>
+								</div>
+						</dd>
+						<dt><li>Connect to Heroku PostgreSQL Database</li></dt>
+						<dd>
+							<p>Make sure to replace "[app_name]" with the name of your actual heroku app.</p>
+							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash">heroku pg:psql -a [app_name] </code></pre>
+						</dd>
+						<dt><li>Create the Database Tables</li></dt>
+						<dd>Copy the following code into psql terminal to create the football_player, footbal_games, and favorite_colors tables and populate them with data.
+							<pre class="command-line" data-prompt="[app_name]::DATABASE="><code  class="language-bash">DROP TABLE football_games;
+CREATE TABLE IF NOT EXISTS football_games (
+  visitor_name VARCHAR(30),       /* Name of the visiting team                     */
+  home_score SMALLINT NOT NULL,   /* Final score of the game for the Buffs         */
+  visitor_score SMALLINT NOT NULL,/* Final score of the game for the visiting team */
+  game_date DATE NOT NULL,        /* Date of the game                              */
+  players INT[] NOT NULL,         /* This array consists of the football player ids (basically a foreign key to the football_player.id) */
+  PRIMARY KEY(visitor_name, game_date) /* A game's unique primary key consists of the visitor_name & the game date (this assumes you can't have multiple games against the same team in a single day) */
+);
+
+DROP TABLE football_players;
+CREATE TABLE IF NOT EXISTS football_players(
+  id SERIAL PRIMARY KEY,       /* Unique identifier for each player (it's possible multiple players have the same name/similiar information) */
+  name VARCHAR(50) NOT NULL,   /* The player's first & last name */
+  year VARCHAR(3),             /* FSH - Freshman, SPH - Sophomore, JNR - Junior, SNR - Senior */
+  major VARCHAR(4),            /* The unique 4 character code used by CU Boulder to identify student majors (ex. CSCI, ATLS) */
+  passing_yards SMALLINT,      /* The number of passing yards in the players entire football career  */
+  rushing_yards SMALLINT,      /* The number of rushing yards in the players entire football career  */
+  receiving_yards SMALLINT,    /* The number of receiving yards in the players entire football career*/
+  img_src VARCHAR(200)         /* This is a file path (absolute or relative), that locates the player's profile image */
+);
+
+INSERT INTO football_games(visitor_name, home_score, visitor_score, game_date, players)
+VALUES('Colorado State', 45, 13, '20180831', ARRAY [1,2,3,4,5]),
+('Nebraska', 33, 28, '20180908', ARRAY [2,3,4,5,6]),
+('New Hampshire', 45, 14, '20180915', ARRAY [3,4,5,6,7]),
+('UCLA', 38, 16, '20180928', ARRAY [4,5,6,7,8]),
+('Arizona State', 28, 21, '20181006', ARRAY [5,6,7,8,9]),
+('Southern California', 20, 31, '20181013', ARRAY [6,7,8,9,10]),
+('Washington', 13, 27, '20181020', ARRAY [7,8,9,10,1]),
+('Oregon State', 34, 41, '20181027', ARRAY [8,9,10,1,2]),
+('Arizona', 34, 42, '20181102', ARRAY [9,10,1,2,3]),
+('Washington State', 7, 31, '20181110', ARRAY [10,1,2,3,4]),
+('Utah', 7, 30, '20181117', ARRAY [1,2,3,4,5]),
+('California', 21, 33, '20181124', ARRAY [2,3,4,5,6])
+;
+
+INSERT INTO football_players(name, year, major, passing_yards, rushing_yards, receiving_yards, img_src)
+VALUES('Cedric Vega', 'FSH', 'ARTS', 15, 25, 33, '../resources/img/player1.jpg'),
+('Myron Walters', 'SPH', 'CSCI', 32, 43, 52, '../resources/img/player2.jpg'),
+('Javier Washington', 'JNR', 'MATH', 1, 61, 45, '../resources/img/player3.jpg'),
+('Wade Farmer', 'SNR', 'ARTS', 14, 55, 12, '../resources/img/player4.jpg'),
+('Doyle Huff', 'FSH', 'CSCI', 23, 44, 92, '../resources/img/player5.jpg'),
+('Melba Pope', 'SPH', 'MATH', 13, 22, 45, '../resources/img/player6.jpg'),
+('Erick Graves', 'JNR', 'ARTS', 45, 78, 98, '../resources/img/player7.jpg' ),
+('Charles Porter', 'SNR', 'CSCI', 92, 102, 125, '../resources/img/player8.jpg'),
+('Rafael Boreous', 'JNR', 'MATH', 102, 111, 105, '../resources/img/player9.jpg'),
+('Jared Castillo', 'SNR', 'ARTS', 112, 113, 114, '../resources/img/player10.jpg');
+
+DROP TABLE favorite_colors;
+CREATE TABLE IF NOT EXISTS favorite_colors(
+  hex_value VARCHAR(6) PRIMARY KEY, /* This is the hexvalue for the color, it assumes that the value DOES NOT # */
+  name VARCHAR(50),                 /* The html safe name for the color.  This can be null */
+  color_msg  TEXT NOT NULL          /* A message describing the chosen color */
+);
+
+INSERT INTO favorite_colors(hex_value, name, color_msg)
+VALUES('FF6347', 'TOMATO', 'This color gets it name from the red fruit that at one time was considered poisonous!'),
+('3CB371', 'Medium Sea Green', 'Not sure what the difference is between Small & Large Sea Green... but I guess this one is in between them.'),
+('EE82EE','Violet', 'Roses are Red, Violets are blue...'),
+('545AA7','Liberty', 'Not to be confused with the color of the Liberty Bell (which is indeed a copper color)');
+
+INSERT INTO favorite_colors(hex_value, color_msg)
+VALUES('FF2727', 'An unnamed red color'),
+('27FF27', 'An unnamed green color'),
+('870087', 'An unnamed magenta color'),
+('8F8FFF', 'An unnamed blue color');</code></pre>
+						</dd>
+						<dt><li>Exit the psql terminal</li></dt>
+						<dd>
+							<pre class="command-line" data-prompt="[app_name]::DATABASE="><code  class="language-bash"> \q</code></pre>
+						</dd>
+						<dt><li>Head to your App's Homepage</li></dt>
+						<dd>
+							On your Heroku App's Dashboard, click the "Open App" Button to open your App's webpage in a new tab.
+						</dd>
+						<br/>
+						<br/>
+						<br/>
+
+						<dt>Where to configure environment Variables on Heroku?</dt> <br/>
+						<p>On your Heroku Dashboard goto Settings and under Config Vars click on Reveal Config Vars. There are multiple ways to handle these variables <a href="https://dashboard.heroku.com/apps/lab-test-2/settings"> Read Me</a> to understand how to play around with environment variables on heroku.</p>
+						<dd>				<div class="row">
+							<div class="col-12">
+								<img src="img/env_on_heroku.png" alt="Screenshot of Heroku Settings Page" class="img-fluid">
+							</div>
+
+						</div></dd>
+					</dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step4">
+				<div class="stepLine">
+					<p class="alignleft h5">3. Submission Guidelines</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)" >Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample4">
+					<ol>
+						<dl>
+							<dt><li>Create a link to your Heroku App</li></dt>
+							<dd>
+								In a text file (lab_10_link.txt), write down the following:
+								<ol>
+									<li>Your name</li>
+									<li>You partner's name (if you have one)</li>
+									<li>The link to your Heroku App</li>
+								</ol>
+							</dd>
+							<dt><li>Submit to Canvas</li></dt>
+							<dd>
+								Submit your text file to Canvas.  Make sure all submissions have been uploaded by the Deadline.
+							</dd>
+						</dl>
+					</ol>
+				</div>
+			</div>
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+                      <div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
