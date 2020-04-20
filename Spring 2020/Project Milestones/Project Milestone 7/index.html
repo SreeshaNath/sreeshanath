@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CSCI 3308 Project Milestone 7</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../resources/css/prism.css">
+
+	<script src="../resources/js/jquery-3.3.1.js"></script>
+	<script src="../resources/js/popper.js" ></script>
+	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/clipboard.js"></script>
+	<script src="../resources/js/prism.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="../resources/css/labLayout.css">
+	<script src="../resources/js/labScripts.js"></script>
+	</head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+  				<div class="col-10">
+  					<h1 class="display-4">Project Milestone 7</h1>
+  					<p class="lead"><b>Due date:  May 4 2020, 11:59 p.m.</b></p>
+  				</div>
+			  </div>
+			</div>
+
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Requirement Checklist</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample1" style="padding-top:30px;">
+            This milestone will be graded based on the amount of effort, the success of the overall project, and use of tools and methodologies throughout the semester. <br><br>
+            You must deploy your project and store your project source code, test cases, and all relevant project documentation in a Git repository. <br><br>
+            To submit Milestone # 7, create a PDF named ProjectMilestone7_[TeamNumber].pdf where Project Title is the name of your project. Please make sure that your report does not exceed 8-10 pages. The pdf document must contain the following in the order provided: <br><br>
+					     <table>
+                 <tr>
+                   <th>Check</th>
+                   <th>Criteria</th>
+                 </tr>
+                 <tr id="row1">
+                   <td class="check"><input type="checkbox" id="check1" onclick="isChecked(1)"/></td>
+                   <td class="criteria"><b>Title:</b> of the project</td>
+                 </tr>
+                 <tr id="row2">
+                   <td class="check"><input type="checkbox" id="check2" onclick="isChecked(2)"/></td>
+                   <td class="criteria"><b>Who:</b> Names of each person in the group</td>
+                 </tr>
+                 <tr id="row10">
+                   <td class="check"><input type="checkbox" id="check10" onclick="isChecked(10)"/></td>
+                   <td class="criteria">
+                     <b>Project Description:</b> A 200 word summary of the project
+                   </td>
+                 </tr>
+                 <tr id="row3">
+                   <td class="check"><input type="checkbox" id="check3" onclick="isChecked(3)"/></td>
+                   <td class="criteria">
+                     <b>Project Tracker:</b> (Trello, Asana, or similar tool.)<br>
+                     o Link to your Project Tracker (for instructor & TAs)<br>
+                     o Screenshot showing your project in your project tracker
+                   </td>
+                 </tr>
+                 <tr id="row4">
+                   <td class="check"><input type="checkbox" id="check4" onclick="isChecked(4)"/></td>
+                   <td class="criteria">
+                     <b>(Optional)</b> Video: 5 minute or less video demonstrating your project. Your audience is a potential customer or person interested in using your product.
+                   </td>
+                 </tr>
+                 <tr id="row5">
+                   <td class="check"><input type="checkbox" id="check5" onclick="isChecked(5)"/></td>
+                   <td class="criteria">
+                     <b>VCS:</b> Link to your git Repository (for your TA - If you haven't already added them, add them now if your repository is private. )<br><br>
+                     TAs will check to ensure the following are stored in your VCS repository: <br>
+                        - Source Code (throughout the semester)<br>
+                        - Test Cases <br>
+                        - Video demo (optional) <br>
+                        - README.md in GitHub explaining to others what your project is about. <br>
+                        - Project Milestone 7 document titled as Project Milestone7_[TeamNumber].pdf <br>
+                   </td>
+                 </tr>
+                 <tr id="row6">
+                   <td class="check"><input type="checkbox" id="check6" onclick="isChecked(6)"/></td>
+                   <td class="criteria">
+                     <b>Contributions: </b><br>
+                     - Screenshot of each member’s contributions (i.e. “commits”) throughout the semester from Git <br>
+                     - A brief from each team member about their contributions <br>
+                     <ul>
+                       <li>This should include the technologies worked on</li>
+                       <li>Features that have been contributed to</li>
+                     </ul>
+                   </td>
+                 </tr>
+                 <tr id="row7">
+                   <td class="check"><input type="checkbox" id="check7" onclick="isChecked(7)"/></td>
+                   <td class="criteria">
+                     <b>Deployment:</b> link to deployment environment or a written description of how the app was deployed and how one might access/run the app.
+                   </td>
+                 </tr>
+                 <tr id="row8">
+                   <td class="check"><input type="checkbox" id="check8" onclick="isChecked(8)"/></td>
+                   <td class="criteria">The app must be live, working, and accessible to your TA.</td>
+                 </tr>
+                 <tr id="row9">
+                   <td class="check"><input type="checkbox" id="check9" onclick="isChecked(9)"/></td>
+                   <td class="criteria">
+                    <b>Be sure to:</b> <br><br>
+                      - Tag your repo with "Final Submission" (make sure to push your tag to your repo)<br>
+                      - Include a README in your repository:<br>
+                      &nbsp; &nbsp;      - Describe repo organization/structure <br>
+                      &nbsp; &nbsp;      - Describe how to build/run/test/etc code <br>
+                      &nbsp; &nbsp;      - If using a Continuous Integration system, provide a link to the CI status page <br>
+                   </td>
+                 </tr>
+               </table>
+        </div>
+			</div>
+      <div class="card card-body" id="step2">
+        <div class="stepLine">
+          <p class="alignleft h5">Turning Stuff in</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample2" style="padding-top:30px;">
+          <dl>
+      			<dt>Create a single PDF for the team</dt><br/>
+      			<dd>
+              - This project milestone 7 submission should be a PDF named ProjectMilestone7_[TeamNumber] included in your github repository by midnight on the due date.
+      			</dd>
+            <dd>
+              - Submit a link to the repository on Canvas.
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2" >
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img  src="../resources/img/octicons/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button" >Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button" >Collapse All</button>
+        				</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>
